@@ -1,5 +1,5 @@
 'use client';
-import { Marker } from 'react-map-gl';
+import { Marker } from 'react-map-gl/maplibre';
 import { CATEGORY_ICONS } from './mapConfig';
 import type { Place } from '@/types';
 

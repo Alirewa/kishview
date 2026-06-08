@@ -1,8 +1,14 @@
 'use client';
 import { useRef, useCallback, useEffect } from 'react';
-import Map, { type MapRef } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import { KISH_CENTER, KISH_BOUNDS, MAP_CONFIG } from './mapConfig';
+import Map, { type MapRef } from 'react-map-gl/maplibre';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import {
+  KISH_CENTER,
+  KISH_BOUNDS,
+  MAP_CONFIG,
+  DARK_STYLE,
+  SATELLITE_STYLE,
+} from './mapConfig';
 import { MarkerLayer } from './MarkerLayer';
 import { useAppStore } from '@/store/useAppStore';
 import { places } from '@/data/places';
@@ -46,8 +52,7 @@ export function KishMap() {
   return (
     <Map
       ref={mapRef}
-      mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-      mapStyle={theme === 'dark' ? MAP_CONFIG.style.dark : MAP_CONFIG.style.light}
+      mapStyle={theme === 'dark' ? DARK_STYLE : SATELLITE_STYLE}
       initialViewState={{
         longitude: KISH_CENTER[0],
         latitude: KISH_CENTER[1],
@@ -59,27 +64,7 @@ export function KishMap() {
       maxZoom={MAP_CONFIG.maxZoom}
       maxBounds={KISH_BOUNDS}
       style={{ width: '100%', height: '100%' }}
-      terrain={{ source: 'mapbox-dem', exaggeration: 1.5 }}
-      onLoad={(e) => {
-        const map = e.target;
-        // 3D terrain DEM source
-        map.addSource('mapbox-dem', {
-          type: 'raster-dem',
-          url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
-          tileSize: 512,
-          maxzoom: 14,
-        });
-        // Atmosphere sky layer
-        map.addLayer({
-          id: 'sky',
-          type: 'sky',
-          paint: {
-            'sky-type': 'atmosphere',
-            'sky-atmosphere-sun': [0.0, 90.0],
-            'sky-atmosphere-sun-intensity': 15,
-          },
-        });
-      }}
+      // No API token needed — MapLibre GL JS is fully open source
     >
       <MarkerLayer places={places} onMarkerClick={handleMarkerClick} />
     </Map>

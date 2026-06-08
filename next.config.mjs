@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
-  transpilePackages: ['mapbox-gl'],
+  transpilePackages: ['maplibre-gl'],
 };
 
 export default nextConfig;
