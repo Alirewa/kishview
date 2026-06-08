@@ -4,6 +4,8 @@ import { useAppStore } from '@/store/useAppStore';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { KishMap } from './Map/KishMap';
 import { TopBar } from './controls/TopBar';
+import { CategoryFilter } from './controls/CategoryFilter';
+import { MapControlsPanel } from './controls/MapControlsPanel';
 import { MenuDrawer } from './controls/MenuDrawer';
 import { PlaceSidebar } from './Overlay/PlaceSidebar';
 import { AddPlaceModal } from './Modals/AddPlaceModal';
@@ -13,29 +15,18 @@ export default function MapPage() {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+    root.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
   return (
     <LanguageProvider>
       <div className="relative h-screen w-screen overflow-hidden">
-        {/* Full-screen map — always behind everything */}
         <KishMap />
-
-        {/* Glassmorphism top bar */}
         <TopBar />
-
-        {/* Side menu drawer */}
+        <CategoryFilter />
+        <MapControlsPanel />
         <MenuDrawer />
-
-        {/* Bottom card — slides up when a place is selected */}
         <PlaceSidebar />
-
-        {/* Add-place dialog */}
         <AddPlaceModal />
       </div>
     </LanguageProvider>

@@ -1,6 +1,8 @@
 'use client';
 import { Marker } from 'react-map-gl/maplibre';
 import { CATEGORY_ICONS } from './mapConfig';
+import { useAppStore } from '@/store/useAppStore';
+import { FILTER_CHIPS } from '@/data/filterChips';
 import type { Place } from '@/types';
 
 interface Props {
@@ -9,9 +11,24 @@ interface Props {
 }
 
 export function MarkerLayer({ places, onMarkerClick }: Props) {
+  const selectedCategory = useAppStore((s) => s.selectedCategory);
+  const searchQuery = useAppStore((s) => s.searchQuery);
+
+  const chip = FILTER_CHIPS.find((c) => c.id === selectedCategory);
+  const allowedTypes = chip?.types ?? null;
+
+  const visible = places.filter((p) => {
+    if (allowedTypes && !allowedTypes.includes(p.category)) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      return p.name.fa.includes(q) || p.name.en.toLowerCase().includes(q);
+    }
+    return true;
+  });
+
   return (
     <>
-      {places.map((place) => (
+      {visible.map((place) => (
         <Marker
           key={place.id}
           longitude={place.coordinates[0]}
@@ -31,7 +48,7 @@ export function MarkerLayer({ places, onMarkerClick }: Props) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={CATEGORY_ICONS[place.category]}
+              src={CATEGORY_ICONS[place.category] ?? CATEGORY_ICONS.amenity}
               alt={place.category}
               width={36}
               height={36}

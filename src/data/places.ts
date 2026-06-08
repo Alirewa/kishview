@@ -1,15 +1,18 @@
 import type { Place } from '@/types';
 
+/**
+ * Kish Island approximate bounds:
+ *   West  53.890 | East  54.020
+ *   South 26.524 | North 26.584  (north coast rises toward east)
+ */
 export const places: Place[] = [
 
-  // ════════════════════════════════════════════════════════
-  //  SHOPPING & COMMERCIAL
-  // ════════════════════════════════════════════════════════
+  // ════════ SHOPPING ════════════════════════════════════════
 
   {
     id: 'mikamall',
     category: 'shopping',
-    coordinates: [53.9694, 26.5535],
+    coordinates: [53.9694, 26.554],
     name: { fa: 'میکامال', en: 'Mikamall' },
     address: { fa: 'بلوار ساحلی شهید چمران، کیش', en: 'Shahid Chamran Coastal Blvd, Kish' },
     description: {
@@ -26,12 +29,12 @@ export const places: Place[] = [
   {
     id: 'venus-mall',
     category: 'shopping',
-    coordinates: [53.9632, 26.5588],
+    coordinates: [53.9632, 26.558],
     name: { fa: 'مال ونوس', en: 'Venus Mall' },
     address: { fa: 'خیابان معلم، مرکز شهر کیش', en: 'Moallem St, Kish City Centre' },
     description: {
       fa: 'یکی از قدیمی‌ترین و پرتردد‌ترین مراکز خرید کیش با بیش از ۲۰۰ برند، رستوران‌های متنوع، سینما و فضای تفریحی.',
-      en: 'One of Kish\'s oldest and busiest malls, with 200+ brands, diverse dining, cinema, and entertainment.',
+      en: 'One of Kish\'s oldest and busiest malls — 200+ brands, diverse dining, cinema, and entertainment.',
     },
     guide: {
       fa: 'ساعات کاری: ۱۰ صبح تا ۱۲ شب. فودکورت در طبقه سوم.',
@@ -43,7 +46,7 @@ export const places: Place[] = [
   {
     id: 'iranian-bazaar',
     category: 'shopping',
-    coordinates: [53.9622, 26.5610],
+    coordinates: [53.9575, 26.560],
     name: { fa: 'بازار ایرانیان', en: 'Iranian Bazaar' },
     address: { fa: 'خیابان ایران، مرکز کیش', en: 'Iran St, Kish Centre' },
     description: {
@@ -60,15 +63,15 @@ export const places: Place[] = [
   {
     id: 'leather-bazaar',
     category: 'shopping',
-    coordinates: [53.9645, 26.5525],
+    coordinates: [53.9648, 26.552],
     name: { fa: 'بازار چرم کیش', en: 'Kish Leather Bazaar' },
     address: { fa: 'خیابان صادقی، کیش', en: 'Sadeqi St, Kish' },
     description: {
       fa: 'بزرگ‌ترین مجموعه فروشگاه‌های چرم طبیعی در جزیره کیش. کیف، کفش، کمربند و پوشاک چرمی با قیمت معاف از گمرک.',
-      en: 'Kish\'s largest collection of genuine leather shops — bags, shoes, belts, and leather apparel at duty-free prices.',
+      en: 'Kish\'s largest genuine leather market — bags, shoes, belts, and apparel at duty-free prices.',
     },
     guide: {
-      fa: 'قیمت‌ها معاف از گمرک و مقرون‌به‌صرفه. پذیرش ارز خارجی.',
+      fa: 'قیمت‌ها معاف از گمرک. پذیرش ارز خارجی.',
       en: 'Duty-free prices. Foreign currency accepted.',
     },
     images: [{ src: 'https://picsum.photos/seed/leatherbazaar/800/500', alt: 'Kish Leather Bazaar' }],
@@ -77,12 +80,12 @@ export const places: Place[] = [
   {
     id: 'panorama-mall',
     category: 'shopping',
-    coordinates: [53.9685, 26.5598],
+    coordinates: [53.9710, 26.557],
     name: { fa: 'مرکز خرید پانوراما', en: 'Panorama Shopping Centre' },
     address: { fa: 'بلوار پانوراما، کیش', en: 'Panorama Blvd, Kish' },
     description: {
-      fa: 'مجتمع تجاری مدرن با فروشگاه‌های برند بین‌المللی، رستوران‌های زنجیره‌ای و تراس روف‌تاپ با منظره دریا.',
-      en: 'Modern commercial complex with international brand stores, chain restaurants, and a rooftop terrace with sea views.',
+      fa: 'مجتمع تجاری مدرن با برندهای بین‌المللی، رستوران‌های زنجیره‌ای و تراس روف‌تاپ با منظره دریا.',
+      en: 'Modern commercial complex with international brands, chain restaurants, and a rooftop terrace with sea views.',
     },
     guide: {
       fa: 'ساعات کاری: ۱۰ صبح تا ۱۲ شب.',
@@ -91,18 +94,16 @@ export const places: Place[] = [
     images: [{ src: 'https://picsum.photos/seed/panoramamall/800/500', alt: 'Panorama Mall Kish' }],
   },
 
-  // ════════════════════════════════════════════════════════
-  //  HOTELS & ACCOMMODATION
-  // ════════════════════════════════════════════════════════
+  // ════════ HOTELS ══════════════════════════════════════════
 
   {
     id: 'dariush-hotel',
     category: 'hotel',
-    coordinates: [53.9350, 26.5770],
+    coordinates: [53.9352, 26.572],   // north-west coast, pulled back from shore
     name: { fa: 'هتل بزرگ داریوش', en: 'Dariush Grand Hotel' },
     address: { fa: 'بلوار داریوش، شمال کیش', en: 'Dariush Blvd, North Kish' },
     description: {
-      fa: 'نمادین‌ترین هتل کیش با الهام از معماری تخت‌جمشید. ستون‌های هخامنشی، طلاکاری‌های باشکوه و خدمات جهانی آن را به یکی از شناخته‌شده‌ترین هتل‌های ایران تبدیل کرده.',
+      fa: 'نمادین‌ترین هتل کیش با الهام از معماری تخت‌جمشید. ستون‌های هخامنشی و طلاکاری‌های باشکوه آن را به یکی از شناخته‌شده‌ترین هتل‌های ایران تبدیل کرده.',
       en: 'Kish\'s most iconic hotel — inspired by Persepolis with Achaemenid columns, golden reliefs, and world-class service.',
     },
     guide: {
@@ -116,16 +117,16 @@ export const places: Place[] = [
   {
     id: 'flamingo-hotel',
     category: 'hotel',
-    coordinates: [53.9822, 26.5885],
+    coordinates: [53.9820, 26.578],   // north-east coast, ~300 m from shore
     name: { fa: 'هتل فلامینگو', en: 'Flamingo Hotel' },
     address: { fa: 'ساحل شمال شرقی، کیش', en: 'Northeast Shore, Kish' },
     description: {
-      fa: 'یکی از قدیمی‌ترین و محبوب‌ترین هتل‌های کیش با موقعیت ساحلی عالی در شمال شرق جزیره. استخر، رستوران دریایی و دسترسی مستقیم به ساحل اختصاصی.',
-      en: 'One of Kish\'s oldest and most beloved hotels, with a prime beachfront location on the northeast shore — pool, seafood restaurant, and private beach access.',
+      fa: 'یکی از قدیمی‌ترین و محبوب‌ترین هتل‌های کیش با موقعیت ساحلی عالی. استخر، رستوران دریایی و دسترسی مستقیم به ساحل اختصاصی.',
+      en: 'One of Kish\'s oldest hotels — prime beachfront location, pool, seafood restaurant, and private beach access.',
     },
     guide: {
-      fa: 'رزرو مستقیم از وب‌سایت هتل یا آژانس‌های معتبر. ساحل اختصاصی برای مهمانان.',
-      en: 'Book directly via the hotel website or verified agencies. Private beach for guests.',
+      fa: 'ساحل اختصاصی برای مهمانان. رزرو مستقیم توصیه می‌شود.',
+      en: 'Private beach for guests. Direct booking recommended.',
     },
     images: [{ src: 'https://picsum.photos/seed/flamingokish/800/500', alt: 'Flamingo Hotel Kish' }],
     ticketUrl: 'https://kishview.com',
@@ -134,12 +135,12 @@ export const places: Place[] = [
   {
     id: 'parmis-hotel',
     category: 'hotel',
-    coordinates: [53.9580, 26.5720],
+    coordinates: [53.9578, 26.570],   // north-central, safely on land
     name: { fa: 'هتل پارمیس', en: 'Parmis Hotel' },
     address: { fa: 'ساحل شمالی، کیش', en: 'North Shore, Kish' },
     description: {
-      fa: 'هتل ساحلی چهارستاره با منظره مستقیم به خلیج فارس، استخر، سالن ورزشی، رستوران و اتاق‌های نوسازی‌شده با دکور مدرن.',
-      en: 'Four-star beachfront hotel with direct Persian Gulf views, pool, gym, restaurant, and recently renovated rooms with modern decor.',
+      fa: 'هتل ساحلی چهارستاره با منظره مستقیم به خلیج فارس، استخر، سالن ورزشی، رستوران و اتاق‌های مدرن.',
+      en: 'Four-star beachfront hotel with Persian Gulf views, pool, gym, restaurant, and modern rooms.',
     },
     guide: {
       fa: 'موقعیت مرکزی با دسترسی آسان به مراکز خرید و جاذبه‌ها.',
@@ -149,19 +150,17 @@ export const places: Place[] = [
     ticketUrl: 'https://kishview.com',
   },
 
-  // ════════════════════════════════════════════════════════
-  //  BEACHES & WATER ATTRACTIONS
-  // ════════════════════════════════════════════════════════
+  // ════════ BEACHES & WATER ════════════════════════════════
 
   {
     id: 'coral-beach',
     category: 'water-sports',
-    coordinates: [53.9580, 26.5200],
+    coordinates: [53.9585, 26.529],   // south shore — on land, not in water
     name: { fa: 'ساحل مرجانی', en: 'Coral Beach' },
     address: { fa: 'ساحل جنوبی کیش', en: 'South Shore, Kish' },
     description: {
       fa: 'زیباترین ساحل جنوبی کیش با آب فیروزه‌ای شفاف و مرجان‌های رنگارنگ در اعماق کم. ایده‌آل برای شنا، اسنورکل و غواصی.',
-      en: 'Kish\'s most beautiful southern beach — crystal-clear turquoise water, shallow colorful corals, ideal for swimming, snorkeling, and diving.',
+      en: 'Kish\'s most beautiful southern beach — crystal-clear turquoise water, shallow colorful corals, perfect for swimming, snorkeling, and diving.',
     },
     guide: {
       fa: 'بهترین زمان: صبح زود ۶–۹. تجهیزات اسنورکل کرایه‌ای در ساحل.',
@@ -174,16 +173,16 @@ export const places: Place[] = [
   {
     id: 'sadaf-beach',
     category: 'water-sports',
-    coordinates: [53.9900, 26.5175],
+    coordinates: [53.9900, 26.528],   // south-east shore — on land
     name: { fa: 'ساحل صدف', en: 'Sadaf Beach' },
     address: { fa: 'ساحل جنوب شرقی کیش', en: 'Southeast Shore, Kish' },
     description: {
-      fa: 'یکی از محبوب‌ترین سواحل عمومی کیش با آب گرم و آرام، مناسب خانواده. امکانات ورزش‌های آبی، ایستگاه نجات غریق و کافه‌های ساحلی.',
-      en: 'One of Kish\'s most popular public beaches — warm, calm water ideal for families, water sports facilities, lifeguards, and beachside cafés.',
+      fa: 'یکی از محبوب‌ترین سواحل عمومی کیش با آب گرم و آرام، مناسب خانواده. امکانات ورزش‌های آبی، نجات غریق و کافه‌های ساحلی.',
+      en: 'One of Kish\'s most popular public beaches — warm, calm water ideal for families, water sports, lifeguards, and beachside cafés.',
     },
     guide: {
-      fa: 'ساعات ورود: ۶ صبح تا ۱۰ شب. بخش جداگانه خانم‌ها و آقایان.',
-      en: 'Entry hours: 6 AM – 10 PM. Separate sections for men and women.',
+      fa: 'ساعات: ۶ صبح تا ۱۰ شب. بخش جداگانه خانم‌ها و آقایان.',
+      en: 'Hours: 6 AM – 10 PM. Separate sections for men and women.',
     },
     images: [{ src: 'https://picsum.photos/seed/sadafbeach/800/500', alt: 'Sadaf Beach Kish' }],
   },
@@ -191,12 +190,12 @@ export const places: Place[] = [
   {
     id: 'dolphin-park',
     category: 'water-sports',
-    coordinates: [53.9720, 26.5650],
+    coordinates: [53.9718, 26.563],
     name: { fa: 'پارک دلفین‌ها', en: 'Dolphin Park' },
     address: { fa: 'بلوار ساحلی شمالی، کیش', en: 'North Coastal Blvd, Kish' },
     description: {
-      fa: 'پارک آبی منحصربه‌فرد با نمایش دلفین‌های بطری‌نوک، شیرهای دریایی و استخرهای گرمایش‌دار.',
-      en: 'Unique water park featuring bottlenose dolphin shows, sea lion performances, and heated pools.',
+      fa: 'پارک آبی با نمایش دلفین‌های بطری‌نوک، شیرهای دریایی و استخرهای گرمایش‌دار.',
+      en: 'Water park featuring bottlenose dolphin shows, sea lion performances, and heated pools.',
     },
     guide: {
       fa: 'نمایش دلفین: ۱۱ صبح، ۳ و ۷ عصر. خرید آنلاین توصیه می‌شود.',
@@ -209,12 +208,12 @@ export const places: Place[] = [
   {
     id: 'diving-pier',
     category: 'water-sports',
-    coordinates: [53.9502, 26.5740],
+    coordinates: [53.9502, 26.569],   // north shore area
     name: { fa: 'اسکله غواصی', en: 'Diving Pier' },
     address: { fa: 'ساحل شمال غربی، کیش', en: 'Northwest Shore, Kish' },
     description: {
-      fa: 'اسکله و مرکز غواصی حرفه‌ای کیش با کلاس‌های آموزشی PADI، تجهیزات کامل اجاره‌ای و تور غواصی به مرجان‌های خلیج فارس.',
-      en: 'Professional diving pier and centre — PADI courses, full equipment rental, and guided coral dive tours in the Persian Gulf.',
+      fa: 'مرکز غواصی حرفه‌ای کیش با کلاس‌های PADI، تجهیزات اجاره‌ای و تور مرجان‌های خلیج فارس.',
+      en: 'Professional diving centre — PADI courses, full equipment rental, guided coral tours in the Persian Gulf.',
     },
     guide: {
       fa: 'تور روزانه ۸ صبح و ۳ عصر. گواهینامه بین‌المللی صادر می‌شود.',
@@ -224,19 +223,17 @@ export const places: Place[] = [
     ticketUrl: 'https://kishview.com',
   },
 
-  // ════════════════════════════════════════════════════════
-  //  HISTORICAL & CULTURAL ATTRACTIONS
-  // ════════════════════════════════════════════════════════
+  // ════════ HISTORICAL & CULTURAL ═══════════════════════════
 
   {
     id: 'greek-ship',
     category: 'amenity',
-    coordinates: [53.9422, 26.5348],
+    coordinates: [53.9325, 26.531],   // south-west shore — actual wreck location
     name: { fa: 'کشتی یونانی', en: 'Greek Ship' },
     address: { fa: 'ساحل جنوب غربی کیش', en: 'Southwest Shore, Kish' },
     description: {
-      fa: 'لنگرگاه تاریخی کشتی باری یونانی «کاپتان کوستاس» از سال ۱۳۴۵. این کشتی زنگ‌زده محبوب‌ترین نقطه عکاسی کیش است — بویژه هنگام غروب.',
-      en: 'Grounding site of Greek cargo ship "Captain Kostas" since 1966. This rust-red wreck is Kish\'s most photographed spot — especially at sunset.',
+      fa: 'لنگرگاه تاریخی کشتی یونانی «کاپتان کوستاس» از سال ۱۳۴۵. این کشتی زنگ‌زده محبوب‌ترین نقطه عکاسی کیش است — بویژه هنگام غروب.',
+      en: 'Grounding site of Greek cargo ship "Captain Kostas" since 1966 — Kish\'s most photographed landmark, especially at sunset.',
     },
     guide: {
       fa: 'بازدید رایگان. بهترین زمان: غروب آفتاب.',
@@ -248,12 +245,12 @@ export const places: Place[] = [
   {
     id: 'harireh-ancient',
     category: 'amenity',
-    coordinates: [53.9350, 26.5620],
+    coordinates: [53.9105, 26.572],   // actual north-west ruins location
     name: { fa: 'شهر باستانی حریره', en: 'Harireh Ancient City' },
     address: { fa: 'شمال غرب کیش، جاده حریره', en: 'NW Kish, Harireh Rd' },
     description: {
-      fa: 'بقایای پایتخت قرن دوم تا هفتم هجری کیش با ۴۰٬۰۰۰ نفر جمعیت. حمام‌ها، مساجد و خانه‌های تاریخی هنوز قابل مشاهده‌اند.',
-      en: 'Ruins of Kish\'s capital from the 2nd–7th century AH, once home to 40,000 people — historic baths, mosques, and homes still visible.',
+      fa: 'بقایای پایتخت قرن دوم تا هفتم هجری کیش با جمعیت ۴۰٬۰۰۰ نفری. حمام‌ها، مساجد و خانه‌های تاریخی هنوز قابل مشاهده‌اند.',
+      en: 'Ruins of Kish\'s medieval capital, once home to 40,000 people — historic baths, mosques, and homes still visible.',
     },
     guide: {
       fa: 'بازدید رایگان. بهترین زمان: ساعت طلایی غروب.',
@@ -265,7 +262,7 @@ export const places: Place[] = [
   {
     id: 'anthropology-museum',
     category: 'amenity',
-    coordinates: [53.9538, 26.5690],
+    coordinates: [53.9538, 26.566],
     name: { fa: 'موزه مردم‌شناسی کیش', en: 'Kish Anthropology Museum' },
     address: { fa: 'خیابان فرهنگ، کیش', en: 'Farhang St, Kish' },
     description: {
@@ -282,12 +279,12 @@ export const places: Place[] = [
   {
     id: 'safa-house',
     category: 'amenity',
-    coordinates: [53.9418, 26.5612],
+    coordinates: [53.9062, 26.563],   // old Safa village, north-west
     name: { fa: 'خانه تاریخی صفا', en: 'Safa Historical House' },
     address: { fa: 'روستای قدیمی صفا، کیش', en: 'Old Safa Village, Kish' },
     description: {
-      fa: 'خانه اصیل بومی کیش متعلق به دوران قاجار با معماری سنتی بادگیر، دیوارهای آهک‌پوش و حیاط مرکزی. نمونه نادری از معماری سنتی خلیج فارس.',
-      en: 'An authentic Qajar-era Kish home with traditional wind-tower architecture, lime-plastered walls, and a central courtyard — a rare example of Persian Gulf vernacular architecture.',
+      fa: 'خانه اصیل بومی کیش متعلق به دوران قاجار با معماری بادگیر، دیوارهای آهک‌پوش و حیاط مرکزی.',
+      en: 'Authentic Qajar-era home with traditional wind-tower architecture, lime-plastered walls, and a central courtyard.',
     },
     guide: {
       fa: 'بازدید رایگان. راهنمای محلی موجود است.',
@@ -296,19 +293,17 @@ export const places: Place[] = [
     images: [{ src: 'https://picsum.photos/seed/safahouse/800/500', alt: 'Safa Historical House Kish' }],
   },
 
-  // ════════════════════════════════════════════════════════
-  //  AQUARIUM & NATURE
-  // ════════════════════════════════════════════════════════
+  // ════════ AQUARIUM & NATURE ═══════════════════════════════
 
   {
     id: 'kish-aquarium',
     category: 'amenity',
-    coordinates: [53.9440, 26.5700],
+    coordinates: [53.9440, 26.568],   // north-west, pulled back from coast
     name: { fa: 'آکواریوم کیش', en: 'Kish Aquarium' },
     address: { fa: 'شمال غرب کیش، مجاور پارک ساحلی', en: 'NW Kish, near Coastal Park' },
     description: {
-      fa: 'بیش از ۱۰۰ گونه آبزی خلیج فارس: کوسه مرجانی، لاک‌پشت دریایی، اختاپوس و مرجان زنده. تونل شیشه‌ای ۲۰ متری.',
-      en: '100+ Persian Gulf marine species — reef sharks, sea turtles, octopus, live coral. 20-metre glass walk-through tunnel.',
+      fa: 'بیش از ۱۰۰ گونه آبزی خلیج فارس: کوسه، لاک‌پشت دریایی، اختاپوس و مرجان زنده. تونل شیشه‌ای ۲۰ متری.',
+      en: '100+ Persian Gulf species — reef sharks, sea turtles, octopus, live coral. 20-metre glass walk-through tunnel.',
     },
     guide: {
       fa: 'ساعات: ۹ صبح تا ۹ شب. تغذیه کوسه شنبه‌ها ۴ عصر.',
@@ -321,12 +316,12 @@ export const places: Place[] = [
   {
     id: 'bird-garden',
     category: 'amenity',
-    coordinates: [53.9521, 26.5748],
+    coordinates: [53.9521, 26.570],   // north area, safe from coast
     name: { fa: 'باغ پرندگان کیش', en: 'Kish Bird Garden' },
     address: { fa: 'بلوار میرزاکوچک‌خان، کیش', en: 'Mirzakuchekhan Blvd, Kish' },
     description: {
-      fa: 'باغ پرندگان گرمسیری کیش با بیش از ۳۰۰ گونه پرنده بومی و غیربومی از سراسر جهان در محیط‌های طبیعی سرسبز.',
-      en: 'Kish tropical bird garden with 300+ native and exotic species from around the world, housed in lush naturalistic environments.',
+      fa: 'باغ پرندگان گرمسیری با بیش از ۳۰۰ گونه از سراسر جهان در محیط‌های طبیعی سرسبز.',
+      en: '300+ tropical bird species from around the world in lush naturalistic enclosures.',
     },
     guide: {
       fa: 'ساعات: ۸ صبح تا ۸ شب. ورودیه خانوادگی موجود است.',
@@ -336,19 +331,17 @@ export const places: Place[] = [
     ticketUrl: 'https://kishview.com',
   },
 
-  // ════════════════════════════════════════════════════════
-  //  ENTERTAINMENT & SPORTS
-  // ════════════════════════════════════════════════════════
+  // ════════ ENTERTAINMENT & SPORTS ═════════════════════════
 
   {
     id: 'kish-bowling',
     category: 'land-sports',
-    coordinates: [53.9750, 26.5700],
+    coordinates: [53.9748, 26.566],
     name: { fa: 'بولینگ کیش', en: 'Kish Bowling Center' },
     address: { fa: 'مجموعه تفریحی شمال شرق، کیش', en: 'NE Entertainment Complex, Kish' },
     description: {
       fa: 'مدرن‌ترین مرکز بولینگ جنوب ایران با ۲۴ لاین حرفه‌ای، بیلیارد، پینگ‌پنگ و فودکورت داخلی.',
-      en: 'South Iran\'s most modern bowling centre — 24 professional lanes, billiards, table tennis, indoor food court.',
+      en: 'South Iran\'s most modern bowling centre — 24 pro lanes, billiards, table tennis, indoor food court.',
     },
     guide: {
       fa: 'ساعات: ۱۰ صبح تا ۲ بامداد. کفش کرایه‌ای موجود.',
@@ -361,11 +354,11 @@ export const places: Place[] = [
   {
     id: 'luna-park',
     category: 'land-sports',
-    coordinates: [53.9714, 26.5575],
+    coordinates: [53.9714, 26.556],
     name: { fa: 'لوناپارک کیش', en: 'Kish Luna Park' },
     address: { fa: 'بلوار تفریحی، مرکز کیش', en: 'Entertainment Blvd, Central Kish' },
     description: {
-      fa: 'پارک شهربازی با چرخ‌وفلک، هواپیما، ماشین برقی، ترامپولین و بازی‌های کودکانه. مناسب برای کودکان و نوجوانان.',
+      fa: 'پارک شهربازی با چرخ‌وفلک، هواپیما، ماشین برقی، ترامپولین و بازی‌های کودکانه.',
       en: 'Amusement park with Ferris wheel, spinning planes, bumper cars, trampolines, and children\'s rides.',
     },
     guide: {
@@ -379,37 +372,35 @@ export const places: Place[] = [
   {
     id: 'parvaz-park',
     category: 'amenity',
-    coordinates: [53.9648, 26.5622],
+    coordinates: [53.9648, 26.560],
     name: { fa: 'پارک پرواز', en: 'Parvaz Park' },
     address: { fa: 'بلوار پرواز، مرکز کیش', en: 'Parvaz Blvd, Central Kish' },
     description: {
-      fa: 'پارک محوری و قلب سبز کیش با مسیرهای دوچرخه‌سواری، نصب‌های هنری، فضای پیاده‌روی و دریاچه مصنوعی.',
+      fa: 'قلب سبز کیش با مسیرهای دوچرخه‌سواری، نصب‌های هنری، فضای پیاده‌روی و دریاچه مصنوعی.',
       en: 'Kish\'s central green lung — cycling paths, art installations, walking trails, and an artificial lake.',
     },
     guide: {
-      fa: 'ورودی رایگان. وقت آرامش‌بخش صبح و غروب.',
+      fa: 'ورودی رایگان. آرامش‌بخش در صبح و غروب.',
       en: 'Free entry. Most peaceful early morning and at sunset.',
     },
     images: [{ src: 'https://picsum.photos/seed/parvazpark/800/500', alt: 'Parvaz Park Kish' }],
   },
 
-  // ════════════════════════════════════════════════════════
-  //  CAFÉS & RESTAURANTS
-  // ════════════════════════════════════════════════════════
+  // ════════ CAFÉS & RESTAURANTS ═════════════════════════════
 
   {
     id: 'kish-cafe-rose',
     category: 'cafe',
-    coordinates: [53.9690, 26.5520],
+    coordinates: [53.9690, 26.548],
     name: { fa: 'کافه رز', en: 'Café Rose' },
     address: { fa: 'پروماند ساحلی شمالی، کیش', en: 'North Seafront Promenade, Kish' },
     description: {
-      fa: 'کافه‌ای دنج با منظره مستقیم دریا، قهوه تخصصی، دسرهای محلی کیشی و اتمسفر آرامش‌بخش — بهترین مکان تماشای غروب.',
-      en: 'Cosy beachfront café with direct sea views, specialty coffee, local Kish desserts, and a calm atmosphere — the best sunset spot.',
+      fa: 'کافه‌ای دنج با منظره مستقیم دریا، قهوه تخصصی، دسرهای محلی و اتمسفر آرامش‌بخش — بهترین مکان تماشای غروب.',
+      en: 'Cosy beachfront café with direct sea views, specialty coffee, local Kish desserts — the best sunset spot.',
     },
     guide: {
       fa: 'ساعات: ۷ صبح تا ۱۱ شب. رزرو میز برای غروب توصیه می‌شود.',
-      en: 'Hours: 7 AM – 11 PM. Table reservation recommended for sunset hours.',
+      en: 'Hours: 7 AM – 11 PM. Table reservation recommended for sunset.',
     },
     images: [{ src: 'https://picsum.photos/seed/caferose/800/500', alt: 'Café Rose Kish' }],
   },
@@ -417,16 +408,16 @@ export const places: Place[] = [
   {
     id: 'zeiytoon-restaurant',
     category: 'restaurant',
-    coordinates: [53.9602, 26.5540],
+    coordinates: [53.9602, 26.553],
     name: { fa: 'رستوران زیتون', en: 'Zeiytoon Restaurant' },
     address: { fa: 'خیابان زیتون، مرکز کیش', en: 'Zeiytoon St, Central Kish' },
     description: {
-      fa: 'رستوران معروف کیش با تخصص در غذاهای دریایی تازه خلیج فارس؛ میگو، ماهی هامور، خرچنگ و انواع پیش‌غذای بومی جنوبی.',
-      en: 'Kish\'s renowned seafood restaurant specialising in fresh Persian Gulf catches — shrimp, grouper, crab, and Southern Iranian appetisers.',
+      fa: 'رستوران معروف کیش با تخصص در غذاهای دریایی تازه: میگو، هامور، خرچنگ و پیش‌غذاهای بومی جنوبی.',
+      en: 'Kish\'s renowned seafood restaurant — fresh shrimp, grouper, crab, and Southern Iranian appetisers.',
     },
     guide: {
       fa: 'رزرو سفره ضروری در ایام تعطیل. ساعات: ۱۲ تا ۱۱ شب.',
-      en: 'Table reservation essential on holidays. Hours: noon – 11 PM.',
+      en: 'Reservation essential on holidays. Hours: noon – 11 PM.',
     },
     images: [{ src: 'https://picsum.photos/seed/zeiytoon/800/500', alt: 'Zeiytoon Restaurant Kish' }],
   },
@@ -434,16 +425,16 @@ export const places: Place[] = [
   {
     id: 'darya-cafe',
     category: 'cafe',
-    coordinates: [53.9558, 26.5765],
+    coordinates: [53.9558, 26.572],   // north shore — 26.572 safely on land
     name: { fa: 'کافه دریا', en: 'Darya Café' },
     address: { fa: 'ساحل شمالی، کیش', en: 'North Shore, Kish' },
     description: {
-      fa: 'کافه روی‌دریایی مدرن با پنجره‌های پانوراما رو به خلیج فارس، صبحانه انگلیسی، موکتیل و کیک‌های خانگی.',
-      en: 'Modern over-water café with panoramic Persian Gulf windows, full English breakfast, mocktails, and home-baked cakes.',
+      fa: 'کافه مدرن با پنجره‌های پانوراما رو به خلیج فارس، صبحانه انگلیسی، موکتیل و کیک‌های خانگی.',
+      en: 'Modern café with panoramic Persian Gulf windows, full English breakfast, mocktails, and home-baked cakes.',
     },
     guide: {
-      fa: 'ساعات: ۷ صبح تا ۱۲ شب. صبحانه ویژه تا ساعت ۱۱.',
-      en: 'Hours: 7 AM – midnight. Breakfast served until 11 AM.',
+      fa: 'ساعات: ۷ صبح تا ۱۲ شب. صبحانه تا ساعت ۱۱.',
+      en: 'Hours: 7 AM – midnight. Breakfast until 11 AM.',
     },
     images: [{ src: 'https://picsum.photos/seed/daryacafe/800/500', alt: 'Darya Café Kish' }],
   },

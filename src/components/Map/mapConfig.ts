@@ -1,19 +1,17 @@
-import type { LngLatBoundsLike } from 'maplibre-gl';
-import type { StyleSpecification } from 'maplibre-gl';
+import type { LngLatBoundsLike, StyleSpecification } from 'maplibre-gl';
 
-export const KISH_CENTER: [number, number] = [53.9614, 26.5565];
+export const KISH_CENTER: [number, number] = [53.9614, 26.555];
 
-// Wider bounds so the full island + sea border is visible at min zoom
 export const KISH_BOUNDS: LngLatBoundsLike = [
-  [53.82, 26.44], // SW corner — enough sea to show coastline
-  [54.10, 26.67], // NE corner
+  [53.82, 26.44],
+  [54.10, 26.67],
 ];
 
 export const MAP_CONFIG = {
   initialZoom: 13,
-  minZoom: 11,           // was 12 — allows seeing full island + sea
+  minZoom: 11,
   maxZoom: 19,
-  initialPitch: 45,      // tilted for 3-D building effect
+  initialPitch: 45,
   initialBearing: -10,
   flyToPitch: 65,
   flyToZoom: 17,
@@ -22,38 +20,22 @@ export const MAP_CONFIG = {
   resetDuration: 1500,
 } as const;
 
-/**
- * Dark / 3-D vector style — OpenFreeMap "liberty"
- * Free, no API key, no usage limits. Includes fill-extrusion building layers.
- */
-export const DARK_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
+/** Vector base — free, no key, includes 3-D fill-extrusion layers */
+export const LIBERTY_URL = 'https://tiles.openfreemap.org/styles/liberty';
 
-/**
- * Satellite style — ESRI World Imagery (free, no API key)
- */
+/** Satellite — ESRI, free, no key */
 export const SATELLITE_STYLE: StyleSpecification = {
   version: 8,
   sources: {
     esri: {
       type: 'raster',
-      tiles: [
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      ],
+      tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
       tileSize: 256,
-      attribution:
-        'Tiles © Esri — Source: Esri, DigitalGlobe, GeoEye, USDA FSA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+      attribution: 'Tiles © Esri',
       maxzoom: 19,
     },
   },
-  layers: [
-    {
-      id: 'esri-satellite',
-      type: 'raster',
-      source: 'esri',
-      minzoom: 0,
-      maxzoom: 22,
-    },
-  ],
+  layers: [{ id: 'esri-satellite', type: 'raster', source: 'esri' }],
 };
 
 export const CATEGORY_ICONS: Record<string, string> = {
