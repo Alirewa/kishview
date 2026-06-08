@@ -19,14 +19,9 @@ export function TopBar() {
                  shadow-lg shadow-black/10"
     >
       {/* Brand */}
-      <div className="flex items-center gap-2">
-        <span className="text-base font-bold text-zinc-900 dark:text-white tracking-tight">
-          {t.appName}
-        </span>
-        <span className="text-[10px] font-medium text-zinc-400 dark:text-zinc-500 hidden sm:inline">
-          kishview.com
-        </span>
-      </div>
+      <span className="text-base font-bold text-zinc-900 dark:text-white tracking-tight">
+        {t.appName}
+      </span>
 
       {/* Hamburger menu */}
       <button

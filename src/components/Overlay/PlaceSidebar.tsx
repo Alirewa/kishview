@@ -37,13 +37,13 @@ export function PlaceSidebar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: '100%', opacity: 0 }}
           transition={{ type: 'spring', stiffness: 360, damping: 38 }}
-          className="fixed bottom-0 left-0 right-0 z-30
-                     mx-3 mb-3
+          className="fixed bottom-3 z-30
+                     left-1/2 -translate-x-1/2
+                     w-[calc(100%-2rem)] max-w-lg
                      rounded-3xl
                      bg-white dark:bg-zinc-900
                      shadow-2xl shadow-black/40
                      overflow-hidden"
-          style={{ maxHeight: '72vh' }}
         >
           {/* Drag handle pill */}
           <div className="flex justify-center pt-3 pb-1">

@@ -1,5 +1,5 @@
 const fa = {
-  appName: 'KishView',
+  appName: 'کیش ویو',
   guide: 'راهنما',
   addPlace: 'افزودن مکان',
   addPlaceTitle: 'ثبت کسب‌وکار',
