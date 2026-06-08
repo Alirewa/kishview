@@ -1,133 +1,159 @@
 'use client';
-import { X } from 'lucide-react';
-import {
-  Drawer,
-  DrawerContent,
-  DrawerOverlay,
-} from '@/components/primitives/drawer';
-import { BuyTicketButton } from './BuyTicketButton';
+import { X, MapPin, Ticket } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '@/store/useAppStore';
 import { useLanguage } from '@/context/LanguageContext';
+import { CATEGORY_ICONS } from '@/components/Map/mapConfig';
+
+const CATEGORY_LABELS: Record<string, { fa: string; en: string }> = {
+  'water-sports': { fa: 'ورزش آبی', en: 'Water Sports' },
+  'land-sports':  { fa: 'ورزش زمینی', en: 'Land Sports' },
+  restaurant:     { fa: 'رستوران', en: 'Restaurant' },
+  cafe:           { fa: 'کافه', en: 'Café' },
+  amenity:        { fa: 'جاذبه گردشگری', en: 'Attraction' },
+  hotel:          { fa: 'هتل', en: 'Hotel' },
+  shopping:       { fa: 'خرید', en: 'Shopping' },
+};
 
 export function PlaceSidebar() {
-  const { selectedPlace, isOverlayOpen, clearSelection, language } = useAppStore(
-    (s) => ({
-      selectedPlace: s.selectedPlace,
-      isOverlayOpen: s.isOverlayOpen,
-      clearSelection: s.clearSelection,
-      language: s.language,
-    })
-  );
-  const { t, dir } = useLanguage();
+  const { selectedPlace, isOverlayOpen, clearSelection, language } = useAppStore((s) => ({
+    selectedPlace: s.selectedPlace,
+    isOverlayOpen: s.isOverlayOpen,
+    clearSelection: s.clearSelection,
+    language: s.language,
+  }));
+  const { t } = useLanguage();
+
+  const catLabel = selectedPlace
+    ? (CATEGORY_LABELS[selectedPlace.category]?.[language] ?? selectedPlace.category)
+    : '';
 
   return (
-    <Drawer
-      open={isOverlayOpen}
-      onOpenChange={(open) => !open && clearSelection()}
-      direction="right"
-      // vaul: disable scale-down on background for map apps
-      shouldScaleBackground={false}
-    >
-      <DrawerOverlay />
-      <DrawerContent
-        dir={dir}
-        className="fixed top-0 right-0 bottom-0 z-30
-                   w-full max-w-sm
-                   bg-white dark:bg-zinc-900
-                   shadow-2xl shadow-black/30
-                   flex flex-col
-                   overflow-y-auto overscroll-contain
-                   rounded-l-3xl"
-      >
-        {/* ── Hero image ── */}
-        <div className="relative h-56 flex-shrink-0 bg-zinc-200 dark:bg-zinc-800 rounded-tl-3xl overflow-hidden">
-          {selectedPlace?.images[0] && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={selectedPlace.images[0].src}
-              alt={selectedPlace.images[0].alt}
-              className="w-full h-full object-cover"
-            />
-          )}
-          {/* Gradient for text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-          {/* Close button — 44×44 touch target */}
-          <button
-            onClick={clearSelection}
-            aria-label={t.close}
-            className="absolute top-3 left-3
-                       min-h-[44px] min-w-[44px]
-                       flex items-center justify-center
-                       rounded-full bg-black/60
-                       text-white hover:bg-black/80
-                       transition-colors duration-200 cursor-pointer"
-          >
-            <X size={18} />
-          </button>
-
-          {/* Category badge */}
-          {selectedPlace && (
-            <span className="absolute bottom-3 left-3
-                             text-[10px] font-semibold uppercase tracking-widest
-                             px-2.5 py-1 rounded-full
-                             bg-white/20 backdrop-blur-sm text-white border border-white/30">
-              {selectedPlace.category.replace('-', ' ')}
-            </span>
-          )}
-        </div>
-
-        {/* ── Body ── */}
-        <div className="flex flex-col gap-4 p-5 flex-1">
-          {/* Title */}
-          <h2 className="text-xl font-bold leading-tight text-zinc-900 dark:text-white">
-            {selectedPlace?.name[language]}
-          </h2>
-
-          {/* Description */}
-          <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {selectedPlace?.description[language]}
-          </p>
-
-          {/* Horizontal image gallery */}
-          {(selectedPlace?.images.length ?? 0) > 1 && (
-            <div className="flex gap-2 overflow-x-auto py-1 overscroll-contain -mx-1 px-1">
-              {selectedPlace?.images.slice(1).map((img, i) => (
-                <div
-                  key={i}
-                  className="relative w-24 h-16 flex-shrink-0 rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-800"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Guide section */}
-          <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4">
-            <h3 className="text-[11px] font-semibold uppercase tracking-widest
-                           text-zinc-400 dark:text-zinc-500 mb-2">
-              {t.guide}
-            </h3>
-            <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              {selectedPlace?.guide[language]}
-            </p>
+    <AnimatePresence>
+      {isOverlayOpen && selectedPlace && (
+        <motion.div
+          key={selectedPlace.id}
+          initial={{ y: '100%', opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: '100%', opacity: 0 }}
+          transition={{ type: 'spring', stiffness: 360, damping: 38 }}
+          className="fixed bottom-0 left-0 right-0 z-30
+                     mx-3 mb-3
+                     rounded-3xl
+                     bg-white dark:bg-zinc-900
+                     shadow-2xl shadow-black/40
+                     overflow-hidden"
+          style={{ maxHeight: '72vh' }}
+        >
+          {/* Drag handle pill */}
+          <div className="flex justify-center pt-3 pb-1">
+            <div className="w-10 h-1 rounded-full bg-zinc-200 dark:bg-zinc-700" />
           </div>
 
-          {/* Spacer */}
-          <div className="flex-1" />
+          <div className="flex gap-4 px-4 pb-4">
+            {/* Thumbnail */}
+            <div className="relative w-24 h-24 flex-shrink-0 rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+              {selectedPlace.images[0] ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={selectedPlace.images[0].src}
+                  alt={selectedPlace.images[0].alt}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={CATEGORY_ICONS[selectedPlace.category] ?? '/markers/amenity.svg'}
+                    alt=""
+                    className="w-8 h-8 opacity-30"
+                  />
+                </div>
+              )}
+            </div>
 
-          {/* CTA */}
-          {selectedPlace?.ticketUrl && (
-            <BuyTicketButton url={selectedPlace.ticketUrl} label={t.buyTicket} />
-          )}
-        </div>
-      </DrawerContent>
-    </Drawer>
+            {/* Text block */}
+            <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  {/* Category badge */}
+                  <span className="inline-block mb-1.5 text-[10px] font-semibold uppercase tracking-wider
+                                   px-2 py-0.5 rounded-full
+                                   bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-300">
+                    {catLabel}
+                  </span>
+                  {/* Name */}
+                  <h2 className="text-base font-bold leading-tight text-zinc-900 dark:text-white truncate">
+                    {selectedPlace.name[language]}
+                  </h2>
+                </div>
+
+                {/* Close */}
+                <button
+                  onClick={clearSelection}
+                  aria-label={t.close}
+                  className="flex-shrink-0 flex items-center justify-center
+                             min-h-[36px] min-w-[36px] -mt-0.5 -mr-1
+                             rounded-full bg-zinc-100 dark:bg-zinc-800
+                             text-zinc-500 dark:text-zinc-400
+                             hover:bg-zinc-200 dark:hover:bg-zinc-700
+                             transition-colors cursor-pointer"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              {/* Address */}
+              {selectedPlace.address && (
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center gap-1 mt-1 truncate">
+                  <MapPin size={10} className="flex-shrink-0" />
+                  {selectedPlace.address[language]}
+                </p>
+              )}
+
+              {/* Description snippet */}
+              <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 mt-1.5
+                            line-clamp-2">
+                {selectedPlace.description[language]}
+              </p>
+            </div>
+          </div>
+
+          {/* Action row */}
+          <div className="px-4 pb-5 flex gap-2">
+            {selectedPlace.ticketUrl && (
+              <a
+                href={selectedPlace.ticketUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2
+                           flex-1 min-h-[46px]
+                           rounded-2xl
+                           bg-sky-500 hover:bg-sky-600
+                           text-white text-sm font-semibold
+                           transition-colors duration-200"
+              >
+                <Ticket size={16} />
+                {t.buyTicket}
+              </a>
+            )}
+
+            <button
+              onClick={clearSelection}
+              className="flex items-center justify-center
+                         min-h-[46px] px-5
+                         rounded-2xl
+                         bg-zinc-100 dark:bg-zinc-800
+                         text-zinc-700 dark:text-zinc-300
+                         text-sm font-medium
+                         hover:bg-zinc-200 dark:hover:bg-zinc-700
+                         transition-colors duration-200 cursor-pointer"
+            >
+              {t.close}
+            </button>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

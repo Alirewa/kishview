@@ -1,11 +1,11 @@
 'use client';
-import { MapPin } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
-import { LanguageToggle } from './LanguageToggle';
+import { Menu } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { useAppStore } from '@/store/useAppStore';
 
 export function TopBar() {
   const { t } = useLanguage();
+  const openMenu = useAppStore((s) => s.openMenu);
 
   return (
     <header
@@ -13,29 +13,34 @@ export function TopBar() {
                  flex items-center justify-between
                  px-4 h-14
                  rounded-2xl
-                 bg-white/80 dark:bg-black/40
+                 bg-white/80 dark:bg-black/50
                  backdrop-blur-md
                  border border-white/30 dark:border-white/10
                  shadow-lg shadow-black/10"
     >
-      {/* Logo */}
-      <div className="flex items-center gap-2.5">
-        <div
-          className="flex items-center justify-center w-8 h-8 rounded-xl
-                     bg-sky-500/15 dark:bg-sky-400/15"
-        >
-          <MapPin className="w-4 h-4 text-sky-600 dark:text-sky-400" />
-        </div>
+      {/* Brand */}
+      <div className="flex items-center gap-2">
         <span className="text-base font-bold text-zinc-900 dark:text-white tracking-tight">
           {t.appName}
         </span>
+        <span className="text-[10px] font-medium text-zinc-400 dark:text-zinc-500 hidden sm:inline">
+          kishview.com
+        </span>
       </div>
 
-      {/* Controls — 8px gap enforced between touch targets */}
-      <div className="flex items-center gap-2">
-        <LanguageToggle />
-        <ThemeToggle />
-      </div>
+      {/* Hamburger menu */}
+      <button
+        onClick={openMenu}
+        aria-label={t.menu}
+        className="flex items-center justify-center
+                   min-h-[44px] min-w-[44px] rounded-xl
+                   bg-zinc-100 dark:bg-zinc-800
+                   text-zinc-700 dark:text-zinc-200
+                   hover:bg-zinc-200 dark:hover:bg-zinc-700
+                   transition-colors duration-200 cursor-pointer"
+      >
+        <Menu className="w-5 h-5" />
+      </button>
     </header>
   );
 }

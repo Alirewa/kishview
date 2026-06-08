@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Kish Map | نقشه کیش',
+  title: 'KishView | نقشه تعاملی کیش',
   description:
-    'نقشه تعاملی سه‌بعدی جزیره کیش — An interactive 3D tourism map for Kish Island, Iran',
+    'نقشه تعاملی سه‌بعدی جزیره کیش — KishView: Interactive 3D tourism map for Kish Island, Iran',
   keywords: [
+    'kishview',
     'kish island',
     'kish map',
     'جزیره کیش',
@@ -23,19 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fa" suppressHydrationWarning>
-      <head>
-        {/* Google Fonts: Inter + Playfair Display */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+      <head />
       <body className="h-screen w-screen overflow-hidden bg-zinc-950 antialiased">
         {children}
       </body>

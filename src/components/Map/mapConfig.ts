@@ -3,18 +3,19 @@ import type { StyleSpecification } from 'maplibre-gl';
 
 export const KISH_CENTER: [number, number] = [53.9614, 26.5565];
 
+// Wider bounds so the full island + sea border is visible at min zoom
 export const KISH_BOUNDS: LngLatBoundsLike = [
-  [53.90, 26.52], // SW corner
-  [54.02, 26.59], // NE corner
+  [53.82, 26.44], // SW corner — enough sea to show coastline
+  [54.10, 26.67], // NE corner
 ];
 
 export const MAP_CONFIG = {
   initialZoom: 13,
-  minZoom: 12,
+  minZoom: 11,           // was 12 — allows seeing full island + sea
   maxZoom: 19,
-  initialPitch: 0,
-  initialBearing: 0,
-  flyToPitch: 60,
+  initialPitch: 45,      // tilted for 3-D building effect
+  initialBearing: -10,
+  flyToPitch: 65,
   flyToZoom: 17,
   flyToBearing: 20,
   flyToDuration: 2000,
@@ -22,14 +23,13 @@ export const MAP_CONFIG = {
 } as const;
 
 /**
- * Dark style — OpenFreeMap "liberty" (free, no API key, no usage limits)
- * https://openfreemap.org
+ * Dark / 3-D vector style — OpenFreeMap "liberty"
+ * Free, no API key, no usage limits. Includes fill-extrusion building layers.
  */
 export const DARK_STYLE = 'https://tiles.openfreemap.org/styles/liberty';
 
 /**
- * Satellite style — ESRI World Imagery (free, no API key, unlimited)
- * ArcGIS REST tileserver, publicly accessible
+ * Satellite style — ESRI World Imagery (free, no API key)
  */
 export const SATELLITE_STYLE: StyleSpecification = {
   version: 8,
@@ -41,7 +41,7 @@ export const SATELLITE_STYLE: StyleSpecification = {
       ],
       tileSize: 256,
       attribution:
-        'Tiles &copy; Esri &mdash; Source: Esri, DigitalGlobe, GeoEye, i-cubed, USDA FSA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+        'Tiles © Esri — Source: Esri, DigitalGlobe, GeoEye, USDA FSA, USGS, AEX, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
       maxzoom: 19,
     },
   },
@@ -62,4 +62,6 @@ export const CATEGORY_ICONS: Record<string, string> = {
   restaurant:     '/markers/restaurant.svg',
   cafe:           '/markers/cafe.svg',
   amenity:        '/markers/amenity.svg',
+  hotel:          '/markers/amenity.svg',
+  shopping:       '/markers/restaurant.svg',
 };

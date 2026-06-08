@@ -35,7 +35,6 @@ export function KishMap() {
     [selectPlace]
   );
 
-  // Reset map view when overlay is closed
   useEffect(() => {
     if (!selectedPlace) {
       mapRef.current?.flyTo({
@@ -64,7 +63,7 @@ export function KishMap() {
       maxZoom={MAP_CONFIG.maxZoom}
       maxBounds={KISH_BOUNDS}
       style={{ width: '100%', height: '100%' }}
-      // No API token needed — MapLibre GL JS is fully open source
+      attributionControl={false}
     >
       <MarkerLayer places={places} onMarkerClick={handleMarkerClick} />
     </Map>

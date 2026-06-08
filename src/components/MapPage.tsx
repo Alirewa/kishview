@@ -4,14 +4,13 @@ import { useAppStore } from '@/store/useAppStore';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { KishMap } from './Map/KishMap';
 import { TopBar } from './controls/TopBar';
-import { AddPlaceButton } from './controls/AddPlaceButton';
+import { MenuDrawer } from './controls/MenuDrawer';
 import { PlaceSidebar } from './Overlay/PlaceSidebar';
 import { AddPlaceModal } from './Modals/AddPlaceModal';
 
 export default function MapPage() {
   const theme = useAppStore((s) => s.theme);
 
-  // Sync theme class to <html> element for Tailwind dark: variants
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'dark') {
@@ -27,16 +26,16 @@ export default function MapPage() {
         {/* Full-screen map — always behind everything */}
         <KishMap />
 
-        {/* Floating glassmorphism top bar */}
+        {/* Glassmorphism top bar */}
         <TopBar />
 
-        {/* Minimal corner CTA */}
-        <AddPlaceButton />
+        {/* Side menu drawer */}
+        <MenuDrawer />
 
-        {/* vaul right-side drawer (place details) */}
+        {/* Bottom card — slides up when a place is selected */}
         <PlaceSidebar />
 
-        {/* Radix Dialog (add-place info) */}
+        {/* Add-place dialog */}
         <AddPlaceModal />
       </div>
     </LanguageProvider>

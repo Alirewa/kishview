@@ -2,6 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Vazirmatn variable font (full range, RD + FD) ── */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-RD-FD-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── CSS Custom Properties ── */
 @layer base {
   :root {
@@ -20,22 +85,29 @@
 /* ── Typography ── */
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Vazirmatn', 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Vazirmatn', 'Inter', system-ui, sans-serif;
+    font-weight: 700;
   }
 
-  /* Persian / Arabic font fallback */
+  /* Persian RTL — Vazirmatn is the primary font */
   [dir='rtl'] {
-    font-family: 'Inter', 'Tahoma', 'Vazirmatn', system-ui, sans-serif;
+    font-family: 'Vazirmatn', system-ui, sans-serif;
   }
 }
 
-/* ── Mapbox GL overrides ── */
+/* ── MapLibre overrides ── */
+.maplibregl-ctrl-logo,
+.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-attrib-button {
+  display: none !important;
+}
+/* Legacy mapbox class names (some styles still use them) */
 .mapboxgl-ctrl-logo,
 .mapboxgl-ctrl-attrib {
   opacity: 0.4 !important;
@@ -81,9 +153,19 @@
   from { transform: translate(-50%, -50%) scale(1);    opacity: 1; }
   to   { transform: translate(-50%, -50%) scale(0.95); opacity: 0; }
 }
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes slide-down {
+  from { transform: translateY(0);    opacity: 1; }
+  to   { transform: translateY(100%); opacity: 0; }
+}
 
 .animate-in  { animation: fade-in  0.2s ease-out; }
 .animate-out { animation: fade-out 0.15s ease-in; }
+.animate-slide-up   { animation: slide-up   0.35s cubic-bezier(0.32,0.72,0,1); }
+.animate-slide-down { animation: slide-down 0.25s ease-in; }
 
 .data-\[state\=open\]\:animate-in[data-state='open']   { animation: fade-in    0.2s ease-out; }
 .data-\[state\=closed\]\:animate-out[data-state='closed'] { animation: fade-out  0.15s ease-in; }
