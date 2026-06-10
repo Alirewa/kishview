@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "ed2a8490-51d7-4926-8fb3-15d1c74ac315",
+    "createdAt": "2026-06-10T18:50:07.417Z",
+    "customer": {
+      "name": "علیرضا پورغلام",
+      "phone": "09113101767",
+      "nationalId": "2700343468",
+      "email": "webdyir@gmail.com"
+    },
+    "items": [
+      {
+        "ticketId": "diving-course",
+        "ticketName": "غواصی مقدماتی کیش",
+        "sessionId": "morning",
+        "sessionName": "نوبت صبح",
+        "date": "1111-01-01",
+        "qty": 1,
+        "unitPrice": 450000
+      }
+    ],
+    "discountCode": "",
+    "discountAmount": 0,
+    "total": 450000,
+    "grandTotal": 450000,
+    "status": "paid"
+  }
+]
