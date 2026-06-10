@@ -7,6 +7,13 @@ export interface PlaceImage {
   alt: string;
 }
 
+export interface PlaceContact {
+  phone?: string;
+  website?: string;
+  instagram?: string;
+  hours?: { fa: string; en: string };
+}
+
 export interface Place {
   id: string;
   category: Category;
@@ -15,6 +22,7 @@ export interface Place {
   address?: { fa: string; en: string };
   description: { fa: string; en: string };
   guide: { fa: string; en: string };
+  contact?: PlaceContact;
   images: PlaceImage[];
   ticketUrl?: string;
 }

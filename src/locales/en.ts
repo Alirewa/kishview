@@ -17,6 +17,16 @@ const en: Translations = {
   viewDetails: 'View Details',
   address: 'Address',
   website: 'Website',
+  navigate: 'Navigate',
+  info: 'Info',
+  phone: 'Phone',
+  hours: 'Opening Hours',
+  instagram: 'Instagram',
+  notInKish: 'Your location was not detected in Kish Island',
+  locationDenied: 'Location access is not available',
+  locating: 'Locating...',
+  backToCard: 'Back',
+  placeInfo: 'Place Info',
 };
 
 export default en;

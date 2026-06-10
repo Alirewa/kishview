@@ -15,6 +15,16 @@ const fa = {
   viewDetails: 'مشاهده جزئیات',
   address: 'آدرس',
   website: 'وب‌سایت',
+  navigate: 'مسیریابی',
+  info: 'اطلاعات',
+  phone: 'تلفن',
+  hours: 'ساعات کاری',
+  instagram: 'اینستاگرام',
+  notInKish: 'موقعیت فعلی شما در کیش شناسایی نشد',
+  locationDenied: 'دسترسی به موقعیت مکانی امکان‌پذیر نیست',
+  locating: 'در حال تعیین موقعیت...',
+  backToCard: 'بازگشت',
+  placeInfo: 'اطلاعات مکان',
 } as const;
 
 export default fa;

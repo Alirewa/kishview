@@ -8,6 +8,7 @@ import { CategoryFilter } from './controls/CategoryFilter';
 import { MapControlsPanel } from './controls/MapControlsPanel';
 import { MenuDrawer } from './controls/MenuDrawer';
 import { PlaceSidebar } from './Overlay/PlaceSidebar';
+import { PlaceInfoSheet } from './Overlay/PlaceInfoSheet';
 import { AddPlaceModal } from './Modals/AddPlaceModal';
 
 export default function MapPage() {
@@ -27,6 +28,7 @@ export default function MapPage() {
         <MapControlsPanel />
         <MenuDrawer />
         <PlaceSidebar />
+        <PlaceInfoSheet />
         <AddPlaceModal />
       </div>
     </LanguageProvider>

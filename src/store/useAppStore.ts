@@ -13,12 +13,13 @@ interface AppState {
   // ── Transient UI state ─────────────────────────────────
   selectedPlace: Place | null;
   isOverlayOpen: boolean;
+  isInfoOpen: boolean;
   isAddPlaceModalOpen: boolean;
   isMenuOpen: boolean;
   isMapControlsOpen: boolean;
   isSearchOpen: boolean;
   // ── Filters ─────────────────────────────────────────────
-  selectedCategory: string;   // 'all' or filter chip id
+  selectedCategory: string;
   searchQuery: string;
   // ── Map commands ─────────────────────────────────────────
   pendingMapCommand: MapCommand | null;
@@ -31,6 +32,8 @@ interface AppState {
   toggleSatellite: () => void;
   selectPlace: (place: Place) => void;
   clearSelection: () => void;
+  openInfo: () => void;
+  closeInfo: () => void;
   openAddPlaceModal: () => void;
   closeAddPlaceModal: () => void;
   openMenu: () => void;
@@ -55,6 +58,7 @@ export const useAppStore = create<AppState>()(
       useSatellite: false,
       selectedPlace: null,
       isOverlayOpen: false,
+      isInfoOpen: false,
       isAddPlaceModalOpen: false,
       isMenuOpen: false,
       isMapControlsOpen: false,
@@ -69,8 +73,10 @@ export const useAppStore = create<AppState>()(
       setLanguage: (language) => set({ language }),
       toggleLanguage: () => set((s) => ({ language: s.language === 'fa' ? 'en' : 'fa' })),
       toggleSatellite: () => set((s) => ({ useSatellite: !s.useSatellite })),
-      selectPlace: (place) => set({ selectedPlace: place, isOverlayOpen: true }),
-      clearSelection: () => set({ selectedPlace: null, isOverlayOpen: false }),
+      selectPlace: (place) => set({ selectedPlace: place, isOverlayOpen: true, isInfoOpen: false }),
+      clearSelection: () => set({ selectedPlace: null, isOverlayOpen: false, isInfoOpen: false }),
+      openInfo: () => set({ isInfoOpen: true }),
+      closeInfo: () => set({ isInfoOpen: false }),
       openAddPlaceModal: () => set({ isAddPlaceModalOpen: true }),
       closeAddPlaceModal: () => set({ isAddPlaceModalOpen: false }),
       openMenu: () => set({ isMenuOpen: true, isMapControlsOpen: false }),
