@@ -7,13 +7,14 @@
 
 ---
 
+[![Demo](https://img.shields.io/badge/🌐_Live_Demo-alirewa.github.io/kishview-0ea5e9?style=flat-square)](https://alirewa.github.io/kishview/)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript)](https://typescriptlang.org)
 [![MapLibre GL](https://img.shields.io/badge/MapLibre_GL-4.7-396AF3?style=flat-square)](https://maplibre.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38bdf8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#license)
 
-> در حال توسعه — به زودی روی دامنه اختصاصی در دسترس خواهد بود
+> **🌐 دمو:** [alirewa.github.io/kishview](https://alirewa.github.io/kishview/)
 
 </div>
 

@@ -30,24 +30,31 @@ jobs:
 
       - name: Prepare static export
         run: |
-          # Remove server-only features incompatible with static export
-          rm -rf src/app/api
-          rm -f src/middleware.ts
-          rm -rf src/app/admin
-          rm -rf "src/app/(site)/payment"
+          # Remove server-only code incompatible with static export
+          rm -rf src/app/api || true
+          rm -f src/middleware.ts || true
+          rm -rf src/app/admin || true
+          rm -rf src/app/\(site\)/payment || true
 
-          # Replace next.config.js with static-export config (no PWA, with basePath)
-          cat > next.config.js << 'EOF'
-          /** @type {import('next').NextConfig} */
-          const nextConfig = {
-            output: 'export',
-            basePath: '/kishview',
-            trailingSlash: true,
-            transpilePackages: ['maplibre-gl'],
-            images: { unoptimized: true },
-          };
-          module.exports = nextConfig;
-          EOF
+          # Remove both config files and write a clean static one
+          rm -f next.config.js next.config.ts next.config.mjs
+
+          node -e "
+          const fs = require('fs');
+          fs.writeFileSync('next.config.js', [
+            '/** @type {import(\"next\").NextConfig} */',
+            'const nextConfig = {',
+            '  output: \"export\",',
+            '  basePath: \"/kishview\",',
+            '  trailingSlash: true,',
+            '  transpilePackages: [\"maplibre-gl\"],',
+            '  images: { unoptimized: true },',
+            '};',
+            'module.exports = nextConfig;',
+          ].join('\n'));
+          console.log('next.config.js written');
+          console.log(fs.readFileSync('next.config.js', 'utf8'));
+          "
 
       - name: Build
         run: npm run build
