@@ -1,3 +1,4 @@
+// Developed by @Alirewa — github.com/Alirewa
 'use client';
 import { useRef, useCallback, useEffect, useState } from 'react';
 import Map, { GeolocateControl, type MapRef } from 'react-map-gl/maplibre';
@@ -11,22 +12,15 @@ import { places } from '@/data/places';
 import type { Place } from '@/types';
 
 export function KishMap() {
-  const mapRef      = useRef<MapRef>(null);
-  const geoRef      = useRef<{ trigger: () => boolean } | null>(null);
+  const mapRef  = useRef<MapRef>(null);
+  const geoRef  = useRef<{ trigger: () => boolean } | null>(null);
 
-  const {
-    theme, useSatellite,
-    selectedPlace, selectPlace,
-    pendingMapCommand, clearMapCommand, setMapIsPitched,
-  } = useAppStore((s) => ({
-    theme:             s.theme,
-    useSatellite:      s.useSatellite,
-    selectedPlace:     s.selectedPlace,
-    selectPlace:       s.selectPlace,
-    pendingMapCommand: s.pendingMapCommand,
-    clearMapCommand:   s.clearMapCommand,
-    setMapIsPitched:   s.setMapIsPitched,
-  }));
+  const mapStyle        = useAppStore((s) => s.mapStyle);
+  const selectedPlace   = useAppStore((s) => s.selectedPlace);
+  const selectPlace     = useAppStore((s) => s.selectPlace);
+  const pendingMapCommand = useAppStore((s) => s.pendingMapCommand);
+  const clearMapCommand = useAppStore((s) => s.clearMapCommand);
+  const setMapIsPitched = useAppStore((s) => s.setMapIsPitched);
 
   const [darkStyle,        setDarkStyle]        = useState<StyleSpecification | string>(LIBERTY_URL);
   const [satellite3DStyle, setSatellite3DStyle] = useState<StyleSpecification | string>(LIBERTY_URL);
@@ -92,11 +86,10 @@ export function KishMap() {
     }
   }, [selectedPlace]);
 
-  const activeStyle = useSatellite
-    ? satellite3DStyle
-    : theme === 'dark'
-      ? darkStyle
-      : LIBERTY_URL;
+  const activeStyle =
+    mapStyle === 'satellite' ? satellite3DStyle :
+    mapStyle === 'dark'      ? darkStyle :
+    LIBERTY_URL;
 
   return (
     <Map
@@ -124,7 +117,6 @@ export function KishMap() {
         showAccuracyCircle={false}
         style={{ display: 'none' }}
         onAdd={() => {
-          // Trigger after a short delay to ensure map is ready
           setTimeout(() => geoRef.current?.trigger(), 800);
         }}
       />

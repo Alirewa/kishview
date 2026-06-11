@@ -1,3 +1,4 @@
+// Developed by @Alirewa — github.com/Alirewa
 'use client';
 import { useRef } from 'react';
 import Link from 'next/link';

@@ -12,16 +12,14 @@ import { PlaceInfoSheet } from './Overlay/PlaceInfoSheet';
 import { AddPlaceModal } from './Modals/AddPlaceModal';
 
 export default function MapPage() {
-  const theme = useAppStore((s) => s.theme);
-
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
+    // Map page is always light — ensure no dark class on root
+    document.documentElement.classList.remove('dark');
+  }, []);
 
   return (
     <LanguageProvider>
-      <div className="relative h-screen w-screen overflow-hidden">
+      <div className="relative h-screen w-screen overflow-hidden bg-white">
         <KishMap />
         <TopBar />
         <CategoryFilter />

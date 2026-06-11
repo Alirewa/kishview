@@ -1,3 +1,4 @@
+// Developed by @Alirewa — github.com/Alirewa
 'use client';
 import Link from 'next/link';
 import { MapPin, Ticket } from 'lucide-react';

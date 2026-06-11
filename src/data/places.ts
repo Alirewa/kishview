@@ -1,3 +1,4 @@
+// Developed by @Alirewa — github.com/Alirewa
 import type { Place } from '@/types';
 
 export const places: Place[] = [
@@ -7,7 +8,7 @@ export const places: Place[] = [
   {
     id: 'mikamall',
     category: 'shopping',
-    coordinates: [53.9694, 26.554],
+    coordinates: [53.9618, 26.5547],
     name: { fa: 'میکامال', en: 'Mikamall' },
     address: { fa: 'بلوار ساحلی شهید چمران، کیش', en: 'Shahid Chamran Coastal Blvd, Kish' },
     description: {
@@ -100,7 +101,7 @@ export const places: Place[] = [
   {
     id: 'dariush-hotel',
     category: 'hotel',
-    coordinates: [53.9352, 26.572],
+    coordinates: [53.9416, 26.5746],
     name: { fa: 'هتل بزرگ داریوش', en: 'Dariush Grand Hotel' },
     address: { fa: 'بلوار داریوش، شمال کیش', en: 'Dariush Blvd, North Kish' },
     description: {
@@ -237,7 +238,7 @@ export const places: Place[] = [
   {
     id: 'greek-ship',
     category: 'amenity',
-    coordinates: [53.9325, 26.531],
+    coordinates: [53.8968, 26.5342],
     name: { fa: 'کشتی یونانی', en: 'Greek Ship' },
     address: { fa: 'ساحل جنوب غربی کیش', en: 'Southwest Shore, Kish' },
     description: {
@@ -254,7 +255,7 @@ export const places: Place[] = [
   {
     id: 'harireh-ancient',
     category: 'amenity',
-    coordinates: [53.9105, 26.572],
+    coordinates: [53.9108, 26.5790],
     name: { fa: 'شهر باستانی حریره', en: 'Harireh Ancient City' },
     address: { fa: 'شمال غرب کیش، جاده حریره', en: 'NW Kish, Harireh Rd' },
     description: {
@@ -289,7 +290,7 @@ export const places: Place[] = [
   {
     id: 'safa-house',
     category: 'amenity',
-    coordinates: [53.9062, 26.563],
+    coordinates: [53.9065, 26.5625],
     name: { fa: 'خانه تاریخی صفا', en: 'Safa Historical House' },
     address: { fa: 'روستای قدیمی صفا، کیش', en: 'Old Safa Village, Kish' },
     description: {
