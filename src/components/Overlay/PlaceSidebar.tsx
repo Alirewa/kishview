@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { X, MapPin, Ticket, Navigation, Info, Loader2, AlertTriangle } from 'lucide-react';
+import Link from 'next/link';
+import { X, MapPin, Ticket, Navigation, Info, Loader2, AlertTriangle, Clock, Route, XCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '@/store/useAppStore';
 import { useLanguage } from '@/context/LanguageContext';
 import { CATEGORY_ICONS } from '@/components/Map/mapConfig';
+import type { RouteGeometry, RouteInfo } from '@/store/useAppStore';
 
-/* Kish Island geographic bounds */
 const KISH_LAT = [26.44, 26.67] as const;
 const KISH_LNG = [53.82, 54.10] as const;
 
@@ -15,32 +16,72 @@ function isInKish(lat: number, lng: number) {
       && lng >= KISH_LNG[0] && lng <= KISH_LNG[1];
 }
 
+function fmtDist(m: number, fa: boolean) {
+  if (m < 1000) return fa ? `${Math.round(m)} متر` : `${Math.round(m)} m`;
+  return fa ? `${(m / 1000).toFixed(1)} کیلومتر` : `${(m / 1000).toFixed(1)} km`;
+}
+function fmtTime(s: number, fa: boolean) {
+  const m = Math.round(s / 60);
+  if (m < 60) return fa ? `${m} دقیقه` : `${m} min`;
+  const h = Math.floor(m / 60), rm = m % 60;
+  return fa ? `${h} ساعت${rm ? ` و ${rm} دقیقه` : ''}` : `${h}h ${rm}m`;
+}
+
 const CATEGORY_LABELS: Record<string, { fa: string; en: string }> = {
-  'water-sports': { fa: 'ورزش آبی',        en: 'Water Sports'  },
-  'land-sports':  { fa: 'ورزش زمینی',      en: 'Land Sports'   },
-  restaurant:     { fa: 'رستوران',          en: 'Restaurant'    },
-  cafe:           { fa: 'کافه',             en: 'Café'          },
-  amenity:        { fa: 'جاذبه گردشگری',   en: 'Attraction'    },
-  hotel:          { fa: 'هتل',              en: 'Hotel'         },
-  shopping:       { fa: 'خرید',             en: 'Shopping'      },
+  'water-sports': { fa: 'ورزش آبی',      en: 'Water Sports' },
+  'land-sports':  { fa: 'ورزش زمینی',    en: 'Land Sports'  },
+  restaurant:     { fa: 'رستوران',        en: 'Restaurant'   },
+  cafe:           { fa: 'کافه',           en: 'Café'         },
+  amenity:        { fa: 'جاذبه گردشگری', en: 'Attraction'   },
+  hotel:          { fa: 'هتل',            en: 'Hotel'        },
+  shopping:       { fa: 'خرید',           en: 'Shopping'     },
 };
 
-type NavState = 'idle' | 'loading' | 'error';
+type NavState = 'idle' | 'loading' | 'routed' | 'error';
+
+async function fetchRoute(
+  fromLng: number, fromLat: number,
+  toLng: number, toLat: number,
+): Promise<{ geometry: RouteGeometry; info: RouteInfo } | null> {
+  const url = `https://router.project-osrm.org/route/v1/driving/${fromLng},${fromLat};${toLng},${toLat}?overview=full&geometries=geojson&alternatives=true`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const data = await res.json();
+  if (data.code !== 'Ok' || !data.routes?.length) return null;
+
+  const features = data.routes.map((r: { geometry: { type: 'LineString'; coordinates: number[][] }; distance: number; duration: number }, i: number) => ({
+    type: 'Feature' as const,
+    geometry: r.geometry,
+    properties: { index: i },
+  }));
+
+  return {
+    geometry: { type: 'FeatureCollection', features },
+    info: {
+      distance: data.routes[0].distance,
+      duration: data.routes[0].duration,
+      alternatives: data.routes.length - 1,
+    },
+  };
+}
 
 export function PlaceSidebar() {
-  const { selectedPlace, isOverlayOpen, clearSelection, openInfo, language } = useAppStore((s) => ({
+  const { selectedPlace, isOverlayOpen, clearSelection, openInfo, language, setRoute, clearRoute, routeInfo } = useAppStore((s) => ({
     selectedPlace:  s.selectedPlace,
     isOverlayOpen:  s.isOverlayOpen,
     clearSelection: s.clearSelection,
     openInfo:       s.openInfo,
     language:       s.language,
+    setRoute:       s.setRoute,
+    clearRoute:     s.clearRoute,
+    routeInfo:      s.routeInfo,
   }));
   const { t } = useLanguage();
+  const isFA = language === 'fa';
 
   const [navState, setNavState] = useState<NavState>('idle');
   const [navMsg,   setNavMsg]   = useState('');
 
-  /* reset nav state when place changes */
   useEffect(() => { setNavState('idle'); setNavMsg(''); }, [selectedPlace]);
 
   const catLabel = selectedPlace
@@ -49,25 +90,36 @@ export function PlaceSidebar() {
 
   const handleNavigate = () => {
     if (!selectedPlace) return;
+    if (navState === 'routed') {
+      clearRoute();
+      setNavState('idle');
+      return;
+    }
     setNavState('loading');
     setNavMsg('');
 
     navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
+      async ({ coords }) => {
         const { latitude, longitude } = coords;
         if (!isInKish(latitude, longitude)) {
           setNavState('error');
-          setNavMsg(t.notInKish);
+          setNavMsg(isFA ? 'شما در محدوده جزیره کیش نیستید. مسیریابی فقط داخل جزیره کار می‌کند.' : 'You are not on Kish Island. Routing only works within the island.');
           return;
         }
         const [dLng, dLat] = selectedPlace.coordinates;
-        const url = `https://www.google.com/maps/dir/${latitude},${longitude}/${dLat},${dLng}`;
-        window.open(url, '_blank');
-        setNavState('idle');
+        try {
+          const result = await fetchRoute(longitude, latitude, dLng, dLat);
+          if (!result) throw new Error('no route');
+          setRoute(result.geometry, result.info);
+          setNavState('routed');
+        } catch {
+          setNavState('error');
+          setNavMsg(isFA ? 'خطا در دریافت مسیر. لطفاً دوباره تلاش کنید.' : 'Failed to fetch route. Please try again.');
+        }
       },
       () => {
         setNavState('error');
-        setNavMsg(t.locationDenied);
+        setNavMsg(isFA ? 'دسترسی به موقعیت مکانی رد شد.' : 'Location access denied.');
       },
       { timeout: 10000, maximumAge: 30000 },
     );
@@ -156,68 +208,100 @@ export function PlaceSidebar() {
             </div>
           </div>
 
-          {/* Navigation error banner */}
-          <AnimatePresence>
-            {navState === 'error' && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="mx-4 mb-2 overflow-hidden"
-              >
-                <div className="flex items-start gap-2 px-3 py-2.5 rounded-xl
-                                bg-amber-50 dark:bg-amber-500/10
-                                border border-amber-200 dark:border-amber-500/30">
-                  <AlertTriangle size={14} className="text-amber-500 flex-shrink-0 mt-0.5" />
-                  <p className="text-xs text-amber-700 dark:text-amber-400 leading-snug">{navMsg}</p>
-                  <button
-                    onClick={() => setNavState('idle')}
-                    className="ms-auto text-amber-400 hover:text-amber-600 flex-shrink-0"
-                  >
-                    <X size={12} />
-                  </button>
+          {/* Route info banner — shown when route is active */}
+          {navState === 'routed' && routeInfo && (
+            <div className="mx-4 mb-2">
+              <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30">
+                <Route size={14} className="text-emerald-600 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400">
+                    {fmtDist(routeInfo.distance, isFA)}
+                  </span>
+                  <span className="text-zinc-400 mx-1.5">·</span>
+                  <span className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5 inline-flex">
+                    <Clock size={11} className="flex-shrink-0" />
+                    {' '}{fmtTime(routeInfo.duration, isFA)}
+                  </span>
+                  {routeInfo.alternatives > 0 && (
+                    <span className="ms-2 text-[10px] text-zinc-400">
+                      {isFA ? `+${routeInfo.alternatives} مسیر جایگزین` : `+${routeInfo.alternatives} alt`}
+                    </span>
+                  )}
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <button onClick={() => { clearRoute(); setNavState('idle'); }} className="text-zinc-400 hover:text-zinc-600 flex-shrink-0">
+                  <XCircle size={14} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Navigation error banner */}
+          {navState === 'error' && (
+            <div className="mx-4 mb-2">
+              <div className="flex items-start gap-2 px-3 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30">
+                <AlertTriangle size={14} className="text-amber-500 flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-amber-700 dark:text-amber-400 leading-snug flex-1">{navMsg}</p>
+                <button onClick={() => setNavState('idle')} className="ms-auto text-amber-400 hover:text-amber-600 flex-shrink-0">
+                  <X size={12} />
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Action row */}
           <div className="px-4 pb-4 pt-0 flex gap-2">
-            {/* Navigate */}
+            {/* Navigate / Clear route */}
             <button
               onClick={handleNavigate}
               disabled={navState === 'loading'}
-              className="flex items-center justify-center gap-1.5
-                         flex-1 min-h-[46px]
-                         rounded-2xl
-                         bg-emerald-500 hover:bg-emerald-600 active:scale-[0.97]
-                         disabled:opacity-60 disabled:cursor-not-allowed
-                         text-white text-sm font-semibold
-                         transition-all duration-150 cursor-pointer"
+              className={[
+                'flex items-center justify-center gap-1.5 flex-1 min-h-[46px] rounded-2xl',
+                'text-white text-sm font-semibold transition-all duration-150 cursor-pointer',
+                'disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.97]',
+                navState === 'routed'
+                  ? 'bg-zinc-400 hover:bg-zinc-500'
+                  : 'bg-emerald-500 hover:bg-emerald-600',
+              ].join(' ')}
             >
-              {navState === 'loading'
-                ? <Loader2 size={16} className="animate-spin" />
-                : <Navigation size={16} />
-              }
-              {navState === 'loading' ? t.locating : t.navigate}
+              {navState === 'loading' ? <Loader2 size={16} className="animate-spin" /> :
+               navState === 'routed'  ? <XCircle size={16} /> :
+               <Navigation size={16} />}
+              {navState === 'loading' ? (isFA ? 'در حال یافتن مسیر...' : 'Finding route...') :
+               navState === 'routed'  ? (isFA ? 'حذف مسیر' : 'Clear route') :
+               (isFA ? 'مسیریابی' : 'Navigate')}
             </button>
 
             {/* Ticket */}
             {selectedPlace.ticketUrl && (
-              <a
-                href={selectedPlace.ticketUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1.5
-                           flex-1 min-h-[46px]
-                           rounded-2xl
-                           bg-sky-500 hover:bg-sky-600 active:scale-[0.97]
-                           text-white text-sm font-semibold
-                           transition-all duration-150"
-              >
-                <Ticket size={16} />
-                {t.buyTicket}
-              </a>
+              selectedPlace.ticketUrl.startsWith('/') ? (
+                <Link
+                  href={selectedPlace.ticketUrl}
+                  className="flex items-center justify-center gap-1.5
+                             flex-1 min-h-[46px]
+                             rounded-2xl
+                             bg-sky-500 hover:bg-sky-600 active:scale-[0.97]
+                             text-white text-sm font-semibold
+                             transition-all duration-150"
+                >
+                  <Ticket size={16} />
+                  {t.buyTicket}
+                </Link>
+              ) : (
+                <a
+                  href={selectedPlace.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-1.5
+                             flex-1 min-h-[46px]
+                             rounded-2xl
+                             bg-sky-500 hover:bg-sky-600 active:scale-[0.97]
+                             text-white text-sm font-semibold
+                             transition-all duration-150"
+                >
+                  <Ticket size={16} />
+                  {t.buyTicket}
+                </a>
+              )
             )}
 
             {/* Info */}

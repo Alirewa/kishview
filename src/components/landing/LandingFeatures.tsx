@@ -10,8 +10,8 @@ const features = [
   },
   {
     icon: Ticket,
-    fa: { title: 'خرید آنلاین بلیت',   desc: 'بلیت پارک دلفین (از ۴۵۰٬۰۰۰ ت)، آکواریوم (از ۲۰۰٬۰۰۰ ت)، باغ پرندگان، لونا پارک و بیشتر' },
-    en: { title: 'Online Ticket Shop',   desc: 'Dolphin Park (from ₺450K), Aquarium (from ₺200K), Bird Garden, Luna Park, and more' },
+    fa: { title: 'خرید آنلاین بلیت',   desc: 'بلیت پارک دلفین، آکواریوم، باغ پرندگان، پارک برفی، تونل باد و بیشتر' },
+    en: { title: 'Online Ticket Shop',   desc: 'Dolphin Park, Aquarium, Bird Garden, Snow Park, Wind Tunnel, and more' },
   },
   {
     icon: Compass,
@@ -30,32 +30,32 @@ export default function LandingFeatures() {
   const isFA = language === 'fa';
 
   return (
-    <section dir={isFA ? 'rtl' : 'ltr'} className="py-20 bg-white dark:bg-zinc-950">
+    <section dir={isFA ? 'rtl' : 'ltr'} className="py-12 sm:py-20 bg-white dark:bg-zinc-950">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold text-zinc-900 dark:text-white mb-3">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white mb-2 sm:mb-3">
             {isFA ? 'چرا کیش ویو؟' : 'Why KishView?'}
           </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto px-4 sm:px-0">
             {isFA
               ? 'همه چیزی که برای سفر به کیش نیاز دارید در یک پلتفرم'
               : 'Everything you need for your Kish Island trip, in one platform'}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {features.map((f) => {
             const d = isFA ? f.fa : f.en;
             return (
               <div
                 key={f.fa.title}
-                className="bg-sky-50 dark:bg-zinc-900 rounded-2xl p-6 flex flex-col gap-4 hover:shadow-md transition-shadow"
+                className="bg-sky-50 dark:bg-zinc-900 rounded-2xl p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 hover:shadow-md transition-shadow"
               >
-                <div className="w-12 h-12 bg-sky-100 dark:bg-sky-900/50 rounded-xl flex items-center justify-center">
-                  <f.icon className="w-6 h-6 text-sky-600 dark:text-sky-400" />
+                <div className="w-11 h-11 sm:w-12 sm:h-12 bg-sky-100 dark:bg-sky-900/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <f.icon className="w-5 h-5 sm:w-6 sm:h-6 text-sky-600 dark:text-sky-400" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-zinc-900 dark:text-white mb-1">{d.title}</h3>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{d.desc}</p>
+                  <h3 className="font-bold text-zinc-900 dark:text-white mb-1 text-sm sm:text-base">{d.title}</h3>
+                  <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">{d.desc}</p>
                 </div>
               </div>
             );

@@ -115,7 +115,6 @@ export const places: Place[] = [
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
     images: [{ src: 'https://picsum.photos/seed/dariushhotel/800/500', alt: 'Dariush Grand Hotel Kish' }],
-    ticketUrl: 'https://kishview.com',
   },
 
   {
@@ -135,7 +134,6 @@ export const places: Place[] = [
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
     images: [{ src: 'https://picsum.photos/seed/flamingokish/800/500', alt: 'Flamingo Hotel Kish' }],
-    ticketUrl: 'https://kishview.com',
   },
 
   {
@@ -155,7 +153,6 @@ export const places: Place[] = [
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
     images: [{ src: 'https://picsum.photos/seed/parmishotel/800/500', alt: 'Parmis Hotel Kish' }],
-    ticketUrl: 'https://kishview.com',
   },
 
   // ════ BEACHES & WATER ═════════════════════════════════════
@@ -175,7 +172,7 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۶ صبح تا ۱۰ شب', en: 'Daily 6 AM – 10 PM' },
     },
     images: [{ src: 'https://picsum.photos/seed/coralbeach/800/500', alt: 'Coral Beach Kish' }],
-    ticketUrl: 'https://kishview.com',
+    ticketUrl: '/tickets/coral-beach-snorkel',
   },
 
   {
@@ -211,7 +208,7 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۹ صبح تا ۹ شب', en: 'Daily 9 AM – 9 PM' },
     },
     images: [{ src: 'https://picsum.photos/seed/dolphinkish/800/500', alt: 'Dolphin Park Kish' }],
-    ticketUrl: 'https://kishview.com',
+    ticketUrl: '/tickets/dolphin-park',
   },
 
   {
@@ -230,7 +227,100 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۷ صبح تا ۶ عصر', en: 'Daily 7 AM – 6 PM' },
     },
     images: [{ src: 'https://picsum.photos/seed/divingkish/800/500', alt: 'Kish Diving Pier' }],
-    ticketUrl: 'https://kishview.com',
+    ticketUrl: '/tickets/diving',
+  },
+
+  // ════ WATER SPORTS & ADVENTURES ═══════════════════════════
+
+  {
+    id: 'ocean-water-park',
+    category: 'water-sports',
+    coordinates: [53.9780, 26.5690],
+    name: { fa: 'پارک آبی اوشن', en: 'Ocean Water Park' },
+    address: { fa: 'ساحل شمال شرقی، مجاور میکامال، کیش', en: 'NE Shore, next to Mikamall, Kish' },
+    description: {
+      fa: 'بزرگ‌ترین پارک آبی سرپوشیده ایران با اسلایدهای هیجان‌انگیز، استخر موج، جکوزی و رودخانه تنبل. انتقال رایگان از سراسر جزیره.',
+      en: 'Iran\'s largest indoor water park — thrilling slides, wave pool, jacuzzi, and lazy river. Free shuttle from across the island.',
+    },
+    guide: { fa: 'مایو اجباری. لاکر رایگان. بهترین وقت: اوایل صبح.', en: 'Swimwear required. Free lockers. Best time: early morning.' },
+    contact: {
+      phone: '076-44447000',
+      hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/oceanwaterpark/800/500', alt: 'Ocean Water Park Kish' }],
+    ticketUrl: '/tickets/ocean-water-park',
+  },
+
+  {
+    id: 'parasail',
+    category: 'water-sports',
+    coordinates: [53.9750, 26.5720],
+    name: { fa: 'پاراسل کیش', en: 'Parasailing Kish' },
+    address: { fa: 'ساحل شمال شرقی، نزدیک اسکله، کیش', en: 'NE Shore, near the pier, Kish' },
+    description: {
+      fa: 'پرواز با چتر بادبانی بر فراز خلیج فارس در ارتفاع ۱۰۰ متری. منظره ۳۶۰ درجه به جزیره کیش از آسمان. مناسب از ۱۲ سال.',
+      en: 'Soar 100 metres above the Persian Gulf with a parasail. 360° aerial view of Kish Island. Suitable from age 12.',
+    },
+    guide: { fa: 'تجهیزات ایمنی کامل. مربی همراه. مناسب مبتدی.', en: 'Full safety gear provided. Instructor present. Beginner-friendly.' },
+    contact: {
+      hours: { fa: 'هر روز ۹ صبح تا ۶ عصر', en: 'Daily 9 AM – 6 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/parasailkish/800/500', alt: 'Parasailing Kish' }],
+    ticketUrl: '/tickets/parasail',
+  },
+
+  {
+    id: 'flyboard',
+    category: 'water-sports',
+    coordinates: [53.9740, 26.5700],
+    name: { fa: 'فلای‌بورد کیش', en: 'Flyboard Kish' },
+    address: { fa: 'ساحل شمال شرقی، کیش', en: 'NE Shore, Kish' },
+    description: {
+      fa: 'پرواز روی آب با جت واتر — هیجان‌انگیزترین ورزش آبی کیش. آموزش ۱۵ دقیقه‌ای رایگان، سپس پرواز آزاد. مناسب از ۱۵ سال.',
+      en: 'Fly above the water on a jet-powered board — Kish\'s most thrilling water sport. 15-min free training, then free flight. Ages 15+.',
+    },
+    guide: { fa: 'توانایی شنا الزامی. جلیقه نجات ارائه می‌شود.', en: 'Swimming ability required. Life vest provided.' },
+    contact: {
+      hours: { fa: 'هر روز ۹ صبح تا ۶ عصر', en: 'Daily 9 AM – 6 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/flyboardkish/800/500', alt: 'Flyboard Kish' }],
+    ticketUrl: '/tickets/flyboard',
+  },
+
+  {
+    id: 'banana-boat',
+    category: 'water-sports',
+    coordinates: [53.9730, 26.5710],
+    name: { fa: 'بنانا بوت کیش', en: 'Banana Boat Kish' },
+    address: { fa: 'ساحل شمال شرقی، کیش', en: 'NE Shore, Kish' },
+    description: {
+      fa: 'هیجان روی موج با قایق موزی — مناسب خانواده و دوستان. ۱۵ دقیقه اکشن روی امواج خلیج فارس. کودک از ۵ سال.',
+      en: 'Thrilling wave ride on an inflatable banana boat — great for families and groups. 15 min of action on the Persian Gulf. Ages 5+.',
+    },
+    guide: { fa: 'جلیقه نجات اجباری. بهتر است لباس آب‌بندی بپوشید.', en: 'Life vest mandatory. Wear water-resistant clothing.' },
+    contact: {
+      hours: { fa: 'هر روز ۹ صبح تا ۶ عصر', en: 'Daily 9 AM – 6 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/bananaboatkish/800/500', alt: 'Banana Boat Kish' }],
+    ticketUrl: '/tickets/banana-boat',
+  },
+
+  {
+    id: 'aquarium-boat',
+    category: 'water-sports',
+    coordinates: [53.9430, 26.5480],
+    name: { fa: 'کشتی آکواریوم', en: 'Glass Bottom Boat' },
+    address: { fa: 'اسکله تفریحی شمال غربی، کیش', en: 'NW Marina, Kish' },
+    description: {
+      fa: 'کشتی شیشه‌ای کف‌دار با تماشای مرجان‌ها و ماهی‌های رنگارنگ بدون خیس شدن. مناسب تمام سنین، ۲ ساعت دریانوردی لذت‌بخش.',
+      en: 'Glass-bottom boat for viewing corals and colourful fish without getting wet. Suitable for all ages, 2-hour cruise.',
+    },
+    guide: { fa: 'صبح دید بهتری دارد. کرم ضد آفتاب فراموش نشود.', en: 'Morning offers the clearest water. Don\'t forget sunscreen.' },
+    contact: {
+      hours: { fa: 'هر روز ۸ صبح تا ۸ شب', en: 'Daily 8 AM – 8 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/aquariumboat/800/500', alt: 'Glass Bottom Boat Kish' }],
+    ticketUrl: '/tickets/aquarium-boat',
   },
 
   // ════ HISTORICAL & CULTURAL ════════════════════════════════
@@ -267,6 +357,25 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۸ صبح تا ۸ شب', en: 'Daily 8 AM – 8 PM' },
     },
     images: [{ src: 'https://picsum.photos/seed/harireh/800/500', alt: 'Harireh Ancient City' }],
+  },
+
+  {
+    id: 'kish-kariz',
+    category: 'amenity',
+    coordinates: [53.9302, 26.5528],
+    name: { fa: 'کاریز زیرزمینی کیش', en: 'Kish Underground Qanat' },
+    address: { fa: 'غرب کیش، روبروی هتل شایان', en: 'West Kish, opposite Shayan Hotel' },
+    description: {
+      fa: 'شبکه آبرسانی ۲۵۰۰ ساله زیرزمینی جزیره کیش — یکی از مهم‌ترین آثار تاریخی خلیج فارس با محوطه فرهنگی، گالری و فضاهای نمایشگاهی.',
+      en: 'A 2,500-year-old underground water channel system — one of the Persian Gulf\'s most important historic sites, with a cultural complex, gallery, and exhibition spaces.',
+    },
+    guide: { fa: 'دما در داخل کاریز خنک است. کفش راحت بپوشید.', en: 'The qanat interior is cool. Wear comfortable shoes.' },
+    contact: {
+      phone: '076-44448000',
+      hours: { fa: 'هر روز ۹ صبح تا ۹ شب', en: 'Daily 9 AM – 9 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishkariz/800/500', alt: 'Kish Underground Qanat' }],
+    ticketUrl: '/tickets/kish-kariz',
   },
 
   {
@@ -322,7 +431,7 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۹ صبح تا ۹ شب', en: 'Daily 9 AM – 9 PM' },
     },
     images: [{ src: 'https://picsum.photos/seed/kishaquarium/800/500', alt: 'Kish Aquarium' }],
-    ticketUrl: 'https://kishview.com',
+    ticketUrl: '/tickets/kish-aquarium',
   },
 
   {
@@ -341,7 +450,26 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۸ صبح تا ۸ شب', en: 'Daily 8 AM – 8 PM' },
     },
     images: [{ src: 'https://picsum.photos/seed/kishbirds/800/500', alt: 'Kish Bird Garden' }],
-    ticketUrl: 'https://kishview.com',
+    ticketUrl: '/tickets/bird-garden',
+  },
+
+  {
+    id: 'safari-park',
+    category: 'amenity',
+    coordinates: [53.9488, 26.5450],
+    name: { fa: 'پارک سافاری کیش', en: 'Kish Safari Park' },
+    address: { fa: 'جنوب مرکزی کیش', en: 'South-Central Kish' },
+    description: {
+      fa: 'سافاری با ماشین در میان حیوانات وحشی آفریقایی — شیر، زرافه، گورخر و ببر. تجربه‌ای منحصربه‌فرد در خاورمیانه.',
+      en: 'Drive-through safari among African wildlife — lions, giraffes, zebras, and tigers. A unique experience in the Middle East.',
+    },
+    guide: { fa: 'در ماشین بمانید. پنجره بسته بماند در مسیر شیرها.', en: 'Stay in your vehicle. Keep windows closed in the lion section.' },
+    contact: {
+      phone: '076-44449000',
+      hours: { fa: 'هر روز ۸ صبح تا ۷ عصر', en: 'Daily 8 AM – 7 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishsafari/800/500', alt: 'Kish Safari Park' }],
+    ticketUrl: '/tickets/safari-park',
   },
 
   // ════ ENTERTAINMENT & SPORTS ══════════════════════════════
@@ -362,7 +490,6 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۱۰ صبح تا ۲ بامداد', en: 'Daily 10 AM – 2 AM' },
     },
     images: [{ src: 'https://picsum.photos/seed/kishbowling/800/500', alt: 'Kish Bowling Center' }],
-    ticketUrl: 'https://kishview.com',
   },
 
   {
@@ -381,8 +508,198 @@ export const places: Place[] = [
       hours: { fa: 'هر روز ۵ عصر تا ۱۲ شب', en: 'Daily 5 PM – midnight' },
     },
     images: [{ src: 'https://picsum.photos/seed/kishluna/800/500', alt: 'Kish Luna Park' }],
-    ticketUrl: 'https://kishview.com',
   },
+
+  {
+    id: 'snow-park',
+    category: 'land-sports',
+    coordinates: [53.9618, 26.5540],
+    name: { fa: 'پارک برفی کیش', en: 'Kish Snow Park' },
+    address: { fa: 'مجموعه میکامال، طبقه پنجم، کیش', en: 'Mikamall, 5th Floor, Kish' },
+    description: {
+      fa: 'تنها پیست اسکی سرپوشیده در خاورمیانه با دمای زیر صفر! اسکی، بورد برفی، بازی برفی و کوچینگ حرفه‌ای در جزیره‌ای گرم‌سیری.',
+      en: 'The only indoor ski slope in the Middle East — sub-zero temperatures! Ski, snowboard, and snow play with professional coaching.',
+    },
+    guide: { fa: 'لباس گرم کرایه‌ای موجود. سانس‌ها ظرفیت محدود دارند.', en: 'Warm clothing rental available. Sessions have limited capacity.' },
+    contact: {
+      phone: '076-44441200',
+      hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishsnow/800/500', alt: 'Kish Snow Park' }],
+    ticketUrl: '/tickets/snow-park',
+  },
+
+  {
+    id: 'ice-rink',
+    category: 'land-sports',
+    coordinates: [53.9618, 26.5547],
+    name: { fa: 'آیس رینک کیش', en: 'Kish Ice Rink' },
+    address: { fa: 'مجموعه میکامال، طبقه سوم، کیش', en: 'Mikamall, 3rd Floor, Kish' },
+    description: {
+      fa: 'پیست یخ‌بازی حرفه‌ای در قلب کیش. اسکیت روی یخ با کفش کرایه‌ای، آموزش مقدماتی و موسیقی زنده در اتمسفر یخ‌زده.',
+      en: 'Professional ice rink in the heart of Kish — skate with rental boots, beginner lessons, and live music in an icy atmosphere.',
+    },
+    guide: { fa: 'کفش اسکیت کرایه شامل بلیط است. دستکش پیشنهادی.', en: 'Skate rental included in ticket price. Gloves recommended.' },
+    contact: {
+      phone: '076-44441200',
+      hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishicerink/800/500', alt: 'Kish Ice Rink' }],
+    ticketUrl: '/tickets/ice-rink',
+  },
+
+  {
+    id: 'theme-park-center',
+    category: 'land-sports',
+    coordinates: [53.9655, 26.5490],
+    name: { fa: 'تم پارک سنتر', en: 'Theme Park Center' },
+    address: { fa: 'بلوار صادقی، مجتمع تفریحی کیش', en: 'Sadeqi Blvd, Entertainment Complex, Kish' },
+    description: {
+      fa: 'بزرگ‌ترین مجموعه بازی‌های فانتزی کیش با ۱۵ دستگاه شهربازی، VR، اتاق‌های فرار، بازی‌های گروهی و فودکورت.',
+      en: 'Kish\'s largest fantasy games complex — 15 rides, VR, escape rooms, group games, and a food court.',
+    },
+    guide: { fa: 'بلیط خانوادگی صرفه‌جویی بیشتری دارد. مناسب همه سنین.', en: 'Family ticket offers best value. Suitable for all ages.' },
+    contact: {
+      phone: '076-44444500',
+      hours: { fa: 'هر روز ۱۱ صبح تا ۱۲ شب', en: 'Daily 11 AM – midnight' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishthemepark/800/500', alt: 'Theme Park Center Kish' }],
+    ticketUrl: '/tickets/theme-park-center',
+  },
+
+  {
+    id: 'horror-castle',
+    category: 'land-sports',
+    coordinates: [53.9650, 26.5590],
+    name: { fa: 'قلعه وحشت کیش', en: 'Kish Horror Castle' },
+    address: { fa: 'مجتمع تفریحی مرکزی، کیش', en: 'Central Entertainment Complex, Kish' },
+    description: {
+      fa: 'بزرگ‌ترین قلعه وحشت ایران با بیش از ۲۰ اتاق پر از ترس و تاریکی، جلوه‌های صوتی و تصویری پیشرفته. مناسب افراد بالای ۱۲ سال.',
+      en: 'Iran\'s largest horror castle — 20+ rooms of dark terror with advanced audio-visual effects. Ages 12+.',
+    },
+    guide: { fa: 'مناسب افراد بالای ۱۲ سال. بیماران قلبی وارد نشوند.', en: 'Ages 12+ only. Not suitable for those with heart conditions.' },
+    contact: {
+      hours: { fa: 'هر روز ۴ عصر تا ۱۱ شب', en: 'Daily 4 PM – 11 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishhorror/800/500', alt: 'Kish Horror Castle' }],
+    ticketUrl: '/tickets/horror-castle',
+  },
+
+  // ════ ADVENTURE SPORTS ════════════════════════════════════
+
+  {
+    id: 'bungee-jumping',
+    category: 'land-sports',
+    coordinates: [53.9700, 26.5620],
+    name: { fa: 'بانجی جامپینگ و زیپ‌لاین', en: 'Bungee Jumping & Zipline' },
+    address: { fa: 'ساحل شمالی، نزدیک پارک دلفین، کیش', en: 'North Shore, near Dolphin Park, Kish' },
+    description: {
+      fa: 'هیجان‌انگیزترین ورزش ماجراجویی کیش — پرش از ارتفاع ۴۰ متری بر فراز خلیج فارس. تجهیزات ایمنی استاندارد اروپایی.',
+      en: 'Kish\'s most thrilling adventure sport — 40-metre jump over the Persian Gulf. European-standard safety equipment.',
+    },
+    guide: { fa: 'حداقل وزن ۴۰ کیلو، حداکثر ۱۲۰ کیلو. مناسب از ۱۶ سال.', en: 'Min weight 40 kg, max 120 kg. Suitable from age 16.' },
+    contact: {
+      hours: { fa: 'هر روز ۱۰ صبح تا ۸ شب', en: 'Daily 10 AM – 8 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/bungeekish/800/500', alt: 'Bungee Jumping Kish' }],
+    ticketUrl: '/tickets/bungee-jumping',
+  },
+
+  {
+    id: 'wind-tunnel',
+    category: 'land-sports',
+    coordinates: [53.9690, 26.5600],
+    name: { fa: 'تونل باد کیش', en: 'Kish Wind Tunnel' },
+    address: { fa: 'مجتمع ماجراجویی، ساحل شمالی، کیش', en: 'Adventure Complex, North Shore, Kish' },
+    description: {
+      fa: 'تجربه سقوط آزاد بدون هواپیما در تونل باد حرفه‌ای! سرعت باد ۲۰۰ کیلومتر، احساس واقعی پرش با چتر نجات. مناسب از ۷ سال.',
+      en: 'Indoor skydiving without an aeroplane — 200 km/h wind speed, real freefall sensation. Ages 7+.',
+    },
+    guide: { fa: 'آموزش ۱۵ دقیقه‌ای قبل از پرواز. مربی همراه در تونل.', en: '15-min training before flight. Instructor accompanies you inside.' },
+    contact: {
+      hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/windtunnel/800/500', alt: 'Kish Wind Tunnel' }],
+    ticketUrl: '/tickets/wind-tunnel',
+  },
+
+  {
+    id: 'cable-car',
+    category: 'land-sports',
+    coordinates: [53.9585, 26.5620],
+    name: { fa: 'تله‌کابین کیش', en: 'Kish Cable Car' },
+    address: { fa: 'مرکز کیش، نزدیک میدان اصلی', en: 'Central Kish, near Main Square' },
+    description: {
+      fa: 'تله‌کابین هوایی با منظره ۳۶۰ درجه به سراسر جزیره کیش و خلیج فارس. مسیر طلایی غروب آفتاب بر فراز جزیره.',
+      en: '360° aerial gondola overlooking all of Kish Island and the Persian Gulf. Spectacular at golden-hour sunset.',
+    },
+    guide: { fa: 'سانس غروب پرطرفدارتر است. از قبل بلیط بگیرید.', en: 'Evening sessions are most popular. Book tickets in advance.' },
+    contact: {
+      hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishcablecar/800/500', alt: 'Kish Cable Car' }],
+    ticketUrl: '/tickets/cable-car',
+  },
+
+  // ════ TOURS & SIGHTSEEING ══════════════════════════════════
+
+  {
+    id: 'island-tour',
+    category: 'amenity',
+    coordinates: [53.9560, 26.5558],
+    name: { fa: 'گشت جزیره کیش', en: 'Kish Island Tour' },
+    address: { fa: 'میدان مرکزی، مقابل هتل داریوش، کیش', en: 'Central Square, opposite Dariush Hotel, Kish' },
+    description: {
+      fa: 'تور کامل جزیره با مینی‌بوس مسقف — بازدید از ۱۲ نقطه دیدنی: کشتی یونانی، حریره، خانه صفا، کاریز، پارک ملی دریایی و بیشتر. راهنمای فارسی.',
+      en: 'Full island tour by covered minibus — visit 12 sights: Greek Ship, Harireh, Safa House, Qanat, Marine National Park and more. Persian guide.',
+    },
+    guide: { fa: 'صبح زودتر حرکت کنید تا گرمای کمتری داشته باشید.', en: 'Morning departure recommended to avoid the peak heat.' },
+    contact: {
+      hours: { fa: 'هر روز ۸ صبح تا ۷ عصر', en: 'Daily 8 AM – 7 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishislandtour/800/500', alt: 'Kish Island Tour' }],
+    ticketUrl: '/tickets/island-tour',
+  },
+
+  {
+    id: 'double-decker-bus',
+    category: 'amenity',
+    coordinates: [53.9610, 26.5555],
+    name: { fa: 'اتوبوس دوطبقه گردشگری', en: 'Double-Decker Tour Bus' },
+    address: { fa: 'میدان مرکزی، کیش', en: 'Central Square, Kish' },
+    description: {
+      fa: 'تور اتوبوسی دوطبقه روباز — بهترین روش دیدن جاذبه‌های کیش از بالا. بلندگوی راهنمای دوزبانه فارسی و انگلیسی، توقف در ۸ نقطه.',
+      en: 'Open-top double-decker bus tour — the best way to see Kish from above. Bilingual audio guide (FA/EN), stops at 8 attractions.',
+    },
+    guide: { fa: 'طبقه بالا بهترین دید را دارد. کرم ضد آفتاب فراموش نشود.', en: 'Upper deck has the best views. Don\'t forget sunscreen.' },
+    contact: {
+      hours: { fa: 'هر روز ۹ صبح تا ۸ شب', en: 'Daily 9 AM – 8 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishbus/800/500', alt: 'Double-Decker Tour Bus Kish' }],
+    ticketUrl: '/tickets/double-decker-bus',
+  },
+
+  // ════ NIGHT SHOWS ══════════════════════════════════════════
+
+  {
+    id: 'night-shows',
+    category: 'amenity',
+    coordinates: [53.9680, 26.5580],
+    name: { fa: 'مجتمع نمایش‌های شبانه', en: 'Night Shows Complex' },
+    address: { fa: 'مجتمع نمایش‌های شبانه، ساحل شمالی، کیش', en: 'Night Shows Complex, North Shore, Kish' },
+    description: {
+      fa: 'مجموعه نمایش‌های شبانه کیش با سه شو برتر: پازل شو، ایرانیا شو و پرشین شو. بهترین سرگرمی شبانه جنوب ایران.',
+      en: 'Kish\'s premier night entertainment complex — three top shows: Puzzle Show, Iraniya Show, and Persian Show.',
+    },
+    guide: { fa: 'رزرو از قبل الزامی در تعطیلات. جای پارک محدود.', en: 'Advance booking required on holidays. Limited parking.' },
+    contact: {
+      hours: { fa: 'هر روز از ساعت ۸ شب', en: 'Daily from 8 PM' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/kishnight/800/500', alt: 'Night Shows Complex Kish' }],
+    ticketUrl: '/tickets/night-show-puzzle',
+  },
+
+  // ════ PARKS ════════════════════════════════════════════════
 
   {
     id: 'parvaz-park',
