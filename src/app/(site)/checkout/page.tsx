@@ -1,6 +1,6 @@
 // Developed by @Alirewa — github.com/Alirewa
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCartStore } from '@/store/useCartStore';
 import {
@@ -26,11 +26,14 @@ const FIELDS = [
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, grandTotal, discountCode, discountAmount, clearCart, total } = useCartStore();
+  const [mounted, setMounted]  = useState(false);
   const [step, setStep]       = useState<'info' | 'payment'>('info');
   const [orderId, setOrderId] = useState('');
   const [copied, setCopied]   = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm]       = useState({ name: '', phone: '', nationalId: '', email: '' });
+
+  useEffect(() => { setMounted(true); }, []);
 
   const gt           = grandTotal();
   const verifyCode   = orderId ? parseInt(orderId.slice(-3).replace(/\D/g, '0')) : 0;
@@ -67,10 +70,13 @@ export default function CheckoutPage() {
     setTimeout(() => setCopied(false), 2000);
   }
 
-  if (items.length === 0 && step === 'info') {
-    router.replace('/cart');
-    return null;
-  }
+  useEffect(() => {
+    if (mounted && items.length === 0 && step === 'info') {
+      router.replace('/cart');
+    }
+  }, [mounted, items.length, step, router]);
+
+  if (!mounted || (items.length === 0 && step === 'info')) return null;
 
   return (
     <div className="min-h-screen bg-zinc-50" dir="rtl">
