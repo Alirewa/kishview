@@ -8,7 +8,8 @@ async function getTicket(id: string): Promise<Ticket | null> {
 }
 
 export async function generateStaticParams() {
-  return [];
+  const { ticketsDb } = await import('@/lib/data');
+  return ticketsDb.active().map((t) => ({ id: t.id }));
 }
 
 export default async function TicketDetailPage({ params }: { params: { id: string } }) {
