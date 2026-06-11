@@ -1,5 +1,7 @@
+// Developed by @Alirewa — github.com/Alirewa
 'use client';
 import { useRef } from 'react';
+import Link from 'next/link';
 import { Menu, Map as MapIcon, Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
@@ -44,16 +46,20 @@ export function TopBar() {
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.18 }}
             className="pointer-events-auto
-                       px-4 h-11 flex items-center
                        rounded-2xl
                        bg-white/90 dark:bg-zinc-900/90
                        backdrop-blur-md
                        shadow-md shadow-black/15
                        border border-white/40 dark:border-white/10"
           >
-            <span className="text-sm font-bold text-zinc-900 dark:text-white tracking-tight">
-              {t.appName}
-            </span>
+            <Link
+              href="/"
+              className="px-4 h-11 flex items-center cursor-pointer"
+            >
+              <span className="text-sm font-bold text-zinc-900 dark:text-white tracking-tight">
+                {t.appName}
+              </span>
+            </Link>
           </motion.div>
         ) : (
           <motion.div

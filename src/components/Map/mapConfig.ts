@@ -11,7 +11,7 @@ export const MAP_CONFIG = {
   initialZoom: 13,
   minZoom: 11,
   maxZoom: 19,
-  initialPitch: 55,
+  initialPitch: 60,
   initialBearing: -10,
   flyToPitch: 68,
   flyToZoom: 17,

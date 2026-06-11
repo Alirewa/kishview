@@ -1,171 +1,140 @@
 <div align="center">
 
-# 🗺️ Kish Map — نقشه تعاملی کیش
+# کیش ویو | KishView
 
-**An interactive 3D tourism map for Kish Island, Iran**
+### نقشه تعاملی سه‌بعدی، خرید بلیت آنلاین و راهنمای جامع جزیره آزاد کیش
+**Interactive 3D Map · Online Tickets · Complete Guide for Kish Free Zone Island**
+
+---
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org)
-[![Mapbox GL JS](https://img.shields.io/badge/Mapbox_GL_JS-3-4264fb?style=flat-square&logo=mapbox)](https://mapbox.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript)](https://typescriptlang.org)
+[![MapLibre GL](https://img.shields.io/badge/MapLibre_GL-4.7-396AF3?style=flat-square)](https://maplibre.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38bdf8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
-[![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#license--copyright)
+[![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](#license)
+
+> در حال توسعه — به زودی روی دامنه اختصاصی در دسترس خواهد بود
 
 </div>
 
 ---
 
-## Overview
+## درباره پروژه
 
-**Kish Map** is a premium, single-page interactive tourism application built exclusively for Kish Island, Iran. It delivers a fully immersive **3D map experience** with curated local attractions, water sports, restaurants, cafés, and activity points — all within a seamless, native-app-quality interface.
+**کیش ویو** یک اپلیکیشن وب پیشرفته برای کشف و تجربه جزیره آزاد کیش است. با نقشه سه‌بعدی تعاملی، می‌توانید جاذبه‌ها، هتل‌ها، رستوران‌ها و خدمات جزیره را کشف کنید — و بلیت مکان‌های تفریحی را مستقیماً آنلاین خریداری کنید.
 
-The application never leaves the map view. Every interaction — place details, ticket purchasing, language switching, and theme toggling — happens as a smooth overlay on top of the live map.
-
----
-
-## Features
-
-- **🌍 3D Interactive Map** — Click any marker to fly into a cinematic 3D view (pitch 60°, zoom 17) with smooth Mapbox GL JS animation
-- **📍 Category Markers** — Water sports, land sports, restaurants, cafés, and amenities with custom icons
-- **📋 Rich Place Overlays** — Descriptions, image galleries, usage guides, and direct ticket purchasing via a vaul right-side drawer
-- **🌐 Bilingual UI** — Full Farsi (RTL) and English (LTR) support with a single tap
-- **🌙 Dark & Light Mode** — Spring-animated sun/moon toggle, preference persisted in localStorage
-- **🔒 Bounds Restricted** — Map is locked to Kish Island; users cannot pan or zoom away
-- **📝 Business Registration** — Minimal admin-contact modal for local businesses (no form, no friction)
-- **📱 Mobile-First** — All touch targets ≥ 44×44px, overscroll-contain, responsive at 375px–1440px
+**جزیره آزاد کیش — آمار واقعی:**
+- 🏝 مساحت: ۹۱.۵ کیلومتر مربع در خلیج فارس
+- 👥 گردشگر سالانه: بیش از ۲ میلیون نفر
+- 🌍 بدون ویزا: تا ۱۴ روز برای اتباع خارجی
+- 🗺 بیش از ۲۴ جاذبه ثبت‌شده روی نقشه
 
 ---
 
-## GitHub Topics
+## ✨ ویژگی‌های اصلی
 
-`kish-island` `interactive-map` `3d-map` `tourism` `mapbox-gl` `nextjs` `react` `typescript` `tailwindcss` `farsi` `rtl` `dark-mode` `iran` `spa` `persian-gulf`
+### 🗺 نقشه تعاملی سه‌بعدی
+- نقشه ۳D با زاویه ۶۰ درجه و ساختمان‌های واقعی
+- سه حالت نقشه: معمولی / دارک / ماهواره‌ای
+- موقعیت‌یابی خودکار کاربر (GPS)
+- فیلتر دسته‌بندی: خرید، هتل، ورزش آبی، تاریخی، تفریح، کافه
+- جستجوی زنده مکان‌ها
 
----
+### 🎫 خرید بلیت آنلاین
+- بلیت پارک دلفین، آکواریوم، باغ پرندگان و بیشتر
+- انتخاب‌گر تاریخ شمسی (جلالی)
+- سبد خرید با کد تخفیف
+- پرداخت کارت به کارت با کد تأیید خودکار منحصربه‌فرد
 
-## Tech Stack
+### 🌐 دوزبانه فارسی / انگلیسی
+- RTL/LTR بر اساس زبان انتخابی
+- رابط کاربری کاملاً فارسی و انگلیسی
 
-| Technology | Version | Role |
-|---|---|---|
-| [Next.js](https://nextjs.org) | 14 | SPA framework — static export |
-| [Mapbox GL JS](https://mapbox.com) | 3 | 3D map engine, flyTo, terrain DEM |
-| [react-map-gl](https://visgl.github.io/react-map-gl/) | 7 | React bindings for Mapbox |
-| [TypeScript](https://typescriptlang.org) | 5 | Full type safety |
-| [Tailwind CSS](https://tailwindcss.com) | 3 | Styling — dark: and rtl: variants |
-| [Zustand](https://github.com/pmndrs/zustand) | 4 | Lightweight state management |
-| [Framer Motion](https://framer.com/motion) | 11 | Spring-physics animations |
-| [vaul](https://vaul.emilkowal.ski/) | 0.9 | Drawer / sidebar component |
-| [Radix UI Dialog](https://radix-ui.com/primitives/docs/components/dialog) | 1.1 | Accessible modal |
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- A free [Mapbox](https://account.mapbox.com/auth/signup/) account (public token)
-
-### Installation
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/Alirewa/kish-map.git
-cd kish-map
-
-# 2. Install dependencies
-npm install
-
-# 3. Set up environment variables
-cp .env.local.example .env.local
-# Edit .env.local and add your Mapbox public token:
-# NEXT_PUBLIC_MAPBOX_TOKEN=pk.eyJ1...
-
-# 4. Start the development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for Production
-
-```bash
-npm run build
-# Static output is generated in the /out directory
-```
+### 📱 PWA — نصب‌پذیر روی موبایل
+- کارایی آفلاین با Service Worker
+- نصب مانند اپ نیتیو روی iOS و اندروید
 
 ---
 
-## Project Structure
+## About KishView (English)
+
+**KishView** is an advanced web application for discovering and experiencing **Kish Free Zone Island**, Iran. Browse the interactive 3D map, explore 24+ registered attractions, and purchase tickets for top venues directly online.
+
+**Kish Island — Key Facts:**
+- 🏝 Area: 91.5 km² in the Persian Gulf
+- 👥 Annual visitors: 2+ million tourists
+- 🌍 Visa-free: up to 14 days for foreign nationals
+- 🗺 24+ attractions mapped with real GPS coordinates
+
+### Key Features
+- **3D Interactive Map** — 60° pitch, real buildings, 3 map styles (light / dark / satellite), auto GPS
+- **Online Ticket Booking** — Dolphin Park, Aquarium, Bird Garden + more; Jalali (Shamsi) date picker
+- **Smart Cart** — discount codes, unique auto-verification payment amount
+- **Bilingual UI** — full Persian (RTL) and English (LTR) with mirrored layout
+- **PWA** — installable on iOS and Android, offline-capable
+
+---
+
+## 🛠 تکنولوژی‌ها | Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14 App Router + TypeScript |
+| Map | MapLibre GL JS 4.7 + react-map-gl |
+| State | Zustand (persist middleware) |
+| Styling | Tailwind CSS 3 + tailwindcss-rtl |
+| Animation | Framer Motion |
+| Auth | NextAuth.js v4 (admin panel) |
+| PWA | next-pwa |
+| Date Picker | react-multi-date-picker (Jalali/Persian) |
+
+---
+
+## 📂 ساختار پروژه | Project Structure
 
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx          # Root layout (fonts, metadata)
-│   ├── page.tsx            # Entry — dynamic import (no SSR)
-│   └── globals.css         # Tailwind directives + CSS variables
+├── app/
+│   ├── (site)/          # صفحات عمومی: tickets, cart, checkout, about, contact
+│   ├── map/             # نقشه تعاملی سه‌بعدی
+│   ├── admin/           # پنل مدیریت (محدود)
+│   └── api/             # API routes: orders, tickets, places
 ├── components/
-│   ├── Map/
-│   │   ├── KishMap.tsx     # Core map (bounds, terrain, flyTo)
-│   │   ├── MarkerLayer.tsx # Category markers
-│   │   └── mapConfig.ts    # Constants (center, bounds, zoom)
-│   ├── Overlay/
-│   │   ├── PlaceSidebar.tsx    # vaul right-side drawer
-│   │   └── BuyTicketButton.tsx # Orange gradient CTA
-│   ├── UI/
-│   │   ├── TopBar.tsx          # Glassmorphism floating navbar
-│   │   ├── ThemeToggle.tsx     # Animated dark/light toggle
-│   │   ├── LanguageToggle.tsx  # FA/EN pill button
-│   │   └── AddPlaceButton.tsx  # Corner ghost button
-│   ├── Modals/
-│   │   └── AddPlaceModal.tsx   # Radix Dialog info modal
-│   ├── ui/
-│   │   ├── drawer.tsx          # vaul primitive wrapper
-│   │   └── dialog.tsx          # Radix Dialog wrapper
-│   └── MapPage.tsx             # Client root (theme sync)
-├── store/
-│   └── useAppStore.ts      # Zustand (persists theme + language)
-├── context/
-│   └── LanguageContext.tsx # RTL/LTR + translation provider
-├── locales/
-│   ├── fa.ts               # Farsi strings
-│   └── en.ts               # English strings
+│   ├── Map/             # KishMap, MarkerLayer, darkStyle
+│   ├── controls/        # TopBar, CategoryFilter, MenuDrawer, MapControlsPanel
+│   ├── landing/         # LandingHero, Stats, Features, Tickets, Map sections
+│   └── Overlay/         # PlaceSidebar, PlaceInfoSheet
 ├── data/
-│   └── places.ts           # Kish Island place objects
-├── types/
-│   └── index.ts            # TypeScript interfaces
-└── lib/
-    └── utils.ts            # cn() utility
+│   └── places.ts        # ۲۴+ مکان با مختصات واقعی GPS
+├── store/
+│   └── useAppStore.ts   # Zustand: theme, language, mapStyle, selectedPlace
+└── types/               # TypeScript interfaces
 ```
 
 ---
 
-## Environment Variables
+## 🎯 صفحات | Pages
 
-| Variable | Required | Description |
-|---|---|---|
-| `NEXT_PUBLIC_MAPBOX_TOKEN` | ✅ | Your Mapbox GL JS public access token |
+| مسیر | توضیح |
+|---|---|
+| `/` | صفحه اصلی — landing page |
+| `/map` | نقشه تعاملی سه‌بعدی |
+| `/tickets` | لیست بلیت‌های آنلاین |
+| `/tickets/[id]` | جزئیات و خرید بلیت |
+| `/cart` | سبد خرید |
+| `/checkout` | تسویه حساب + پرداخت |
+| `/about` | درباره کیش ویو |
+| `/contact` | تماس با ما |
 
 ---
 
-## License & Copyright
+## License
 
-```
-Copyright © 2024 @Alirewa. All Rights Reserved.
-
-This is a proprietary project. The concept, design, data curation, branding,
-and source code of Kish Map are the exclusive intellectual property of @Alirewa.
-
-Unauthorized copying, reproduction, distribution, modification, reverse-engineering,
-sublicensing, or commercial use of any part of this project — in whole or in part —
-is strictly prohibited without prior written permission from the author.
-
-This project represents a significant personal investment of time, research, domain
-expertise, and creative effort. Respect intellectual property.
-
-For licensing inquiries, contact the author directly via GitHub.
-```
+© Alirewa — All rights reserved.  
+This is a proprietary project. Unauthorized use, copying, or distribution is prohibited.
 
 ---
 
 <div align="center">
-  <strong>Designed &amp; Developed by <a href="https://github.com/Alirewa">@Alirewa</a></strong>
+  <sub>Built with ❤️ for Kish Island — جزیره آزاد کیش</sub>
 </div>

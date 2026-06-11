@@ -1,0 +1,116 @@
+[
+  {
+    "id": "dolphin-park",
+    "placeId": "dolphin-park",
+    "name": "پارک دلفین‌های کیش",
+    "description": "تماشای نمایش هیجان‌انگیز دلفین‌های بطری‌نوک و شیرهای دریایی در پارک آبی کیش. یکی از محبوب‌ترین جاذبه‌های خانوادگی جزیره.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [53.9718, 26.563],
+    "address": "بلوار ساحلی شمالی، کیش",
+    "sessions": [
+      { "id": "morning", "name": "نوبت صبح", "time": "۱۱:۰۰", "price": 150000, "capacity": 100 },
+      { "id": "afternoon", "name": "نوبت عصر", "time": "۱۵:۰۰", "price": 180000, "capacity": 100 },
+      { "id": "evening", "name": "نوبت شب", "time": "۱۹:۰۰", "price": 200000, "capacity": 80 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "kish-aquarium",
+    "placeId": "kish-aquarium",
+    "name": "آکواریوم کیش",
+    "description": "بیش از ۱۰۰ گونه آبزی خلیج فارس در یک محیط شگفت‌انگیز. تونل شیشه‌ای ۲۰ متری، کوسه، لاک‌پشت دریایی، اختاپوس و مرجان‌های زنده.",
+    "imageUrl": null,
+    "category": "طبیعی",
+    "coordinates": [53.9440, 26.568],
+    "address": "شمال غرب کیش، مجاور پارک ساحلی",
+    "sessions": [
+      { "id": "standard", "name": "بازدید عادی", "price": 120000, "capacity": 200 },
+      { "id": "vip", "name": "بازدید VIP (راهنما اختصاصی)", "price": 250000, "capacity": 20 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "bird-garden",
+    "placeId": "bird-garden",
+    "name": "باغ پرندگان کیش",
+    "description": "بیش از ۳۰۰ گونه پرنده گرمسیری از سراسر جهان در محیط‌های طبیعی سرسبز.",
+    "imageUrl": null,
+    "category": "طبیعی",
+    "coordinates": [53.9521, 26.570],
+    "address": "بلوار میرزاکوچک‌خان، کیش",
+    "sessions": [
+      { "id": "adult", "name": "بزرگسال", "price": 80000, "capacity": 300 },
+      { "id": "child", "name": "کودک (زیر ۱۲ سال)", "price": 45000, "capacity": 300 },
+      { "id": "family", "name": "بلیت خانوادگی (۲ بزرگسال + ۲ کودک)", "price": 220000, "capacity": 100 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "kish-bowling",
+    "placeId": "kish-bowling",
+    "name": "بولینگ کیش",
+    "description": "مدرن‌ترین مرکز بولینگ جنوب ایران با ۲۴ لاین حرفه‌ای، بیلیارد، پینگ‌پنگ و فودکورت داخلی.",
+    "imageUrl": null,
+    "category": "ورزشی",
+    "coordinates": [53.9748, 26.566],
+    "address": "مجموعه تفریحی شمال شرق، کیش",
+    "sessions": [
+      { "id": "1game", "name": "۱ بازی", "price": 90000, "capacity": 48 },
+      { "id": "2games", "name": "۲ بازی", "price": 160000, "capacity": 48 },
+      { "id": "3games", "name": "۳ بازی", "price": 220000, "capacity": 48 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "coral-beach-snorkel",
+    "placeId": "coral-beach",
+    "name": "تور اسنورکل ساحل مرجانی",
+    "description": "تور اسنورکل حرفه‌ای در زیباترین ساحل کیش. کشف مرجان‌های رنگارنگ خلیج فارس با راهنمای متخصص.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [53.9585, 26.529],
+    "address": "ساحل جنوبی کیش",
+    "sessions": [
+      { "id": "morning", "name": "تور صبح", "time": "۷:۰۰ تا ۱۰:۰۰", "price": 200000, "capacity": 20 },
+      { "id": "afternoon", "name": "تور عصر", "time": "۱۵:۰۰ تا ۱۸:۰۰", "price": 220000, "capacity": 20 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "luna-park",
+    "placeId": "luna-park",
+    "name": "لوناپارک کیش",
+    "description": "پارک شهربازی با چرخ‌وفلک، هواپیما، ماشین برقی، ترامپولین و بازی‌های کودکانه. مناسب کودکان ۳ تا ۱۲ سال.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [53.9714, 26.556],
+    "address": "بلوار تفریحی، مرکز کیش",
+    "sessions": [
+      { "id": "day", "name": "روزانه از ۵ عصر", "price": 120000, "capacity": 500 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "diving-course",
+    "placeId": "diving-pier",
+    "name": "غواصی مقدماتی کیش",
+    "description": "اولین تجربه غواصی خود را در آب‌های شفاف خلیج فارس داشته باشید. آموزش مقدماتی توسط مربیان PADI.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [53.9502, 26.569],
+    "address": "اسکله غواصی، شمال غربی کیش",
+    "sessions": [
+      { "id": "morning", "name": "نوبت صبح", "time": "۸:۰۰ تا ۱۲:۰۰", "price": 450000, "capacity": 8 },
+      { "id": "afternoon", "name": "نوبت عصر", "time": "۱۴:۰۰ تا ۱۸:۰۰", "price": 450000, "capacity": 8 }
+    ],
+    "active": true,
+    "featured": false
+  }
+]

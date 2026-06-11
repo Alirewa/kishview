@@ -1,6 +1,7 @@
+// Developed by @Alirewa — github.com/Alirewa
 'use client';
 import { useRef, useCallback, useEffect, useState } from 'react';
-import Map, { type MapRef } from 'react-map-gl/maplibre';
+import Map, { GeolocateControl, type MapRef } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { StyleSpecification } from 'maplibre-gl';
 import { KISH_CENTER, KISH_BOUNDS, MAP_CONFIG, LIBERTY_URL } from './mapConfig';
@@ -11,20 +12,15 @@ import { places } from '@/data/places';
 import type { Place } from '@/types';
 
 export function KishMap() {
-  const mapRef = useRef<MapRef>(null);
-  const {
-    theme, useSatellite,
-    selectedPlace, selectPlace,
-    pendingMapCommand, clearMapCommand, setMapIsPitched,
-  } = useAppStore((s) => ({
-    theme:              s.theme,
-    useSatellite:       s.useSatellite,
-    selectedPlace:      s.selectedPlace,
-    selectPlace:        s.selectPlace,
-    pendingMapCommand:  s.pendingMapCommand,
-    clearMapCommand:    s.clearMapCommand,
-    setMapIsPitched:    s.setMapIsPitched,
-  }));
+  const mapRef  = useRef<MapRef>(null);
+  const geoRef  = useRef<{ trigger: () => boolean } | null>(null);
+
+  const mapStyle        = useAppStore((s) => s.mapStyle);
+  const selectedPlace   = useAppStore((s) => s.selectedPlace);
+  const selectPlace     = useAppStore((s) => s.selectPlace);
+  const pendingMapCommand = useAppStore((s) => s.pendingMapCommand);
+  const clearMapCommand = useAppStore((s) => s.clearMapCommand);
+  const setMapIsPitched = useAppStore((s) => s.setMapIsPitched);
 
   const [darkStyle,        setDarkStyle]        = useState<StyleSpecification | string>(LIBERTY_URL);
   const [satellite3DStyle, setSatellite3DStyle] = useState<StyleSpecification | string>(LIBERTY_URL);
@@ -32,6 +28,13 @@ export function KishMap() {
   useEffect(() => {
     loadDarkStyle().then(setDarkStyle).catch(() => setDarkStyle(LIBERTY_URL));
     loadSatellite3DStyle().then(setSatellite3DStyle).catch(() => setSatellite3DStyle(LIBERTY_URL));
+  }, []);
+
+  // Listen for "kishview:geolocate" custom event (fired by MenuDrawer)
+  useEffect(() => {
+    const handler = () => geoRef.current?.trigger();
+    window.addEventListener('kishview:geolocate', handler);
+    return () => window.removeEventListener('kishview:geolocate', handler);
   }, []);
 
   // Execute queued map commands
@@ -59,11 +62,11 @@ export function KishMap() {
     (place: Place) => {
       selectPlace(place);
       mapRef.current?.flyTo({
-        center:   place.coordinates,
-        zoom:     MAP_CONFIG.flyToZoom,
-        pitch:    MAP_CONFIG.flyToPitch,
-        bearing:  MAP_CONFIG.flyToBearing,
-        duration: MAP_CONFIG.flyToDuration,
+        center:    place.coordinates,
+        zoom:      MAP_CONFIG.flyToZoom,
+        pitch:     MAP_CONFIG.flyToPitch,
+        bearing:   MAP_CONFIG.flyToBearing,
+        duration:  MAP_CONFIG.flyToDuration,
         essential: true,
       });
     },
@@ -73,21 +76,20 @@ export function KishMap() {
   useEffect(() => {
     if (!selectedPlace) {
       mapRef.current?.flyTo({
-        center:   KISH_CENTER,
-        zoom:     MAP_CONFIG.initialZoom,
-        pitch:    MAP_CONFIG.initialPitch,
-        bearing:  MAP_CONFIG.initialBearing,
-        duration: MAP_CONFIG.resetDuration,
+        center:    KISH_CENTER,
+        zoom:      MAP_CONFIG.initialZoom,
+        pitch:     MAP_CONFIG.initialPitch,
+        bearing:   MAP_CONFIG.initialBearing,
+        duration:  MAP_CONFIG.resetDuration,
         essential: true,
       });
     }
   }, [selectedPlace]);
 
-  const activeStyle = useSatellite
-    ? satellite3DStyle
-    : theme === 'dark'
-      ? darkStyle
-      : LIBERTY_URL;
+  const activeStyle =
+    mapStyle === 'satellite' ? satellite3DStyle :
+    mapStyle === 'dark'      ? darkStyle :
+    LIBERTY_URL;
 
   return (
     <Map
@@ -106,6 +108,19 @@ export function KishMap() {
       style={{ width: '100%', height: '100%' }}
       attributionControl={false}
     >
+      {/* Hidden GeolocateControl — auto-triggered on load */}
+      <GeolocateControl
+        ref={geoRef as React.Ref<{ trigger: () => boolean }>}
+        positionOptions={{ enableHighAccuracy: true }}
+        trackUserLocation
+        showUserHeading
+        showAccuracyCircle={false}
+        style={{ display: 'none' }}
+        onAdd={() => {
+          setTimeout(() => geoRef.current?.trigger(), 800);
+        }}
+      />
+
       <MarkerLayer places={places} onMarkerClick={handleMarkerClick} />
     </Map>
   );

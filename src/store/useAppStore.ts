@@ -1,15 +1,17 @@
+// Developed by @Alirewa — github.com/Alirewa
 'use client';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { Place, Theme, Language } from '@/types';
 
 export type MapCommand = 'zoomIn' | 'zoomOut' | 'north' | 'togglePitch';
+export type MapStyle  = 'light' | 'dark' | 'satellite';
 
 interface AppState {
   // ── Persisted preferences ──────────────────────────────
   theme: Theme;
   language: Language;
-  useSatellite: boolean;
+  mapStyle: MapStyle;
   // ── Transient UI state ─────────────────────────────────
   selectedPlace: Place | null;
   isOverlayOpen: boolean;
@@ -29,7 +31,7 @@ interface AppState {
   toggleTheme: () => void;
   setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
-  toggleSatellite: () => void;
+  setMapStyle: (style: MapStyle) => void;
   selectPlace: (place: Place) => void;
   clearSelection: () => void;
   openInfo: () => void;
@@ -53,9 +55,9 @@ interface AppState {
 export const useAppStore = create<AppState>()(
   persist(
     (set) => ({
-      theme: 'dark',
+      theme: 'light',
       language: 'fa',
-      useSatellite: false,
+      mapStyle: 'light',
       selectedPlace: null,
       isOverlayOpen: false,
       isInfoOpen: false,
@@ -72,7 +74,7 @@ export const useAppStore = create<AppState>()(
       toggleTheme: () => set((s) => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
       setLanguage: (language) => set({ language }),
       toggleLanguage: () => set((s) => ({ language: s.language === 'fa' ? 'en' : 'fa' })),
-      toggleSatellite: () => set((s) => ({ useSatellite: !s.useSatellite })),
+      setMapStyle: (mapStyle) => set({ mapStyle }),
       selectPlace: (place) => set({ selectedPlace: place, isOverlayOpen: true, isInfoOpen: false }),
       clearSelection: () => set({ selectedPlace: null, isOverlayOpen: false, isInfoOpen: false }),
       openInfo: () => set({ isInfoOpen: true }),
@@ -94,7 +96,7 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'kishview-prefs',
-      partialize: (s) => ({ theme: s.theme, language: s.language }),
+      partialize: (s) => ({ theme: s.theme, language: s.language, mapStyle: s.mapStyle }),
     }
   )
 );
