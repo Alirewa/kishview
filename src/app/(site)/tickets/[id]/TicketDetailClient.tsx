@@ -98,7 +98,7 @@ export default function TicketDetailClient({ ticket }: { ticket: TicketType }) {
               calendarPosition="bottom-right"
               minDate={new DateObject({ calendar: persian })}
               value={jalaliDate}
-              onChange={(d) => handleDateChange(d as DateObject | null)}
+              onChange={(d: unknown) => handleDateChange(d as DateObject | null)}
               inputClass="w-full border border-zinc-200 rounded-xl px-4 py-3 bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-sky-500 cursor-pointer text-sm"
               containerStyle={{ width: '100%' }}
               placeholder="تاریخ بازدید را انتخاب کنید"
