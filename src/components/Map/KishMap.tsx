@@ -3,7 +3,7 @@
 import { useRef, useCallback, useEffect, useState } from 'react';
 import Map, { GeolocateControl, type MapRef } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import type { StyleSpecification } from 'maplibre-gl';
+import type { StyleSpecification, GeolocateControl as GeolocateControlType } from 'maplibre-gl';
 import { KISH_CENTER, KISH_BOUNDS, MAP_CONFIG, LIBERTY_URL } from './mapConfig';
 import { loadDarkStyle, loadSatellite3DStyle } from './darkStyle';
 import { MarkerLayer } from './MarkerLayer';
@@ -13,7 +13,7 @@ import type { Place } from '@/types';
 
 export function KishMap() {
   const mapRef  = useRef<MapRef>(null);
-  const geoRef  = useRef<{ trigger: () => boolean } | null>(null);
+  const geoRef  = useRef<GeolocateControlType | null>(null);
 
   const mapStyle        = useAppStore((s) => s.mapStyle);
   const selectedPlace   = useAppStore((s) => s.selectedPlace);
@@ -110,7 +110,7 @@ export function KishMap() {
     >
       {/* Hidden GeolocateControl — auto-triggered on load */}
       <GeolocateControl
-        ref={geoRef as React.Ref<{ trigger: () => boolean }>}
+        ref={geoRef as React.Ref<GeolocateControlType>}
         positionOptions={{ enableHighAccuracy: true }}
         trackUserLocation
         showUserHeading
