@@ -37,6 +37,9 @@ interface AppState {
   // ── Route ────────────────────────────────────────────────
   routeGeometry: RouteGeometry | null;
   routeInfo: RouteInfo | null;
+  // ── User & click ─────────────────────────────────────────
+  userPosition: [number, number] | null;
+  clickedPoint: [number, number] | null;
   // ── Actions ───────────────────────────────────────────────
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
@@ -63,6 +66,8 @@ interface AppState {
   setMapIsPitched: (v: boolean) => void;
   setRoute: (geometry: RouteGeometry, info: RouteInfo) => void;
   clearRoute: () => void;
+  setUserPosition: (pos: [number, number]) => void;
+  setClickedPoint: (pt: [number, number] | null) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -108,8 +113,12 @@ export const useAppStore = create<AppState>()(
       queueMapCommand: (cmd) => set({ pendingMapCommand: cmd }),
       clearMapCommand: () => set({ pendingMapCommand: null }),
       setMapIsPitched: (mapIsPitched) => set({ mapIsPitched }),
+      userPosition: null,
+      clickedPoint: null,
       setRoute: (routeGeometry, routeInfo) => set({ routeGeometry, routeInfo }),
       clearRoute: () => set({ routeGeometry: null, routeInfo: null }),
+      setUserPosition: (userPosition) => set({ userPosition }),
+      setClickedPoint: (clickedPoint) => set({ clickedPoint }),
     }),
     {
       name: 'kishview-prefs',

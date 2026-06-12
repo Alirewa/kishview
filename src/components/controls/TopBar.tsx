@@ -6,6 +6,7 @@ import { Menu, Map as MapIcon, Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAppStore } from '@/store/useAppStore';
+import { FILTER_CHIPS } from '@/data/filterChips';
 
 export function TopBar() {
   const { t, dir } = useLanguage();
@@ -14,6 +15,7 @@ export function TopBar() {
     openMenu, toggleMapControls,
     isSearchOpen, openSearch, closeSearch,
     searchQuery, setSearchQuery,
+    selectedCategory, setCategory, language,
   } = useAppStore((s) => ({
     openMenu:          s.openMenu,
     toggleMapControls: s.toggleMapControls,
@@ -22,6 +24,9 @@ export function TopBar() {
     closeSearch:       s.closeSearch,
     searchQuery:       s.searchQuery,
     setSearchQuery:    s.setSearchQuery,
+    selectedCategory:  s.selectedCategory,
+    setCategory:       s.setCategory,
+    language:          s.language,
   }));
 
   const handleOpenSearch = () => {
@@ -36,7 +41,7 @@ export function TopBar() {
                  flex items-center justify-between gap-2
                  pointer-events-none"
     >
-      {/* ── Brand (RTL: right side) ── */}
+      {/* ── Brand + desktop filter chips ── */}
       <AnimatePresence mode="wait">
         {!isSearchOpen ? (
           <motion.div
@@ -45,21 +50,46 @@ export function TopBar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.18 }}
-            className="pointer-events-auto
-                       rounded-2xl
-                       bg-white/90 dark:bg-zinc-900/90
-                       backdrop-blur-md
-                       shadow-md shadow-black/15
-                       border border-white/40 dark:border-white/10"
+            className="pointer-events-auto flex items-center gap-2"
           >
-            <Link
-              href="/"
-              className="px-4 h-11 flex items-center cursor-pointer"
-            >
-              <span className="text-sm font-bold text-zinc-900 dark:text-white tracking-tight">
-                {t.appName}
-              </span>
-            </Link>
+            {/* Logo pill */}
+            <div className="rounded-2xl
+                            bg-white/90 dark:bg-zinc-900/90
+                            backdrop-blur-md
+                            shadow-md shadow-black/15
+                            border border-white/40 dark:border-white/10">
+              <Link
+                href="/"
+                className="px-4 h-11 flex items-center cursor-pointer"
+              >
+                <span className="text-sm font-bold text-zinc-900 dark:text-white tracking-tight">
+                  {t.appName}
+                </span>
+              </Link>
+            </div>
+
+            {/* Desktop-only chip bar — hidden on mobile */}
+            <div className="hidden sm:flex items-center gap-1.5">
+              {FILTER_CHIPS.map((chip) => {
+                const active = selectedCategory === chip.id;
+                return (
+                  <button
+                    key={chip.id}
+                    onClick={() => setCategory(chip.id)}
+                    className={[
+                      'flex items-center gap-1 px-3 h-9 rounded-full text-xs font-semibold',
+                      'transition-all duration-200 cursor-pointer shadow-sm shadow-black/10',
+                      active
+                        ? 'bg-sky-500 text-white border border-sky-400 scale-105'
+                        : 'bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md text-zinc-700 dark:text-zinc-200 border border-white/40 dark:border-white/10 hover:bg-white dark:hover:bg-zinc-800',
+                    ].join(' ')}
+                  >
+                    <span>{chip.emoji}</span>
+                    <span>{language === 'fa' ? chip.fa : chip.en}</span>
+                  </button>
+                );
+              })}
+            </div>
           </motion.div>
         ) : (
           <motion.div
@@ -91,7 +121,7 @@ export function TopBar() {
         )}
       </AnimatePresence>
 
-      {/* ── Action buttons (RTL: left side) ── */}
+      {/* ── Action buttons ── */}
       <div className="pointer-events-auto flex items-center gap-2">
         {/* Search toggle */}
         <IconBtn

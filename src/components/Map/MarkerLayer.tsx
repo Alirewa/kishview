@@ -1,6 +1,7 @@
 'use client';
 import { Marker } from 'react-map-gl/maplibre';
 import { CATEGORY_ICONS } from './mapConfig';
+import { assetUrl } from '@/lib/assetUrl';
 import { useAppStore } from '@/store/useAppStore';
 import { FILTER_CHIPS } from '@/data/filterChips';
 import type { Place } from '@/types';
@@ -48,7 +49,7 @@ export function MarkerLayer({ places, onMarkerClick }: Props) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={CATEGORY_ICONS[place.category] ?? CATEGORY_ICONS.amenity}
+              src={assetUrl(CATEGORY_ICONS[place.category] ?? CATEGORY_ICONS.amenity)}
               alt={place.category}
               width={36}
               height={36}

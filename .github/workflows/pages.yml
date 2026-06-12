@@ -49,6 +49,7 @@ jobs:
             '  trailingSlash: true,',
             '  transpilePackages: [\"maplibre-gl\"],',
             '  images: { unoptimized: true },',
+            '  env: { NEXT_PUBLIC_BASE_PATH: \"/kishview\" },',
             '};',
             'module.exports = nextConfig;',
           ].join('\n'));

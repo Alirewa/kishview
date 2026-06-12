@@ -10,6 +10,7 @@ import { MenuDrawer } from './controls/MenuDrawer';
 import { PlaceSidebar } from './Overlay/PlaceSidebar';
 import { PlaceInfoSheet } from './Overlay/PlaceInfoSheet';
 import { AddPlaceModal } from './Modals/AddPlaceModal';
+import { ClickedPointPanel } from './Overlay/ClickedPointPanel';
 
 export default function MapPage() {
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function MapPage() {
         <MapControlsPanel />
         <MenuDrawer />
         <PlaceSidebar />
+        <ClickedPointPanel />
         <PlaceInfoSheet />
         <AddPlaceModal />
       </div>

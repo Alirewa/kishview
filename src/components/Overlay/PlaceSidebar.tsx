@@ -7,6 +7,8 @@ import { useAppStore } from '@/store/useAppStore';
 import type { RouteGeometry, RouteInfo } from '@/store/useAppStore';
 import { useLanguage } from '@/context/LanguageContext';
 import { CATEGORY_ICONS } from '@/components/Map/mapConfig';
+import { assetUrl } from '@/lib/assetUrl';
+import { haversineKm, fmtDistance, estDriveMin } from '@/lib/distance';
 
 const KISH_LAT = [26.44, 26.67] as const;
 const KISH_LNG = [53.82, 54.10] as const;
@@ -66,7 +68,7 @@ async function fetchRoute(
 }
 
 export function PlaceSidebar() {
-  const { selectedPlace, isOverlayOpen, clearSelection, openInfo, language, setRoute, clearRoute, routeInfo } = useAppStore((s) => ({
+  const { selectedPlace, isOverlayOpen, clearSelection, openInfo, language, setRoute, clearRoute, routeInfo, userPosition } = useAppStore((s) => ({
     selectedPlace:  s.selectedPlace,
     isOverlayOpen:  s.isOverlayOpen,
     clearSelection: s.clearSelection,
@@ -75,6 +77,7 @@ export function PlaceSidebar() {
     setRoute:       s.setRoute,
     clearRoute:     s.clearRoute,
     routeInfo:      s.routeInfo,
+    userPosition:   s.userPosition,
   }));
   const { t } = useLanguage();
   const isFA = language === 'fa';
@@ -163,7 +166,7 @@ export function PlaceSidebar() {
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={CATEGORY_ICONS[selectedPlace.category] ?? '/markers/amenity.svg'} alt="" className="w-8 h-8 opacity-30" />
+                  <img src={assetUrl(CATEGORY_ICONS[selectedPlace.category] ?? '/markers/amenity.svg')} alt="" className="w-8 h-8 opacity-30" />
                 </div>
               )}
             </div>
@@ -205,6 +208,20 @@ export function PlaceSidebar() {
               <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 mt-1 line-clamp-2">
                 {selectedPlace.description[language]}
               </p>
+
+              {/* Distance from user */}
+              {userPosition && (() => {
+                const km = haversineKm(userPosition, selectedPlace.coordinates as [number, number]);
+                const min = estDriveMin(km);
+                return (
+                  <p className="text-[11px] text-sky-600 dark:text-sky-400 flex items-center gap-1 mt-1 font-medium">
+                    <Navigation size={10} className="flex-shrink-0" />
+                    {isFA
+                      ? `${fmtDistance(km, true)} · تقریباً ${min} دقیقه`
+                      : `${fmtDistance(km, false)} · ~${min} min`}
+                  </p>
+                );
+              })()}
             </div>
           </div>
 

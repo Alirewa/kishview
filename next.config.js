@@ -10,6 +10,7 @@ const withPWA = require('next-pwa')({
 const nextConfig = {
   transpilePackages: ['maplibre-gl'],
   images: { unoptimized: true },
+  env: { NEXT_PUBLIC_BASE_PATH: '' },
 };
 
 module.exports = withPWA(nextConfig);
