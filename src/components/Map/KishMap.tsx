@@ -1,15 +1,44 @@
 // Developed by @Alirewa — github.com/Alirewa
 'use client';
 import { useRef, useCallback, useEffect, useState } from 'react';
-import Map, { GeolocateControl, type MapRef } from 'react-map-gl/maplibre';
+import Map, { GeolocateControl, Source, Layer, type MapRef } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { StyleSpecification, GeolocateControl as GeolocateControlType } from 'maplibre-gl';
+import type { LayerProps } from 'react-map-gl/maplibre';
 import { KISH_CENTER, KISH_BOUNDS, MAP_CONFIG, LIBERTY_URL } from './mapConfig';
 import { loadDarkStyle, loadSatellite3DStyle } from './darkStyle';
 import { MarkerLayer } from './MarkerLayer';
 import { useAppStore } from '@/store/useAppStore';
 import { places } from '@/data/places';
 import type { Place } from '@/types';
+
+const routeGlowLayer: LayerProps = {
+  id: 'route-glow',
+  type: 'line',
+  paint: {
+    'line-color': '#10b981',
+    'line-width': 10,
+    'line-opacity': 0.25,
+    'line-blur': 4,
+  },
+  layout: { 'line-cap': 'round', 'line-join': 'round' },
+};
+
+const routeLineLayer: LayerProps = {
+  id: 'route-line',
+  type: 'line',
+  paint: {
+    'line-color': [
+      'case',
+      ['==', ['get', 'index'], 0], '#10b981',
+      '#6ee7b7',
+    ],
+    'line-width': ['case', ['==', ['get', 'index'], 0], 4, 2.5],
+    'line-opacity': ['case', ['==', ['get', 'index'], 0], 1, 0.55],
+    'line-dasharray': ['case', ['==', ['get', 'index'], 0], ['literal', [1]], ['literal', [4, 3]]],
+  },
+  layout: { 'line-cap': 'round', 'line-join': 'round' },
+};
 
 export function KishMap() {
   const mapRef  = useRef<MapRef>(null);
@@ -21,6 +50,7 @@ export function KishMap() {
   const pendingMapCommand = useAppStore((s) => s.pendingMapCommand);
   const clearMapCommand = useAppStore((s) => s.clearMapCommand);
   const setMapIsPitched = useAppStore((s) => s.setMapIsPitched);
+  const routeGeometry   = useAppStore((s) => s.routeGeometry);
 
   const [darkStyle,        setDarkStyle]        = useState<StyleSpecification | string>(LIBERTY_URL);
   const [satellite3DStyle, setSatellite3DStyle] = useState<StyleSpecification | string>(LIBERTY_URL);
@@ -119,6 +149,14 @@ export function KishMap() {
           setTimeout(() => geoRef.current?.trigger(), 800);
         }}
       />
+
+      {/* Route overlay */}
+      {routeGeometry && (
+        <Source id="route" type="geojson" data={routeGeometry}>
+          <Layer {...routeGlowLayer} />
+          <Layer {...routeLineLayer} />
+        </Source>
+      )}
 
       <MarkerLayer places={places} onMarkerClick={handleMarkerClick} />
     </Map>

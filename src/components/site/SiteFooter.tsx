@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MapPin } from 'lucide-react';
+import { MapPin, Github } from 'lucide-react';
 
 export default function SiteFooter() {
   return (
@@ -42,8 +42,19 @@ export default function SiteFooter() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-zinc-800 text-center py-4 text-xs text-zinc-600">
-        © ۱۴۰۵ کیش ویو — تمامی حقوق محفوظ است
+      <div className="border-t border-zinc-800 py-4">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-zinc-600">
+          <span>© ۱۴۰۵ کیش ویو — تمامی حقوق محفوظ است</span>
+          <a
+            href="https://github.com/Alirewa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-zinc-500 hover:text-white transition-colors"
+          >
+            <Github className="w-3.5 h-3.5" />
+            Alireza Pourgholam
+          </a>
+        </div>
       </div>
     </footer>
   );

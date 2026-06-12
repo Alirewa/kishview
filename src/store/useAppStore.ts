@@ -7,6 +7,14 @@ import type { Place, Theme, Language } from '@/types';
 export type MapCommand = 'zoomIn' | 'zoomOut' | 'north' | 'togglePitch';
 export type MapStyle  = 'light' | 'dark' | 'satellite';
 
+export type RouteFeature = {
+  type: 'Feature';
+  geometry: { type: 'LineString'; coordinates: number[][] };
+  properties: { index: number };
+};
+export type RouteGeometry = { type: 'FeatureCollection'; features: RouteFeature[] };
+export type RouteInfo = { distance: number; duration: number; alternatives: number };
+
 interface AppState {
   // ── Persisted preferences ──────────────────────────────
   theme: Theme;
@@ -26,6 +34,9 @@ interface AppState {
   // ── Map commands ─────────────────────────────────────────
   pendingMapCommand: MapCommand | null;
   mapIsPitched: boolean;
+  // ── Route ────────────────────────────────────────────────
+  routeGeometry: RouteGeometry | null;
+  routeInfo: RouteInfo | null;
   // ── Actions ───────────────────────────────────────────────
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
@@ -50,6 +61,8 @@ interface AppState {
   queueMapCommand: (cmd: MapCommand) => void;
   clearMapCommand: () => void;
   setMapIsPitched: (v: boolean) => void;
+  setRoute: (geometry: RouteGeometry, info: RouteInfo) => void;
+  clearRoute: () => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -69,6 +82,8 @@ export const useAppStore = create<AppState>()(
       searchQuery: '',
       pendingMapCommand: null,
       mapIsPitched: true,
+      routeGeometry: null,
+      routeInfo: null,
 
       setTheme: (theme) => set({ theme }),
       toggleTheme: () => set((s) => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
@@ -93,6 +108,8 @@ export const useAppStore = create<AppState>()(
       queueMapCommand: (cmd) => set({ pendingMapCommand: cmd }),
       clearMapCommand: () => set({ pendingMapCommand: null }),
       setMapIsPitched: (mapIsPitched) => set({ mapIsPitched }),
+      setRoute: (routeGeometry, routeInfo) => set({ routeGeometry, routeInfo }),
+      clearRoute: () => set({ routeGeometry: null, routeInfo: null }),
     }),
     {
       name: 'kishview-prefs',
