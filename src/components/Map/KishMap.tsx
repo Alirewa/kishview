@@ -125,6 +125,7 @@ export function KishMap() {
     <Map
       ref={mapRef}
       mapStyle={activeStyle}
+      onLoad={() => { setTimeout(() => geoRef.current?.trigger(), 800); }}
       initialViewState={{
         longitude: KISH_CENTER[0],
         latitude:  KISH_CENTER[1],
@@ -145,9 +146,6 @@ export function KishMap() {
         trackUserLocation
         showAccuracyCircle={false}
         style={{ display: 'none' }}
-        onAdd={() => {
-          setTimeout(() => geoRef.current?.trigger(), 800);
-        }}
       />
 
       {/* Route overlay */}
