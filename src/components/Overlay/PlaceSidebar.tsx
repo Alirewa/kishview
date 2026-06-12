@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '@/store/useAppStore';
 import { useLanguage } from '@/context/LanguageContext';
 import { CATEGORY_ICONS } from '@/components/Map/mapConfig';
-import type { RouteGeometry, RouteInfo } from '@/store/useAppStore';
+type RouteGeometry = { type: 'FeatureCollection'; features: Array<{ type: 'Feature'; geometry: { type: 'LineString'; coordinates: number[][] }; properties: { index: number } }> };
+type RouteInfo = { distance: number; duration: number; alternatives: number };
 
 const KISH_LAT = [26.44, 26.67] as const;
 const KISH_LNG = [53.82, 54.10] as const;
@@ -66,16 +67,14 @@ async function fetchRoute(
 }
 
 export function PlaceSidebar() {
-  const { selectedPlace, isOverlayOpen, clearSelection, openInfo, language, setRoute, clearRoute, routeInfo } = useAppStore((s) => ({
+  const { selectedPlace, isOverlayOpen, clearSelection, openInfo, language } = useAppStore((s) => ({
     selectedPlace:  s.selectedPlace,
     isOverlayOpen:  s.isOverlayOpen,
     clearSelection: s.clearSelection,
     openInfo:       s.openInfo,
     language:       s.language,
-    setRoute:       s.setRoute,
-    clearRoute:     s.clearRoute,
-    routeInfo:      s.routeInfo,
   }));
+  const [routeInfo, setRouteInfo] = useState<RouteInfo | null>(null);
   const { t } = useLanguage();
   const isFA = language === 'fa';
 
@@ -91,7 +90,7 @@ export function PlaceSidebar() {
   const handleNavigate = () => {
     if (!selectedPlace) return;
     if (navState === 'routed') {
-      clearRoute();
+      setRouteInfo(null);
       setNavState('idle');
       return;
     }
@@ -110,7 +109,7 @@ export function PlaceSidebar() {
         try {
           const result = await fetchRoute(longitude, latitude, dLng, dLat);
           if (!result) throw new Error('no route');
-          setRoute(result.geometry, result.info);
+          setRouteInfo(result.info);
           setNavState('routed');
         } catch {
           setNavState('error');
@@ -228,7 +227,7 @@ export function PlaceSidebar() {
                     </span>
                   )}
                 </div>
-                <button onClick={() => { clearRoute(); setNavState('idle'); }} className="text-zinc-400 hover:text-zinc-600 flex-shrink-0">
+                <button onClick={() => { setRouteInfo(null); setNavState('idle'); }} className="text-zinc-400 hover:text-zinc-600 flex-shrink-0">
                   <XCircle size={14} />
                 </button>
               </div>

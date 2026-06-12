@@ -113,7 +113,6 @@ export function KishMap() {
         ref={geoRef as React.Ref<GeolocateControlType>}
         positionOptions={{ enableHighAccuracy: true }}
         trackUserLocation
-        showUserHeading
         showAccuracyCircle={false}
         style={{ display: 'none' }}
         onAdd={() => {

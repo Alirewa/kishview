@@ -1,5 +1,5 @@
 'use client';
-import { Compass, Layers, Mountain, ZoomIn, ZoomOut, X, Sun, Moon, Satellite } from 'lucide-react';
+import { Compass, Mountain, ZoomIn, ZoomOut, X, Sun, Moon, Satellite } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '@/store/useAppStore';
 import { useLanguage } from '@/context/LanguageContext';
@@ -9,16 +9,14 @@ export function MapControlsPanel() {
   const {
     isMapControlsOpen, closeMapControls,
     queueMapCommand,
-    theme, toggleTheme, useSatellite, toggleSatellite,
+    mapStyle, setMapStyle,
     mapIsPitched,
   } = useAppStore((s) => ({
     isMapControlsOpen: s.isMapControlsOpen,
     closeMapControls:  s.closeMapControls,
     queueMapCommand:   s.queueMapCommand,
-    theme:             s.theme,
-    toggleTheme:       s.toggleTheme,
-    useSatellite:      s.useSatellite,
-    toggleSatellite:   s.toggleSatellite,
+    mapStyle:          s.mapStyle,
+    setMapStyle:       s.setMapStyle,
     mapIsPitched:      s.mapIsPitched,
   }));
 
@@ -68,20 +66,20 @@ export function MapControlsPanel() {
               </p>
               <div className="flex gap-1.5">
                 <StyleBtn
-                  active={!useSatellite && theme === 'dark'}
-                  onClick={() => { if (useSatellite) toggleSatellite(); if (theme !== 'dark') toggleTheme(); closeMapControls(); }}
+                  active={mapStyle === 'dark'}
+                  onClick={() => { setMapStyle('dark'); closeMapControls(); }}
                   icon={<Moon size={13} />}
                   label={dir === 'rtl' ? 'تاریک' : 'Dark'}
                 />
                 <StyleBtn
-                  active={!useSatellite && theme === 'light'}
-                  onClick={() => { if (useSatellite) toggleSatellite(); if (theme !== 'light') toggleTheme(); closeMapControls(); }}
+                  active={mapStyle === 'light'}
+                  onClick={() => { setMapStyle('light'); closeMapControls(); }}
                   icon={<Sun size={13} />}
                   label={dir === 'rtl' ? 'روشن' : 'Light'}
                 />
                 <StyleBtn
-                  active={useSatellite}
-                  onClick={() => { toggleSatellite(); closeMapControls(); }}
+                  active={mapStyle === 'satellite'}
+                  onClick={() => { setMapStyle('satellite'); closeMapControls(); }}
                   icon={<Satellite size={13} />}
                   label={dir === 'rtl' ? 'ماهواره' : 'Satellite'}
                 />
