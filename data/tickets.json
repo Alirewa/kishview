@@ -6,12 +6,29 @@
     "description": "تماشای نمایش هیجان‌انگیز دلفین‌های بطری‌نوک و شیرهای دریایی در پارک آبی کیش. یکی از محبوب‌ترین جاذبه‌های خانوادگی جزیره.",
     "imageUrl": null,
     "category": "آبی",
-    "coordinates": [53.9718, 26.563],
-    "address": "بلوار ساحلی شمالی، کیش",
+    "coordinates": [54.0376, 26.5096],
+    "address": "ساحل جنوب شرقی، کیش",
     "sessions": [
-      { "id": "morning", "name": "نوبت صبح", "time": "۱۱:۰۰", "price": 150000, "capacity": 100 },
-      { "id": "afternoon", "name": "نوبت عصر", "time": "۱۵:۰۰", "price": 180000, "capacity": 100 },
-      { "id": "evening", "name": "نوبت شب", "time": "۱۹:۰۰", "price": 200000, "capacity": 80 }
+      { "id": "morning", "name": "نوبت صبح", "time": "11:00", "price": 1840000, "capacity": 100 },
+      { "id": "afternoon", "name": "نوبت عصر", "time": "15:00", "price": 1840000, "capacity": 100 },
+      { "id": "evening", "name": "نوبت شب", "time": "19:00", "price": 1840000, "capacity": 80 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "swim-with-dolphins",
+    "placeId": "dolphin-park",
+    "name": "شنا با دلفین‌ها",
+    "description": "تجربه شنا و تعامل مستقیم با دلفین‌های بطری‌نوک در آب. یک تجربه فراموش‌نشدنی برای تمام خانواده.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [54.0376, 26.5096],
+    "address": "پارک دلفین‌ها، ساحل جنوب شرقی، کیش",
+    "sessions": [
+      { "id": "session1", "name": "نوبت اول", "time": "10:00", "price": 3325000, "capacity": 8 },
+      { "id": "session2", "name": "نوبت دوم", "time": "14:00", "price": 3325000, "capacity": 8 },
+      { "id": "session3", "name": "نوبت سوم", "time": "17:00", "price": 3325000, "capacity": 8 }
     ],
     "active": true,
     "featured": true
@@ -23,8 +40,8 @@
     "description": "بیش از ۱۰۰ گونه آبزی خلیج فارس در یک محیط شگفت‌انگیز. تونل شیشه‌ای ۲۰ متری، کوسه، لاک‌پشت دریایی، اختاپوس و مرجان‌های زنده.",
     "imageUrl": null,
     "category": "طبیعی",
-    "coordinates": [53.9440, 26.568],
-    "address": "شمال غرب کیش، مجاور پارک ساحلی",
+    "coordinates": [54.0390, 26.5051],
+    "address": "ساحل جنوب شرقی، کیش",
     "sessions": [
       { "id": "standard", "name": "بازدید عادی", "price": 120000, "capacity": 200 },
       { "id": "vip", "name": "بازدید VIP (راهنما اختصاصی)", "price": 250000, "capacity": 20 }
@@ -36,35 +53,64 @@
     "id": "bird-garden",
     "placeId": "bird-garden",
     "name": "باغ پرندگان کیش",
-    "description": "بیش از ۳۰۰ گونه پرنده گرمسیری از سراسر جهان در محیط‌های طبیعی سرسبز.",
+    "description": "بیش از ۳۰۰ گونه پرنده گرمسیری از سراسر جهان در محیط‌های طبیعی سرسبز. مجاور پارک دلفین‌ها.",
     "imageUrl": null,
     "category": "طبیعی",
-    "coordinates": [53.9521, 26.570],
-    "address": "بلوار میرزاکوچک‌خان، کیش",
+    "coordinates": [54.0355, 26.5070],
+    "address": "مجاور پارک دلفین، کیش",
     "sessions": [
       { "id": "adult", "name": "بزرگسال", "price": 80000, "capacity": 300 },
       { "id": "child", "name": "کودک (زیر ۱۲ سال)", "price": 45000, "capacity": 300 },
       { "id": "family", "name": "بلیت خانوادگی (۲ بزرگسال + ۲ کودک)", "price": 220000, "capacity": 100 }
     ],
     "active": true,
-    "featured": true
+    "featured": false
   },
   {
-    "id": "kish-bowling",
-    "placeId": "kish-bowling",
-    "name": "بولینگ کیش",
-    "description": "مدرن‌ترین مرکز بولینگ جنوب ایران با ۲۴ لاین حرفه‌ای، بیلیارد، پینگ‌پنگ و فودکورت داخلی.",
+    "id": "touch-zoo",
+    "placeId": "bird-garden",
+    "name": "زوی لمسی",
+    "description": "مجموعه حیوانات لمسی کیش — تعامل نزدیک با حیوانات آرام و اهلی. مناسب کودکان و خانواده‌ها.",
     "imageUrl": null,
-    "category": "ورزشی",
-    "coordinates": [53.9748, 26.566],
-    "address": "مجموعه تفریحی شمال شرق، کیش",
+    "category": "طبیعی",
+    "coordinates": [54.0355, 26.5070],
+    "address": "مجاور پارک دلفین، کیش",
     "sessions": [
-      { "id": "1game", "name": "۱ بازی", "price": 90000, "capacity": 48 },
-      { "id": "2games", "name": "۲ بازی", "price": 160000, "capacity": 48 },
-      { "id": "3games", "name": "۳ بازی", "price": 220000, "capacity": 48 }
+      { "id": "standard", "name": "بازدید عادی", "price": 180000, "capacity": 150 }
     ],
     "active": true,
     "featured": false
+  },
+  {
+    "id": "safari-park",
+    "placeId": "safari-park",
+    "name": "پارک سافاری کیش",
+    "description": "سافاری با ماشین در میان حیوانات وحشی آفریقایی — شیر، زرافه، گورخر و ببر. تجربه‌ای منحصربه‌فرد در خاورمیانه.",
+    "imageUrl": null,
+    "category": "طبیعی",
+    "coordinates": [53.9460, 26.5070],
+    "address": "جنوب کیش",
+    "sessions": [
+      { "id": "standard", "name": "سافاری با خودرو شخصی", "price": 140000, "capacity": 200 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "kish-kariz",
+    "placeId": "kish-kariz",
+    "name": "کاریز زیرزمینی کیش",
+    "description": "شبکه آبرسانی ۲۵۰۰ ساله زیرزمینی جزیره کیش — یکی از مهم‌ترین آثار تاریخی خلیج فارس با محوطه فرهنگی، گالری و فضاهای نمایشگاهی.",
+    "imageUrl": null,
+    "category": "تاریخی",
+    "coordinates": [53.9687, 26.5566],
+    "address": "مرکز کیش، روبروی هتل شایان",
+    "sessions": [
+      { "id": "standard", "name": "بازدید عادی", "price": 282000, "capacity": 200 },
+      { "id": "guided", "name": "تور با راهنما", "price": 380000, "capacity": 30 }
+    ],
+    "active": true,
+    "featured": true
   },
   {
     "id": "coral-beach-snorkel",
@@ -73,42 +119,558 @@
     "description": "تور اسنورکل حرفه‌ای در زیباترین ساحل کیش. کشف مرجان‌های رنگارنگ خلیج فارس با راهنمای متخصص.",
     "imageUrl": null,
     "category": "آبی",
-    "coordinates": [53.9585, 26.529],
+    "coordinates": [53.9520, 26.4870],
     "address": "ساحل جنوبی کیش",
     "sessions": [
-      { "id": "morning", "name": "تور صبح", "time": "۷:۰۰ تا ۱۰:۰۰", "price": 200000, "capacity": 20 },
-      { "id": "afternoon", "name": "تور عصر", "time": "۱۵:۰۰ تا ۱۸:۰۰", "price": 220000, "capacity": 20 }
+      { "id": "morning", "name": "تور صبح", "time": "7:00 تا 10:00", "price": 200000, "capacity": 20 },
+      { "id": "afternoon", "name": "تور عصر", "time": "15:00 تا 18:00", "price": 220000, "capacity": 20 }
     ],
     "active": true,
     "featured": true
   },
   {
-    "id": "luna-park",
-    "placeId": "luna-park",
-    "name": "لوناپارک کیش",
-    "description": "پارک شهربازی با چرخ‌وفلک، هواپیما، ماشین برقی، ترامپولین و بازی‌های کودکانه. مناسب کودکان ۳ تا ۱۲ سال.",
-    "imageUrl": null,
-    "category": "تفریحی",
-    "coordinates": [53.9714, 26.556],
-    "address": "بلوار تفریحی، مرکز کیش",
-    "sessions": [
-      { "id": "day", "name": "روزانه از ۵ عصر", "price": 120000, "capacity": 500 }
-    ],
-    "active": true,
-    "featured": false
-  },
-  {
-    "id": "diving-course",
+    "id": "scuba-diving",
     "placeId": "diving-pier",
     "name": "غواصی مقدماتی کیش",
     "description": "اولین تجربه غواصی خود را در آب‌های شفاف خلیج فارس داشته باشید. آموزش مقدماتی توسط مربیان PADI.",
     "imageUrl": null,
     "category": "آبی",
-    "coordinates": [53.9502, 26.569],
+    "coordinates": [53.9150, 26.5700],
     "address": "اسکله غواصی، شمال غربی کیش",
     "sessions": [
-      { "id": "morning", "name": "نوبت صبح", "time": "۸:۰۰ تا ۱۲:۰۰", "price": 450000, "capacity": 8 },
-      { "id": "afternoon", "name": "نوبت عصر", "time": "۱۴:۰۰ تا ۱۸:۰۰", "price": 450000, "capacity": 8 }
+      { "id": "morning", "name": "نوبت صبح", "time": "8:00 تا 12:00", "price": 885000, "capacity": 8 },
+      { "id": "afternoon", "name": "نوبت عصر", "time": "14:00 تا 18:00", "price": 885000, "capacity": 8 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "parasail",
+    "placeId": "parasail",
+    "name": "پاراسل کیش",
+    "description": "پرواز با چتر بادبانی بر فراز خلیج فارس در ارتفاع ۱۰۰ متری. منظره ۳۶۰ درجه به جزیره کیش از آسمان. مناسب از ۱۲ سال.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [54.0340, 26.5120],
+    "address": "ساحل جنوب شرقی، کیش",
+    "sessions": [
+      { "id": "standard", "name": "پرواز ۱۵ دقیقه‌ای", "price": 885000, "capacity": 30 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "flyboard",
+    "placeId": "flyboard",
+    "name": "فلای‌بورد کیش",
+    "description": "پرواز روی آب با جت واتر — هیجان‌انگیزترین ورزش آبی کیش. آموزش ۱۵ دقیقه‌ای رایگان، سپس پرواز آزاد. مناسب از ۱۵ سال.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [54.0325, 26.5110],
+    "address": "ساحل جنوب شرقی، کیش",
+    "sessions": [
+      { "id": "standard", "name": "۳۰ دقیقه (آموزش + پرواز)", "price": 1780000, "capacity": 15 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "jet-ski",
+    "placeId": "parasail",
+    "name": "جت‌اسکی کیش",
+    "description": "رانندگی با جت‌اسکی بر روی امواج خلیج فارس. هیجان سرعت و آزادی در دریا. مناسب از ۱۸ سال (یا ۱۵ سال با همراه).",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [54.0340, 26.5120],
+    "address": "ساحل جنوب شرقی، کیش",
+    "sessions": [
+      { "id": "15min", "name": "۱۵ دقیقه", "price": 1425000, "capacity": 20 },
+      { "id": "30min", "name": "۳۰ دقیقه", "price": 2850000, "capacity": 20 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "banana-boat",
+    "placeId": "banana-boat",
+    "name": "بنانا بوت کیش",
+    "description": "هیجان روی موج با قایق موزی — مناسب خانواده و دوستان. ۱۵ دقیقه اکشن روی امواج خلیج فارس. کودک از ۵ سال.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [54.0330, 26.5115],
+    "address": "ساحل جنوب شرقی، کیش",
+    "sessions": [
+      { "id": "standard", "name": "۱۵ دقیقه (هر نفر)", "price": 275000, "capacity": 50 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "paddle-board",
+    "placeId": "coral-beach",
+    "name": "پدل‌برد کیش",
+    "description": "تجربه پدل‌برد بر روی آب‌های آرام خلیج فارس. ورزشی آرامش‌بخش با منظره زیبا به جزیره کیش.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [53.9520, 26.4870],
+    "address": "ساحل جنوبی کیش",
+    "sessions": [
+      { "id": "1hour", "name": "۱ ساعت", "price": 570000, "capacity": 30 },
+      { "id": "2hours", "name": "۲ ساعت", "price": 1140000, "capacity": 30 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "water-skiing",
+    "placeId": "parasail",
+    "name": "اسکی روی آب",
+    "description": "اسکی‌بازی بر روی امواج خلیج فارس با کابل پشت قایق. مناسب مبتدیان و حرفه‌ای‌ها. آموزش مقدماتی موجود.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [54.0340, 26.5120],
+    "address": "ساحل جنوب شرقی، کیش",
+    "sessions": [
+      { "id": "standard", "name": "۱۵ دقیقه", "price": 1113000, "capacity": 20 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "submarine-scooter",
+    "placeId": "diving-pier",
+    "name": "اسکوتر زیردریایی",
+    "description": "رانندگی با اسکوتر الکتریکی زیر آب — تجربه‌ای منحصربه‌فرد در دنیای زیر دریا بدون نیاز به گواهینامه غواصی.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [53.9150, 26.5700],
+    "address": "اسکله غواصی، شمال غربی کیش",
+    "sessions": [
+      { "id": "standard", "name": "۲۰ دقیقه", "price": 2250000, "capacity": 10 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "deep-sea-fishing",
+    "placeId": "aquarium-boat",
+    "name": "ماهیگیری اعماق دریا",
+    "description": "تور ماهیگیری حرفه‌ای در اعماق خلیج فارس با قایق مجهز. تجهیزات کامل و راهنمای با تجربه همراه شما خواهد بود.",
+    "imageUrl": null,
+    "category": "دریایی",
+    "coordinates": [53.9200, 26.5650],
+    "address": "اسکله شمال غربی، کیش",
+    "sessions": [
+      { "id": "halfday", "name": "نیم روز (۴ ساعت)", "price": 3250000, "capacity": 10 },
+      { "id": "fullday", "name": "تمام روز (۸ ساعت)", "price": 6500000, "capacity": 10 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "aquarium-boat",
+    "placeId": "aquarium-boat",
+    "name": "کشتی آکواریوم (کف شیشه‌ای)",
+    "description": "کشتی کف شیشه‌ای برای تماشای مرجان‌ها و ماهی‌های رنگارنگ بدون خیس شدن. مناسب تمام سنین، ۲ ساعت دریانوردی لذت‌بخش.",
+    "imageUrl": null,
+    "category": "دریایی",
+    "coordinates": [53.9200, 26.5650],
+    "address": "اسکله شمال غربی، کیش",
+    "sessions": [
+      { "id": "morning", "name": "نوبت صبح", "time": "9:00 تا 11:00", "price": 1250000, "capacity": 40 },
+      { "id": "afternoon", "name": "نوبت عصر", "time": "15:00 تا 17:00", "price": 1250000, "capacity": 40 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "ocean-water-park",
+    "placeId": "ocean-water-park",
+    "name": "پارک آبی اوشن",
+    "description": "بزرگ‌ترین پارک آبی سرپوشیده ایران با اسلایدهای هیجان‌انگیز، استخر موج، جکوزی و رودخانه تنبل. انتقال رایگان از سراسر جزیره.",
+    "imageUrl": null,
+    "category": "آبی",
+    "coordinates": [53.9806, 26.4972],
+    "address": "ساحل جنوبی کیش",
+    "sessions": [
+      { "id": "weekday", "name": "روز کاری", "price": 1980000, "capacity": 500 },
+      { "id": "weekend", "name": "تعطیل‌آخر هفته", "price": 2200000, "capacity": 500 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "snow-park",
+    "placeId": "snow-park",
+    "name": "پارک برفی کیش",
+    "description": "تنها پیست اسکی سرپوشیده در خاورمیانه با دمای زیر صفر! اسکی، بورد برفی، بازی برفی و کوچینگ حرفه‌ای در جزیره‌ای گرمسیری.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0246, 26.5369],
+    "address": "مجموعه میکامال، طبقه پنجم، کیش",
+    "sessions": [
+      { "id": "1hour", "name": "۱ ساعت", "price": 490000, "capacity": 50 },
+      { "id": "2hours", "name": "۲ ساعت", "price": 980000, "capacity": 50 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "ice-rink",
+    "placeId": "ice-rink",
+    "name": "آیس رینک کیش",
+    "description": "پیست یخ‌بازی حرفه‌ای در قلب کیش. اسکیت روی یخ با کفش کرایه‌ای، آموزش مقدماتی و موسیقی زنده در اتمسفر یخ‌زده.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0250, 26.5378],
+    "address": "مجموعه میکامال، طبقه سوم، کیش",
+    "sessions": [
+      { "id": "1session", "name": "یک سانس (۹۰ دقیقه)", "price": 995000, "capacity": 100 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "cable-car",
+    "placeId": "cable-car",
+    "name": "تله‌کابین کیش",
+    "description": "تله‌کابین هوایی با منظره ۳۶۰ درجه به سراسر جزیره کیش و خلیج فارس. مسیر طلایی غروب آفتاب بر فراز جزیره.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0227, 26.5474],
+    "address": "مجموعه میکا، کیش",
+    "sessions": [
+      { "id": "standard", "name": "رفت و برگشت", "price": 570000, "capacity": 200 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "wind-tunnel",
+    "placeId": "wind-tunnel",
+    "name": "تونل باد کیش",
+    "description": "تجربه سقوط آزاد بدون هواپیما در تونل باد حرفه‌ای! سرعت باد ۲۰۰ کیلومتر، احساس واقعی پرش با چتر نجات. مناسب از ۷ سال.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0185, 26.5490],
+    "address": "مجتمع ماجراجویی، کیش",
+    "sessions": [
+      { "id": "1flight", "name": "۱ پرواز (۶۰ ثانیه)", "price": 1650000, "capacity": 20 },
+      { "id": "2flights", "name": "۲ پرواز", "price": 3300000, "capacity": 20 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "bungee-jumping",
+    "placeId": "bungee-jumping",
+    "name": "بانجی جامپینگ و زیپ‌لاین",
+    "description": "هیجان‌انگیزترین ورزش ماجراجویی کیش — پرش از ارتفاع ۴۰ متری بر فراز خلیج فارس. تجهیزات ایمنی استاندارد اروپایی.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0350, 26.5105],
+    "address": "ساحل جنوب شرقی، نزدیک پارک دلفین، کیش",
+    "sessions": [
+      { "id": "bungee", "name": "بانجی جامپینگ", "price": 3325000, "capacity": 20 },
+      { "id": "zipline", "name": "زیپ‌لاین", "price": 1200000, "capacity": 30 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "theme-park-center",
+    "placeId": "theme-park-center",
+    "name": "تم پارک سنتر",
+    "description": "بزرگ‌ترین مجموعه بازی‌های فانتزی کیش با ۱۵ دستگاه شهربازی، VR، اتاق‌های فرار، بازی‌های گروهی و فودکورت.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0170, 26.5450],
+    "address": "مجتمع تفریحی، کیش",
+    "sessions": [
+      { "id": "unlimited", "name": "بلیت نامحدود (۲ ساعت)", "price": 710000, "capacity": 200 },
+      { "id": "family", "name": "بلیت خانوادگی (۴ نفر، ۲ ساعت)", "price": 2500000, "capacity": 50 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "jumanji-park",
+    "placeId": "theme-park-center",
+    "name": "جومانجی گیم پارک",
+    "description": "مجموعه بازی‌های پرهیجان با تم جنگل جومانجی — VR، واقعیت افزوده، بازی‌های تیمی و چالش‌های گروهی.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0170, 26.5450],
+    "address": "مجتمع تفریحی، کیش",
+    "sessions": [
+      { "id": "standard", "name": "بازدید عادی", "price": 710000, "capacity": 100 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "horror-castle",
+    "placeId": "horror-castle",
+    "name": "قلعه وحشت کیش",
+    "description": "بزرگ‌ترین قلعه وحشت ایران با بیش از ۲۰ اتاق پر از ترس و تاریکی، جلوه‌های صوتی و تصویری پیشرفته. مناسب افراد بالای ۱۲ سال.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0155, 26.5455],
+    "address": "مجتمع تفریحی، کیش",
+    "sessions": [
+      { "id": "evening1", "name": "نوبت اول", "time": "20:00", "price": 570000, "capacity": 50 },
+      { "id": "evening2", "name": "نوبت دوم", "time": "22:00", "price": 570000, "capacity": 50 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "around-the-world",
+    "placeId": "luna-park",
+    "name": "شهربازی اطراف دنیا",
+    "description": "مجموعه شهربازی با دستگاه‌های هیجان‌انگیز — ماشین برقی، ترن هوایی و بازی‌های خانوادگی.",
+    "imageUrl": null,
+    "category": "تفریحی",
+    "coordinates": [54.0175, 26.5445],
+    "address": "بلوار تفریحی، کیش",
+    "sessions": [
+      { "id": "standard", "name": "بلیت نامحدود", "price": 710000, "capacity": 300 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "helicopter-tour",
+    "placeId": "island-tour",
+    "name": "تور هلیکوپتر کیش",
+    "description": "هیجان‌انگیزترین تجربه دیدن جزیره کیش از آسمان با هلیکوپتر. منظره خیره‌کننده خلیج فارس از ارتفاع. مناسب از ۵ سال.",
+    "imageUrl": null,
+    "category": "هوایی",
+    "coordinates": [54.0190, 26.5515],
+    "address": "فرودگاه کیش",
+    "sessions": [
+      { "id": "10min", "name": "۱۰ دقیقه", "price": 2280000, "capacity": 4 },
+      { "id": "20min", "name": "۲۰ دقیقه", "price": 4560000, "capacity": 4 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "island-tour",
+    "placeId": "island-tour",
+    "name": "گشت جزیره کیش",
+    "description": "تور کامل جزیره با مینی‌بوس — بازدید از ۱۲ نقطه دیدنی: کشتی یونانی، حریره، خانه صفا، کاریز، پارک ملی دریایی و بیشتر.",
+    "imageUrl": null,
+    "category": "گشت",
+    "coordinates": [54.0205, 26.5445],
+    "address": "میدان مرکزی، کیش",
+    "sessions": [
+      { "id": "morning", "name": "تور صبح", "time": "8:00 تا 13:00", "price": 110000, "capacity": 20 },
+      { "id": "afternoon", "name": "تور بعدازظهر", "time": "14:00 تا 19:00", "price": 110000, "capacity": 20 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "double-decker-bus",
+    "placeId": "double-decker-bus",
+    "name": "اتوبوس دوطبقه گردشگری",
+    "description": "تور اتوبوسی دوطبقه روباز — بهترین روش دیدن جاذبه‌های کیش از بالا. بلندگوی راهنمای دوزبانه فارسی و انگلیسی، توقف در ۸ نقطه.",
+    "imageUrl": null,
+    "category": "گشت",
+    "coordinates": [54.0210, 26.5440],
+    "address": "میدان مرکزی، کیش",
+    "sessions": [
+      { "id": "morning", "name": "دور صبح", "time": "9:00", "price": 460000, "capacity": 40 },
+      { "id": "afternoon", "name": "دور بعدازظهر", "time": "15:00", "price": 460000, "capacity": 40 },
+      { "id": "evening", "name": "دور شب", "time": "20:00", "price": 460000, "capacity": 40 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "shuttle-service",
+    "placeId": "island-tour",
+    "name": "سرویس شاتل جزیره",
+    "description": "سرویس ایاب و ذهاب بین جاذبه‌های اصلی جزیره کیش. راحت‌ترین و ارزان‌ترین روش جابجایی در کیش.",
+    "imageUrl": null,
+    "category": "گشت",
+    "coordinates": [54.0205, 26.5445],
+    "address": "میدان مرکزی، کیش",
+    "sessions": [
+      { "id": "day", "name": "یک روزه (نامحدود)", "price": 425000, "capacity": 200 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "amirkabir-ship",
+    "placeId": "aquarium-boat",
+    "name": "کشتی امیرکبیر",
+    "description": "کشتی تفریحی بزرگ با ظرفیت بالا — جشن، موسیقی، شام و دریانوردی زیبا در خلیج فارس. مناسب برای گروه‌های خانوادگی و شرکتی.",
+    "imageUrl": null,
+    "category": "دریایی",
+    "coordinates": [53.9200, 26.5650],
+    "address": "اسکله شمال غربی، کیش",
+    "sessions": [
+      { "id": "evening", "name": "تور شبانه (۳ ساعت)", "time": "20:00 تا 23:00", "price": 2600000, "capacity": 60 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "carina-ship",
+    "placeId": "aquarium-boat",
+    "name": "کشتی کارینا",
+    "description": "کشتی تفریحی مدرن با امکانات رستوران، تراس و عرشه روباز. تور غروب و شب در آب‌های آرام خلیج فارس.",
+    "imageUrl": null,
+    "category": "دریایی",
+    "coordinates": [53.9200, 26.5650],
+    "address": "اسکله شمال غربی، کیش",
+    "sessions": [
+      { "id": "sunset", "name": "تور غروب (۲ ساعت)", "time": "17:00 تا 19:00", "price": 1250000, "capacity": 40 },
+      { "id": "night", "name": "تور شبانه (۳ ساعت)", "time": "20:00 تا 23:00", "price": 2500000, "capacity": 40 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "avesta-ship",
+    "placeId": "aquarium-boat",
+    "name": "کشتی VIP اوستا",
+    "description": "کشتی VIP با سرویس اختصاصی، شام دریایی و موسیقی زنده. بهترین انتخاب برای مناسبت‌های خاص و جشن‌های خانوادگی.",
+    "imageUrl": null,
+    "category": "دریایی",
+    "coordinates": [53.9200, 26.5650],
+    "address": "اسکله شمال غربی، کیش",
+    "sessions": [
+      { "id": "vip", "name": "تور VIP شبانه (۴ ساعت)", "time": "19:00 تا 23:00", "price": 2500000, "capacity": 25 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "night-show-iraniya",
+    "placeId": "night-shows",
+    "name": "ایرانیا شو",
+    "description": "نمایش حرفه‌ای با تم فرهنگ و تاریخ ایران — رقص، موسیقی سنتی، آکروبات و جلوه‌های بصری خیره‌کننده.",
+    "imageUrl": null,
+    "category": "نمایش",
+    "coordinates": [54.0165, 26.5462],
+    "address": "ساحل شمالی، کیش",
+    "sessions": [
+      { "id": "show1", "name": "نوبت اول", "time": "20:30", "price": 935000, "capacity": 200 },
+      { "id": "show2", "name": "نوبت دوم", "time": "22:30", "price": 935000, "capacity": 200 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "night-show-persian",
+    "placeId": "night-shows",
+    "name": "پرشین شو",
+    "description": "یک شب جادویی از هنر و نمایش ایرانی با اجرای هنرمندان برتر — آکروبات، رقص، موسیقی و سیرک.",
+    "imageUrl": null,
+    "category": "نمایش",
+    "coordinates": [54.0165, 26.5462],
+    "address": "ساحل شمالی، کیش",
+    "sessions": [
+      { "id": "show1", "name": "نوبت اول", "time": "20:00", "price": 935000, "capacity": 200 },
+      { "id": "show2", "name": "نوبت دوم", "time": "22:00", "price": 935000, "capacity": 200 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "night-show-puzzle",
+    "placeId": "night-shows",
+    "name": "پازل شو",
+    "description": "نمایش فوق‌العاده پازل — ترکیبی از جادو، ذهن‌خوانی، طنز و هنر بصری که ذهن شما را به چالش می‌کشد.",
+    "imageUrl": null,
+    "category": "نمایش",
+    "coordinates": [54.0165, 26.5462],
+    "address": "ساحل شمالی، کیش",
+    "sessions": [
+      { "id": "show1", "name": "نوبت اول", "time": "20:00", "price": 1320000, "capacity": 200 },
+      { "id": "show2", "name": "نوبت دوم", "time": "22:00", "price": 1320000, "capacity": 200 }
+    ],
+    "active": true,
+    "featured": true
+  },
+  {
+    "id": "night-show-babak",
+    "placeId": "night-shows",
+    "name": "باباک شو",
+    "description": "نمایش شبانه هنرمندان برتر کیش با اجرای موسیقی زنده، رقص و آکروبات. یک شب پر از شادی و هیجان.",
+    "imageUrl": null,
+    "category": "نمایش",
+    "coordinates": [54.0165, 26.5462],
+    "address": "ساحل شمالی، کیش",
+    "sessions": [
+      { "id": "show1", "name": "نوبت اول", "time": "21:00", "price": 935000, "capacity": 150 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "night-show-armushow",
+    "placeId": "night-shows",
+    "name": "آرموشو",
+    "description": "نمایش هنری ترکیبی — اجرای موسیقی، رقص آذری و نمایش‌های فرهنگی چشمگیر.",
+    "imageUrl": null,
+    "category": "نمایش",
+    "coordinates": [54.0165, 26.5462],
+    "address": "ساحل شمالی، کیش",
+    "sessions": [
+      { "id": "show1", "name": "نوبت اول", "time": "20:30", "price": 935000, "capacity": 150 },
+      { "id": "show2", "name": "نوبت دوم", "time": "22:30", "price": 935000, "capacity": 150 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "night-show-dynamite",
+    "placeId": "night-shows",
+    "name": "دینامیت شو",
+    "description": "یکی از پرهیجان‌ترین نمایش‌های شبانه کیش با جلوه‌های ویژه، آتش‌بازی و اجرای آکروبات هوایی.",
+    "imageUrl": null,
+    "category": "نمایش",
+    "coordinates": [54.0165, 26.5462],
+    "address": "ساحل شمالی، کیش",
+    "sessions": [
+      { "id": "show1", "name": "نوبت اول", "time": "21:00", "price": 950000, "capacity": 200 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "night-show-colorful-stars",
+    "placeId": "night-shows",
+    "name": "ستاره‌های رنگارنگ",
+    "description": "نمایش رنگارنگ با اجرای هنرمندان جوان — رقص، نور، موسیقی و هنر خیابانی در یک اجرای منحصربه‌فرد.",
+    "imageUrl": null,
+    "category": "نمایش",
+    "coordinates": [54.0165, 26.5462],
+    "address": "ساحل شمالی، کیش",
+    "sessions": [
+      { "id": "show1", "name": "نوبت اول", "time": "20:00", "price": 935000, "capacity": 150 }
+    ],
+    "active": true,
+    "featured": false
+  },
+  {
+    "id": "kish-bowling",
+    "placeId": "kish-bowling",
+    "name": "بولینگ کیش",
+    "description": "مدرن‌ترین مرکز بولینگ جنوب ایران با ۲۴ لاین حرفه‌ای، بیلیارد، پینگ‌پنگ و فودکورت داخلی.",
+    "imageUrl": null,
+    "category": "ورزشی",
+    "coordinates": [54.0202, 26.5476],
+    "address": "مجموعه تفریحی، کیش",
+    "sessions": [
+      { "id": "1game", "name": "۱ بازی", "price": 90000, "capacity": 48 },
+      { "id": "2games", "name": "۲ بازی", "price": 160000, "capacity": 48 },
+      { "id": "3games", "name": "۳ بازی", "price": 220000, "capacity": 48 }
     ],
     "active": true,
     "featured": false

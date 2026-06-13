@@ -1,6 +1,9 @@
 // Developed by @Alirewa — github.com/Alirewa
 import type { Place } from '@/types';
 
+// Coordinates verified against OpenStreetMap / Nominatim data.
+// Format: [longitude, latitude]
+
 export const places: Place[] = [
 
   // ════ SHOPPING ════════════════════════════════════════════
@@ -8,7 +11,7 @@ export const places: Place[] = [
   {
     id: 'mikamall',
     category: 'shopping',
-    coordinates: [53.9618, 26.5547],
+    coordinates: [54.0246, 26.5369],
     name: { fa: 'میکامال', en: 'Mikamall' },
     address: { fa: 'بلوار ساحلی شهید چمران، کیش', en: 'Shahid Chamran Coastal Blvd, Kish' },
     description: {
@@ -27,7 +30,7 @@ export const places: Place[] = [
   {
     id: 'venus-mall',
     category: 'shopping',
-    coordinates: [53.9632, 26.558],
+    coordinates: [53.9600, 26.5550],
     name: { fa: 'مال ونوس', en: 'Venus Mall' },
     address: { fa: 'خیابان معلم، مرکز شهر کیش', en: 'Moallem St, Kish City Centre' },
     description: {
@@ -45,7 +48,7 @@ export const places: Place[] = [
   {
     id: 'iranian-bazaar',
     category: 'shopping',
-    coordinates: [53.9575, 26.560],
+    coordinates: [53.9515, 26.5525],
     name: { fa: 'بازار ایرانیان', en: 'Iranian Bazaar' },
     address: { fa: 'خیابان ایران، مرکز کیش', en: 'Iran St, Kish Centre' },
     description: {
@@ -63,7 +66,7 @@ export const places: Place[] = [
   {
     id: 'leather-bazaar',
     category: 'shopping',
-    coordinates: [53.9648, 26.552],
+    coordinates: [53.9550, 26.5505],
     name: { fa: 'بازار چرم کیش', en: 'Kish Leather Bazaar' },
     address: { fa: 'خیابان صادقی، کیش', en: 'Sadeqi St, Kish' },
     description: {
@@ -81,7 +84,7 @@ export const places: Place[] = [
   {
     id: 'panorama-mall',
     category: 'shopping',
-    coordinates: [53.9710, 26.557],
+    coordinates: [54.0120, 26.5430],
     name: { fa: 'مرکز خرید پانوراما', en: 'Panorama Shopping Centre' },
     address: { fa: 'بلوار پانوراما، کیش', en: 'Panorama Blvd, Kish' },
     description: {
@@ -101,9 +104,9 @@ export const places: Place[] = [
   {
     id: 'dariush-hotel',
     category: 'hotel',
-    coordinates: [53.9416, 26.5746],
+    coordinates: [54.0276, 26.5351],
     name: { fa: 'هتل بزرگ داریوش', en: 'Dariush Grand Hotel' },
-    address: { fa: 'بلوار داریوش، شمال کیش', en: 'Dariush Blvd, North Kish' },
+    address: { fa: 'بلوار داریوش، کیش', en: 'Dariush Blvd, Kish' },
     description: {
       fa: 'نمادین‌ترین هتل کیش با الهام از معماری تخت‌جمشید. ستون‌های هخامنشی و طلاکاری‌های باشکوه آن را به یکی از شناخته‌شده‌ترین هتل‌های ایران تبدیل کرده.',
       en: 'Kish\'s most iconic hotel — inspired by Persepolis with Achaemenid columns, golden reliefs, and world-class service.',
@@ -120,9 +123,9 @@ export const places: Place[] = [
   {
     id: 'flamingo-hotel',
     category: 'hotel',
-    coordinates: [53.9820, 26.578],
+    coordinates: [54.0152, 26.5473],
     name: { fa: 'هتل فلامینگو', en: 'Flamingo Hotel' },
-    address: { fa: 'ساحل شمال شرقی، کیش', en: 'Northeast Shore, Kish' },
+    address: { fa: 'ساحل شمالی، کیش', en: 'North Shore, Kish' },
     description: {
       fa: 'یکی از قدیمی‌ترین و محبوب‌ترین هتل‌های کیش با موقعیت ساحلی عالی. استخر، رستوران دریایی و دسترسی مستقیم به ساحل اختصاصی.',
       en: 'One of Kish\'s oldest hotels — prime beachfront location, pool, seafood restaurant, and private beach access.',
@@ -139,7 +142,7 @@ export const places: Place[] = [
   {
     id: 'parmis-hotel',
     category: 'hotel',
-    coordinates: [53.9578, 26.570],
+    coordinates: [54.0185, 26.5366],
     name: { fa: 'هتل پارمیس', en: 'Parmis Hotel' },
     address: { fa: 'ساحل شمالی، کیش', en: 'North Shore, Kish' },
     description: {
@@ -160,7 +163,7 @@ export const places: Place[] = [
   {
     id: 'coral-beach',
     category: 'water-sports',
-    coordinates: [53.9585, 26.529],
+    coordinates: [53.9520, 26.4870],
     name: { fa: 'ساحل مرجانی', en: 'Coral Beach' },
     address: { fa: 'ساحل جنوبی کیش', en: 'South Shore, Kish' },
     description: {
@@ -178,7 +181,7 @@ export const places: Place[] = [
   {
     id: 'sadaf-beach',
     category: 'water-sports',
-    coordinates: [53.9900, 26.528],
+    coordinates: [54.0020, 26.4960],
     name: { fa: 'ساحل صدف', en: 'Sadaf Beach' },
     address: { fa: 'ساحل جنوب شرقی کیش', en: 'Southeast Shore, Kish' },
     description: {
@@ -195,9 +198,9 @@ export const places: Place[] = [
   {
     id: 'dolphin-park',
     category: 'water-sports',
-    coordinates: [53.9718, 26.563],
+    coordinates: [54.0376, 26.5096],
     name: { fa: 'پارک دلفین‌ها', en: 'Dolphin Park' },
-    address: { fa: 'بلوار ساحلی شمالی، کیش', en: 'North Coastal Blvd, Kish' },
+    address: { fa: 'ساحل جنوب شرقی، کیش', en: 'Southeast Shore, Kish' },
     description: {
       fa: 'پارک آبی با نمایش دلفین‌های بطری‌نوک، شیرهای دریایی و استخرهای گرمایش‌دار.',
       en: 'Water park featuring bottlenose dolphin shows, sea lion performances, and heated pools.',
@@ -214,7 +217,7 @@ export const places: Place[] = [
   {
     id: 'diving-pier',
     category: 'water-sports',
-    coordinates: [53.9502, 26.569],
+    coordinates: [53.9150, 26.5700],
     name: { fa: 'اسکله غواصی', en: 'Diving Pier' },
     address: { fa: 'ساحل شمال غربی، کیش', en: 'Northwest Shore, Kish' },
     description: {
@@ -235,9 +238,9 @@ export const places: Place[] = [
   {
     id: 'ocean-water-park',
     category: 'water-sports',
-    coordinates: [53.9780, 26.5690],
+    coordinates: [53.9806, 26.4972],
     name: { fa: 'پارک آبی اوشن', en: 'Ocean Water Park' },
-    address: { fa: 'ساحل شمال شرقی، مجاور میکامال، کیش', en: 'NE Shore, next to Mikamall, Kish' },
+    address: { fa: 'ساحل جنوبی کیش', en: 'South Shore, Kish' },
     description: {
       fa: 'بزرگ‌ترین پارک آبی سرپوشیده ایران با اسلایدهای هیجان‌انگیز، استخر موج، جکوزی و رودخانه تنبل. انتقال رایگان از سراسر جزیره.',
       en: 'Iran\'s largest indoor water park — thrilling slides, wave pool, jacuzzi, and lazy river. Free shuttle from across the island.',
@@ -254,9 +257,9 @@ export const places: Place[] = [
   {
     id: 'parasail',
     category: 'water-sports',
-    coordinates: [53.9750, 26.5720],
+    coordinates: [54.0340, 26.5120],
     name: { fa: 'پاراسل کیش', en: 'Parasailing Kish' },
-    address: { fa: 'ساحل شمال شرقی، نزدیک اسکله، کیش', en: 'NE Shore, near the pier, Kish' },
+    address: { fa: 'ساحل جنوب شرقی، نزدیک اسکله، کیش', en: 'SE Shore, near the pier, Kish' },
     description: {
       fa: 'پرواز با چتر بادبانی بر فراز خلیج فارس در ارتفاع ۱۰۰ متری. منظره ۳۶۰ درجه به جزیره کیش از آسمان. مناسب از ۱۲ سال.',
       en: 'Soar 100 metres above the Persian Gulf with a parasail. 360° aerial view of Kish Island. Suitable from age 12.',
@@ -272,9 +275,9 @@ export const places: Place[] = [
   {
     id: 'flyboard',
     category: 'water-sports',
-    coordinates: [53.9740, 26.5700],
+    coordinates: [54.0325, 26.5110],
     name: { fa: 'فلای‌بورد کیش', en: 'Flyboard Kish' },
-    address: { fa: 'ساحل شمال شرقی، کیش', en: 'NE Shore, Kish' },
+    address: { fa: 'ساحل جنوب شرقی، کیش', en: 'SE Shore, Kish' },
     description: {
       fa: 'پرواز روی آب با جت واتر — هیجان‌انگیزترین ورزش آبی کیش. آموزش ۱۵ دقیقه‌ای رایگان، سپس پرواز آزاد. مناسب از ۱۵ سال.',
       en: 'Fly above the water on a jet-powered board — Kish\'s most thrilling water sport. 15-min free training, then free flight. Ages 15+.',
@@ -290,9 +293,9 @@ export const places: Place[] = [
   {
     id: 'banana-boat',
     category: 'water-sports',
-    coordinates: [53.9730, 26.5710],
+    coordinates: [54.0330, 26.5115],
     name: { fa: 'بنانا بوت کیش', en: 'Banana Boat Kish' },
-    address: { fa: 'ساحل شمال شرقی، کیش', en: 'NE Shore, Kish' },
+    address: { fa: 'ساحل جنوب شرقی، کیش', en: 'SE Shore, Kish' },
     description: {
       fa: 'هیجان روی موج با قایق موزی — مناسب خانواده و دوستان. ۱۵ دقیقه اکشن روی امواج خلیج فارس. کودک از ۵ سال.',
       en: 'Thrilling wave ride on an inflatable banana boat — great for families and groups. 15 min of action on the Persian Gulf. Ages 5+.',
@@ -308,7 +311,7 @@ export const places: Place[] = [
   {
     id: 'aquarium-boat',
     category: 'water-sports',
-    coordinates: [53.9430, 26.5480],
+    coordinates: [53.9200, 26.5650],
     name: { fa: 'کشتی آکواریوم', en: 'Glass Bottom Boat' },
     address: { fa: 'اسکله تفریحی شمال غربی، کیش', en: 'NW Marina, Kish' },
     description: {
@@ -328,7 +331,7 @@ export const places: Place[] = [
   {
     id: 'greek-ship',
     category: 'amenity',
-    coordinates: [53.8968, 26.5342],
+    coordinates: [53.9082, 26.5262],
     name: { fa: 'کشتی یونانی', en: 'Greek Ship' },
     address: { fa: 'ساحل جنوب غربی کیش', en: 'Southwest Shore, Kish' },
     description: {
@@ -345,9 +348,9 @@ export const places: Place[] = [
   {
     id: 'harireh-ancient',
     category: 'amenity',
-    coordinates: [53.9108, 26.5790],
+    coordinates: [53.9741, 26.5669],
     name: { fa: 'شهر باستانی حریره', en: 'Harireh Ancient City' },
-    address: { fa: 'شمال غرب کیش، جاده حریره', en: 'NW Kish, Harireh Rd' },
+    address: { fa: 'شمال کیش، جاده حریره', en: 'North Kish, Harireh Rd' },
     description: {
       fa: 'بقایای پایتخت قرن دوم تا هفتم هجری کیش با جمعیت ۴۰٬۰۰۰ نفری. حمام‌ها، مساجد و خانه‌های تاریخی هنوز قابل مشاهده‌اند.',
       en: 'Ruins of Kish\'s medieval capital, once home to 40,000 people — historic baths, mosques, and homes still visible.',
@@ -362,9 +365,9 @@ export const places: Place[] = [
   {
     id: 'kish-kariz',
     category: 'amenity',
-    coordinates: [53.9302, 26.5528],
+    coordinates: [53.9687, 26.5566],
     name: { fa: 'کاریز زیرزمینی کیش', en: 'Kish Underground Qanat' },
-    address: { fa: 'غرب کیش، روبروی هتل شایان', en: 'West Kish, opposite Shayan Hotel' },
+    address: { fa: 'مرکز کیش، روبروی هتل شایان', en: 'Central Kish, opposite Shayan Hotel' },
     description: {
       fa: 'شبکه آبرسانی ۲۵۰۰ ساله زیرزمینی جزیره کیش — یکی از مهم‌ترین آثار تاریخی خلیج فارس با محوطه فرهنگی، گالری و فضاهای نمایشگاهی.',
       en: 'A 2,500-year-old underground water channel system — one of the Persian Gulf\'s most important historic sites, with a cultural complex, gallery, and exhibition spaces.',
@@ -381,9 +384,9 @@ export const places: Place[] = [
   {
     id: 'anthropology-museum',
     category: 'amenity',
-    coordinates: [53.9538, 26.566],
+    coordinates: [53.9426, 26.5709],
     name: { fa: 'موزه مردم‌شناسی کیش', en: 'Kish Anthropology Museum' },
-    address: { fa: 'خیابان فرهنگ، کیش', en: 'Farhang St, Kish' },
+    address: { fa: 'شمال غرب کیش، نزدیک ساحل', en: 'NW Kish, near the coast' },
     description: {
       fa: 'موزه‌ای با آثار و اشیاء تاریخی مردم بومی کیش، نمایش شیوه زندگی سنتی ماهیگیران، صنایع دستی دریایی و تاریخ تجاری خلیج فارس.',
       en: 'Museum displaying artefacts of Kish\'s indigenous people, traditional fishermen\'s lifestyles, maritime crafts, and Persian Gulf trade history.',
@@ -399,7 +402,7 @@ export const places: Place[] = [
   {
     id: 'safa-house',
     category: 'amenity',
-    coordinates: [53.9065, 26.5625],
+    coordinates: [53.9095, 26.5615],
     name: { fa: 'خانه تاریخی صفا', en: 'Safa Historical House' },
     address: { fa: 'روستای قدیمی صفا، کیش', en: 'Old Safa Village, Kish' },
     description: {
@@ -418,9 +421,9 @@ export const places: Place[] = [
   {
     id: 'kish-aquarium',
     category: 'amenity',
-    coordinates: [53.9440, 26.568],
+    coordinates: [54.0390, 26.5051],
     name: { fa: 'آکواریوم کیش', en: 'Kish Aquarium' },
-    address: { fa: 'شمال غرب کیش، مجاور پارک ساحلی', en: 'NW Kish, near Coastal Park' },
+    address: { fa: 'ساحل جنوب شرقی، کیش', en: 'SE Shore, Kish' },
     description: {
       fa: 'بیش از ۱۰۰ گونه آبزی خلیج فارس: کوسه، لاک‌پشت دریایی، اختاپوس و مرجان زنده. تونل شیشه‌ای ۲۰ متری.',
       en: '100+ Persian Gulf species — reef sharks, sea turtles, octopus, live coral. 20-metre glass walk-through tunnel.',
@@ -437,9 +440,9 @@ export const places: Place[] = [
   {
     id: 'bird-garden',
     category: 'amenity',
-    coordinates: [53.9521, 26.570],
+    coordinates: [54.0355, 26.5070],
     name: { fa: 'باغ پرندگان کیش', en: 'Kish Bird Garden' },
-    address: { fa: 'بلوار میرزاکوچک‌خان، کیش', en: 'Mirzakuchekhan Blvd, Kish' },
+    address: { fa: 'مجاور پارک دلفین، کیش', en: 'Next to Dolphin Park, Kish' },
     description: {
       fa: 'باغ پرندگان گرمسیری با بیش از ۳۰۰ گونه از سراسر جهان در محیط‌های طبیعی سرسبز.',
       en: '300+ tropical bird species from around the world in lush naturalistic enclosures.',
@@ -456,9 +459,9 @@ export const places: Place[] = [
   {
     id: 'safari-park',
     category: 'amenity',
-    coordinates: [53.9488, 26.5450],
+    coordinates: [53.9460, 26.5070],
     name: { fa: 'پارک سافاری کیش', en: 'Kish Safari Park' },
-    address: { fa: 'جنوب مرکزی کیش', en: 'South-Central Kish' },
+    address: { fa: 'جنوب کیش', en: 'South Kish' },
     description: {
       fa: 'سافاری با ماشین در میان حیوانات وحشی آفریقایی — شیر، زرافه، گورخر و ببر. تجربه‌ای منحصربه‌فرد در خاورمیانه.',
       en: 'Drive-through safari among African wildlife — lions, giraffes, zebras, and tigers. A unique experience in the Middle East.',
@@ -477,9 +480,9 @@ export const places: Place[] = [
   {
     id: 'kish-bowling',
     category: 'land-sports',
-    coordinates: [53.9748, 26.566],
+    coordinates: [54.0202, 26.5476],
     name: { fa: 'بولینگ کیش', en: 'Kish Bowling Center' },
-    address: { fa: 'مجموعه تفریحی شمال شرق، کیش', en: 'NE Entertainment Complex, Kish' },
+    address: { fa: 'مجموعه تفریحی، کیش', en: 'Entertainment Complex, Kish' },
     description: {
       fa: 'مدرن‌ترین مرکز بولینگ جنوب ایران با ۲۴ لاین حرفه‌ای، بیلیارد، پینگ‌پنگ و فودکورت داخلی.',
       en: 'South Iran\'s most modern bowling centre — 24 pro lanes, billiards, table tennis, indoor food court.',
@@ -495,9 +498,9 @@ export const places: Place[] = [
   {
     id: 'luna-park',
     category: 'land-sports',
-    coordinates: [53.9714, 26.556],
+    coordinates: [54.0175, 26.5445],
     name: { fa: 'لوناپارک کیش', en: 'Kish Luna Park' },
-    address: { fa: 'بلوار تفریحی، مرکز کیش', en: 'Entertainment Blvd, Central Kish' },
+    address: { fa: 'بلوار تفریحی، کیش', en: 'Entertainment Blvd, Kish' },
     description: {
       fa: 'پارک شهربازی با چرخ‌وفلک، هواپیما، ماشین برقی، ترامپولین و بازی‌های کودکانه.',
       en: 'Amusement park with Ferris wheel, spinning planes, bumper cars, trampolines, and children\'s rides.',
@@ -513,7 +516,7 @@ export const places: Place[] = [
   {
     id: 'snow-park',
     category: 'land-sports',
-    coordinates: [53.9618, 26.5540],
+    coordinates: [54.0246, 26.5369],
     name: { fa: 'پارک برفی کیش', en: 'Kish Snow Park' },
     address: { fa: 'مجموعه میکامال، طبقه پنجم، کیش', en: 'Mikamall, 5th Floor, Kish' },
     description: {
@@ -532,7 +535,7 @@ export const places: Place[] = [
   {
     id: 'ice-rink',
     category: 'land-sports',
-    coordinates: [53.9618, 26.5547],
+    coordinates: [54.0250, 26.5378],
     name: { fa: 'آیس رینک کیش', en: 'Kish Ice Rink' },
     address: { fa: 'مجموعه میکامال، طبقه سوم، کیش', en: 'Mikamall, 3rd Floor, Kish' },
     description: {
@@ -551,9 +554,9 @@ export const places: Place[] = [
   {
     id: 'theme-park-center',
     category: 'land-sports',
-    coordinates: [53.9655, 26.5490],
+    coordinates: [54.0170, 26.5450],
     name: { fa: 'تم پارک سنتر', en: 'Theme Park Center' },
-    address: { fa: 'بلوار صادقی، مجتمع تفریحی کیش', en: 'Sadeqi Blvd, Entertainment Complex, Kish' },
+    address: { fa: 'مجتمع تفریحی کیش', en: 'Entertainment Complex, Kish' },
     description: {
       fa: 'بزرگ‌ترین مجموعه بازی‌های فانتزی کیش با ۱۵ دستگاه شهربازی، VR، اتاق‌های فرار، بازی‌های گروهی و فودکورت.',
       en: 'Kish\'s largest fantasy games complex — 15 rides, VR, escape rooms, group games, and a food court.',
@@ -570,9 +573,9 @@ export const places: Place[] = [
   {
     id: 'horror-castle',
     category: 'land-sports',
-    coordinates: [53.9650, 26.5590],
+    coordinates: [54.0155, 26.5455],
     name: { fa: 'قلعه وحشت کیش', en: 'Kish Horror Castle' },
-    address: { fa: 'مجتمع تفریحی مرکزی، کیش', en: 'Central Entertainment Complex, Kish' },
+    address: { fa: 'مجتمع تفریحی، کیش', en: 'Entertainment Complex, Kish' },
     description: {
       fa: 'بزرگ‌ترین قلعه وحشت ایران با بیش از ۲۰ اتاق پر از ترس و تاریکی، جلوه‌های صوتی و تصویری پیشرفته. مناسب افراد بالای ۱۲ سال.',
       en: 'Iran\'s largest horror castle — 20+ rooms of dark terror with advanced audio-visual effects. Ages 12+.',
@@ -590,9 +593,9 @@ export const places: Place[] = [
   {
     id: 'bungee-jumping',
     category: 'land-sports',
-    coordinates: [53.9700, 26.5620],
+    coordinates: [54.0350, 26.5105],
     name: { fa: 'بانجی جامپینگ و زیپ‌لاین', en: 'Bungee Jumping & Zipline' },
-    address: { fa: 'ساحل شمالی، نزدیک پارک دلفین، کیش', en: 'North Shore, near Dolphin Park, Kish' },
+    address: { fa: 'ساحل جنوب شرقی، نزدیک پارک دلفین، کیش', en: 'SE Shore, near Dolphin Park, Kish' },
     description: {
       fa: 'هیجان‌انگیزترین ورزش ماجراجویی کیش — پرش از ارتفاع ۴۰ متری بر فراز خلیج فارس. تجهیزات ایمنی استاندارد اروپایی.',
       en: 'Kish\'s most thrilling adventure sport — 40-metre jump over the Persian Gulf. European-standard safety equipment.',
@@ -608,9 +611,9 @@ export const places: Place[] = [
   {
     id: 'wind-tunnel',
     category: 'land-sports',
-    coordinates: [53.9690, 26.5600],
+    coordinates: [54.0185, 26.5490],
     name: { fa: 'تونل باد کیش', en: 'Kish Wind Tunnel' },
-    address: { fa: 'مجتمع ماجراجویی، ساحل شمالی، کیش', en: 'Adventure Complex, North Shore, Kish' },
+    address: { fa: 'مجتمع ماجراجویی، کیش', en: 'Adventure Complex, Kish' },
     description: {
       fa: 'تجربه سقوط آزاد بدون هواپیما در تونل باد حرفه‌ای! سرعت باد ۲۰۰ کیلومتر، احساس واقعی پرش با چتر نجات. مناسب از ۷ سال.',
       en: 'Indoor skydiving without an aeroplane — 200 km/h wind speed, real freefall sensation. Ages 7+.',
@@ -626,9 +629,9 @@ export const places: Place[] = [
   {
     id: 'cable-car',
     category: 'land-sports',
-    coordinates: [53.9585, 26.5620],
+    coordinates: [54.0227, 26.5474],
     name: { fa: 'تله‌کابین کیش', en: 'Kish Cable Car' },
-    address: { fa: 'مرکز کیش، نزدیک میدان اصلی', en: 'Central Kish, near Main Square' },
+    address: { fa: 'مجموعه میکا، کیش', en: 'Mika Complex, Kish' },
     description: {
       fa: 'تله‌کابین هوایی با منظره ۳۶۰ درجه به سراسر جزیره کیش و خلیج فارس. مسیر طلایی غروب آفتاب بر فراز جزیره.',
       en: '360° aerial gondola overlooking all of Kish Island and the Persian Gulf. Spectacular at golden-hour sunset.',
@@ -646,9 +649,9 @@ export const places: Place[] = [
   {
     id: 'island-tour',
     category: 'amenity',
-    coordinates: [53.9560, 26.5558],
+    coordinates: [54.0205, 26.5445],
     name: { fa: 'گشت جزیره کیش', en: 'Kish Island Tour' },
-    address: { fa: 'میدان مرکزی، مقابل هتل داریوش، کیش', en: 'Central Square, opposite Dariush Hotel, Kish' },
+    address: { fa: 'میدان مرکزی، کیش', en: 'Central Square, Kish' },
     description: {
       fa: 'تور کامل جزیره با مینی‌بوس مسقف — بازدید از ۱۲ نقطه دیدنی: کشتی یونانی، حریره، خانه صفا، کاریز، پارک ملی دریایی و بیشتر. راهنمای فارسی.',
       en: 'Full island tour by covered minibus — visit 12 sights: Greek Ship, Harireh, Safa House, Qanat, Marine National Park and more. Persian guide.',
@@ -664,7 +667,7 @@ export const places: Place[] = [
   {
     id: 'double-decker-bus',
     category: 'amenity',
-    coordinates: [53.9610, 26.5555],
+    coordinates: [54.0210, 26.5440],
     name: { fa: 'اتوبوس دوطبقه گردشگری', en: 'Double-Decker Tour Bus' },
     address: { fa: 'میدان مرکزی، کیش', en: 'Central Square, Kish' },
     description: {
@@ -684,9 +687,9 @@ export const places: Place[] = [
   {
     id: 'night-shows',
     category: 'amenity',
-    coordinates: [53.9680, 26.5580],
+    coordinates: [54.0165, 26.5462],
     name: { fa: 'مجتمع نمایش‌های شبانه', en: 'Night Shows Complex' },
-    address: { fa: 'مجتمع نمایش‌های شبانه، ساحل شمالی، کیش', en: 'Night Shows Complex, North Shore, Kish' },
+    address: { fa: 'ساحل شمالی، کیش', en: 'North Shore, Kish' },
     description: {
       fa: 'مجموعه نمایش‌های شبانه کیش با سه شو برتر: پازل شو، ایرانیا شو و پرشین شو. بهترین سرگرمی شبانه جنوب ایران.',
       en: 'Kish\'s premier night entertainment complex — three top shows: Puzzle Show, Iraniya Show, and Persian Show.',
@@ -704,7 +707,7 @@ export const places: Place[] = [
   {
     id: 'parvaz-park',
     category: 'amenity',
-    coordinates: [53.9648, 26.560],
+    coordinates: [53.9640, 26.5555],
     name: { fa: 'پارک پرواز', en: 'Parvaz Park' },
     address: { fa: 'بلوار پرواز، مرکز کیش', en: 'Parvaz Blvd, Central Kish' },
     description: {
@@ -723,7 +726,7 @@ export const places: Place[] = [
   {
     id: 'kish-cafe-rose',
     category: 'cafe',
-    coordinates: [53.9690, 26.548],
+    coordinates: [54.0260, 26.5390],
     name: { fa: 'کافه رز', en: 'Café Rose' },
     address: { fa: 'پروماند ساحلی شمالی، کیش', en: 'North Seafront Promenade, Kish' },
     description: {
@@ -742,7 +745,7 @@ export const places: Place[] = [
   {
     id: 'zeiytoon-restaurant',
     category: 'restaurant',
-    coordinates: [53.9602, 26.553],
+    coordinates: [53.9615, 26.5510],
     name: { fa: 'رستوران زیتون', en: 'Zeiytoon Restaurant' },
     address: { fa: 'خیابان زیتون، مرکز کیش', en: 'Zeiytoon St, Central Kish' },
     description: {
@@ -760,7 +763,7 @@ export const places: Place[] = [
   {
     id: 'darya-cafe',
     category: 'cafe',
-    coordinates: [53.9558, 26.572],
+    coordinates: [53.9530, 26.5650],
     name: { fa: 'کافه دریا', en: 'Darya Café' },
     address: { fa: 'ساحل شمالی، کیش', en: 'North Shore, Kish' },
     description: {
