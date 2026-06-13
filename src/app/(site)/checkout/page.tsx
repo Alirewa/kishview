@@ -17,11 +17,11 @@ const CARD_OWNER = process.env.NEXT_PUBLIC_CARD_OWNER   ?? 'کیش ویو';
 const BANK_NAME  = process.env.NEXT_PUBLIC_BANK_NAME    ?? 'ملی';
 
 const FIELDS = [
-  { field: 'name',       label: 'نام و نام خانوادگی', icon: User,   type: 'text',  placeholder: 'علی احمدی',    required: true  },
-  { field: 'phone',      label: 'شماره موبایل',        icon: Phone,  type: 'tel',   placeholder: '09123456789',   required: true  },
-  { field: 'nationalId', label: 'کد ملی',              icon: Hash,   type: 'text',  placeholder: '0012345678',    required: true  },
-  { field: 'email',      label: 'ایمیل (اختیاری)',     icon: Mail,   type: 'email', placeholder: 'email@example.com', required: false },
-] as const;
+  { field: 'name',       label: 'نام و نام خانوادگی', icon: User,   type: 'text',  autoComplete: 'name',  placeholder: 'علی احمدی',        required: true  },
+  { field: 'phone',      label: 'شماره موبایل',        icon: Phone,  type: 'tel',   autoComplete: 'tel',   placeholder: '09123456789',       required: true  },
+  { field: 'nationalId', label: 'کد ملی',              icon: Hash,   type: 'text',  autoComplete: 'off',   placeholder: '0012345678',        required: true  },
+  { field: 'email',      label: 'ایمیل (اختیاری)',     icon: Mail,   type: 'email', autoComplete: 'email', placeholder: 'email@example.com', required: false },
+];
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -123,13 +123,14 @@ export default function CheckoutPage() {
                   اطلاعات خریدار
                 </h2>
                 <div className="space-y-4">
-                  {FIELDS.map(({ field, label, icon: Icon, type, placeholder }) => (
+                  {FIELDS.map(({ field, label, icon: Icon, type, autoComplete, placeholder }) => (
                     <div key={field}>
                       <label className="block text-sm font-semibold text-zinc-600 mb-1.5">{label}</label>
                       <div className="relative">
                         <Icon className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                         <input
                           type={type}
+                          autoComplete={autoComplete}
                           value={(form as Record<string, string>)[field]}
                           onChange={e => setForm(f => ({ ...f, [field]: e.target.value }))}
                           placeholder={placeholder}

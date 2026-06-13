@@ -1,10 +1,12 @@
 // Developed by @Alirewa — github.com/Alirewa
 'use client';
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Map, Waves, Building2, ShoppingBag, Coffee, Landmark, Gamepad2, type LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAppStore } from '@/store/useAppStore';
 import { FILTER_CHIPS } from '@/data/filterChips';
+
+const CHIP_ICONS: Record<string, LucideIcon> = { Map, Waves, Building2, ShoppingBag, Coffee, Landmark, Gamepad2 };
 
 export function CategoryFilter() {
   const { dir } = useLanguage();
@@ -37,7 +39,7 @@ export function CategoryFilter() {
                     : 'bg-white/95 backdrop-blur-md text-zinc-700 border border-white/60 hover:bg-white',
                 ].join(' ')}
               >
-                <span>{chip.emoji}</span>
+                {(() => { const Icon = CHIP_ICONS[chip.iconName]; return Icon ? <Icon className="w-3.5 h-3.5 flex-shrink-0" /> : null; })()}
                 <span>{language === 'fa' ? chip.fa : chip.en}</span>
               </button>
             );
@@ -57,7 +59,7 @@ export function CategoryFilter() {
                        bg-sky-500 text-white border border-sky-400 shadow-md shadow-black/10
                        cursor-pointer hover:bg-sky-600 transition-all"
           >
-            <span>{activeChip.emoji}</span>
+            {(() => { const Icon = CHIP_ICONS[activeChip.iconName]; return Icon ? <Icon className="w-3.5 h-3.5 flex-shrink-0" /> : null; })()}
             <span>{language === 'fa' ? activeChip.fa : activeChip.en}</span>
             <ChevronDown className="w-3.5 h-3.5 opacity-70" />
           </button>

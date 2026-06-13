@@ -2,7 +2,9 @@
 'use client';
 import { useRef } from 'react';
 import Link from 'next/link';
-import { Menu, Map as MapIcon, Search, X } from 'lucide-react';
+import { Menu, Map as MapIcon, Search, X, Waves, Building2, ShoppingBag, Coffee, Landmark, Gamepad2, type LucideIcon } from 'lucide-react';
+
+const CHIP_ICONS: Record<string, LucideIcon> = { Map: MapIcon, Waves, Building2, ShoppingBag, Coffee, Landmark, Gamepad2 };
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAppStore } from '@/store/useAppStore';
@@ -84,7 +86,7 @@ export function TopBar() {
                         : 'bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md text-zinc-700 dark:text-zinc-200 border border-white/40 dark:border-white/10 hover:bg-white dark:hover:bg-zinc-800',
                     ].join(' ')}
                   >
-                    <span>{chip.emoji}</span>
+                    {(() => { const Icon = CHIP_ICONS[chip.iconName]; return Icon ? <Icon className="w-3.5 h-3.5 flex-shrink-0" /> : null; })()}
                     <span>{language === 'fa' ? chip.fa : chip.en}</span>
                   </button>
                 );

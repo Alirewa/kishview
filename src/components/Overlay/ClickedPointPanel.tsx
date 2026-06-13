@@ -16,7 +16,7 @@ interface OsrmStep {
 }
 
 function maneuverFa(type: string, modifier?: string): string {
-  if (type === 'depart')   return 'حرکت کنید';
+  if (type === 'depart')   return 'از موقعیت فعلی حرکت کنید';
   if (type === 'arrive')   return 'رسیدید!';
   if (type === 'roundabout' || type === 'rotary') return 'وارد میدان شوید';
   if (modifier === 'left' || modifier === 'sharp left') return 'به چپ بپیچید';
@@ -119,6 +119,9 @@ export function ClickedPointPanel() {
     setRoute(result.geometry, result.info);
     setNavSteps(result.steps);
     setNavState('routed');
+    window.dispatchEvent(new CustomEvent('kishview:flyToUser', {
+      detail: { lng: userPosition[0], lat: userPosition[1] },
+    }));
   }
 
   return (
@@ -173,7 +176,7 @@ export function ClickedPointPanel() {
             <Navigation size={14} className="text-sky-400 flex-shrink-0" />
             <span className="text-xs text-zinc-600 dark:text-zinc-300">
               {isFA
-                ? `خط مستقیم: ${fmtDistance(straightKm, true)} · تقریباً ${estMin} دقیقه با ماشین`
+                ? `خط مستقیم: ${fmtDistance(straightKm, true)} · تقریباً ${estMin} دقیقه با سواری`
                 : `Straight: ${fmtDistance(straightKm, false)} · ~${estMin} min drive`}
             </span>
           </div>

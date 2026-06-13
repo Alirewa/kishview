@@ -90,6 +90,15 @@ export function KishMap() {
   }, []);
 
   useEffect(() => {
+    const handler = (e: Event) => {
+      const { lng, lat } = (e as CustomEvent).detail as { lng: number; lat: number };
+      mapRef.current?.flyTo({ center: [lng, lat], zoom: 17, duration: 1800, essential: true });
+    };
+    window.addEventListener('kishview:flyToUser', handler);
+    return () => window.removeEventListener('kishview:flyToUser', handler);
+  }, []);
+
+  useEffect(() => {
     if (!pendingMapCommand) return;
     const map = mapRef.current?.getMap();
     if (!map) return;
