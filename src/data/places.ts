@@ -117,7 +117,7 @@ export const places: Place[] = [
       website: 'dariushhotel.com',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://picsum.photos/seed/dariushhotel/800/500', alt: 'Dariush Grand Hotel Kish' }],
+    images: [{ src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dariush_Grand_Hotel_-_2.jpg/800px-Dariush_Grand_Hotel_-_2.jpg', alt: 'Dariush Grand Hotel Kish' }],
   },
 
   {
@@ -156,6 +156,80 @@ export const places: Place[] = [
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
     images: [{ src: 'https://picsum.photos/seed/parmishotel/800/500', alt: 'Parmis Hotel Kish' }],
+  },
+
+  {
+    id: 'shayan-hotel',
+    category: 'hotel',
+    coordinates: [54.0208, 26.5462],
+    name: { fa: 'هتل بین‌المللی شایان', en: 'Shayan International Hotel' },
+    address: { fa: 'بلوار ساحلی، کیش', en: 'Coastal Boulevard, Kish' },
+    description: {
+      fa: 'هتل پنج‌ستاره بین‌المللی با استخر ساحلی، رستوران‌های متعدد، سالن همایش و دسترسی مستقیم به ساحل خلیج فارس.',
+      en: 'Five-star international hotel with beach pool, multiple restaurants, conference halls, and direct Persian Gulf beach access.',
+    },
+    guide: { fa: 'رزرو آنلاین توصیه می‌شود. پارکینگ رایگان برای مهمانان.', en: 'Online booking recommended. Free parking for guests.' },
+    contact: {
+      phone: '076-44444100',
+      website: 'shayanhotel.com',
+      hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/shayanhotel/800/500', alt: 'Shayan International Hotel Kish' }],
+  },
+
+  {
+    id: 'tamasha-hotel',
+    category: 'hotel',
+    coordinates: [54.0159, 26.5431],
+    name: { fa: 'هتل تماشا', en: 'Tamasha Hotel' },
+    address: { fa: 'بلوار ساحلی، کیش', en: 'Coastal Boulevard, Kish' },
+    description: {
+      fa: 'هتل بوتیک مدرن با طراحی معاصر، مشرف به خلیج فارس. رستوران بام، اسپا، استخر و فضای خصوصی ساحلی.',
+      en: 'Modern boutique hotel with contemporary design overlooking the Persian Gulf — rooftop restaurant, spa, pool, and private beach.',
+    },
+    guide: { fa: 'رستوران بام برای غروب بسیار محبوب است. رزرو از قبل لازم است.', en: 'Rooftop restaurant is very popular at sunset. Advance reservation required.' },
+    contact: {
+      phone: '076-44444200',
+      hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/tamashahotel/800/500', alt: 'Tamasha Hotel Kish' }],
+  },
+
+  {
+    id: 'toranj-hotel',
+    category: 'hotel',
+    coordinates: [54.0230, 26.5500],
+    name: { fa: 'هتل ترنج کیش', en: 'Toranj Kish Hotel' },
+    address: { fa: 'ساحل شمالی، کیش', en: 'North Shore, Kish' },
+    description: {
+      fa: 'هتل بوتیک لوکس با معماری منحصربه‌فرد مشرف به خلیج فارس. رستوران بام با دید ۳۶۰ درجه، اسپا، استخر اینفینیتی و دکوراسیون هنری مدرن.',
+      en: 'Luxury boutique hotel with unique architecture overlooking the Persian Gulf — rooftop restaurant with 360° views, spa, infinity pool, and modern art décor.',
+    },
+    guide: { fa: 'رزرو مستقیم برای بهترین قیمت. اتاق رو به دریا توصیه می‌شود.', en: 'Direct booking for best rates. Sea-view rooms recommended.' },
+    contact: {
+      phone: '076-44445100',
+      website: 'toranjkish.com',
+      hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/toranjkish/800/500', alt: 'Toranj Kish Hotel' }],
+  },
+
+  {
+    id: 'setareh-kish-hotel',
+    category: 'hotel',
+    coordinates: [54.0272, 26.5321],
+    name: { fa: 'هتل ستاره کیش', en: 'Setareh Kish Hotel' },
+    address: { fa: 'بلوار داریوش، کیش', en: 'Dariush Boulevard, Kish' },
+    description: {
+      fa: 'هتل چهارستاره با موقعیت ممتاز نزدیک هتل داریوش، استخر، رستوران و اتاق‌های رو به دریا.',
+      en: 'Four-star hotel in a prime location near Dariush Hotel — pool, restaurant, and sea-view rooms.',
+    },
+    guide: { fa: 'نزدیک به مجتمع تفریحی داریوش. دسترسی آسان با تاکسی.', en: 'Close to the Dariush entertainment complex. Easy taxi access.' },
+    contact: {
+      phone: '076-44444300',
+      hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
+    },
+    images: [{ src: 'https://picsum.photos/seed/setarehkish/800/500', alt: 'Setareh Kish Hotel' }],
   },
 
   // ════ BEACHES & WATER ═════════════════════════════════════
@@ -250,7 +324,7 @@ export const places: Place[] = [
       phone: '076-44447000',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/oceanwaterpark/800/500', alt: 'Ocean Water Park Kish' }],
+    images: [{ src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Anaconda_2.jpg/800px-Anaconda_2.jpg', alt: 'Ocean Water Park Kish' }],
     ticketUrl: '/tickets/ocean-water-park',
   },
 
@@ -342,7 +416,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'همیشه باز (فضای باز)', en: 'Always open (outdoor site)' },
     },
-    images: [{ src: 'https://picsum.photos/seed/greekship/800/500', alt: 'Greek Ship Kish' }],
+    images: [{ src: 'https://upload.wikimedia.org/wikipedia/en/8/8e/The_Greek_Ship.jpg', alt: 'Greek Ship Kish' }],
   },
 
   {
@@ -359,7 +433,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۸ صبح تا ۸ شب', en: 'Daily 8 AM – 8 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/harireh/800/500', alt: 'Harireh Ancient City' }],
+    images: [{ src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/%D8%B4%D9%87%D8%B1_%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_-_%D9%86%D9%85%D8%A7%D9%87%D8%A7%DB%8C_%DA%AF%D9%88%D9%86%D8%A7%DA%AF%D9%88%D9%86_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_%D9%88_%D9%BE%D8%A7%DB%8C%D8%A7%D8%A8_07.jpg/800px-%D8%B4%D9%87%D8%B1_%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_-_%D9%86%D9%85%D8%A7%D9%87%D8%A7%DB%8C_%DA%AF%D9%88%D9%86%D8%A7%DA%AF%D9%88%D9%86_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_%D9%88_%D9%BE%D8%A7%DB%8C%D8%A7%D8%A8_07.jpg', alt: 'Harireh Ancient City Kish' }],
   },
 
   {
@@ -399,22 +473,6 @@ export const places: Place[] = [
     images: [{ src: 'https://picsum.photos/seed/kishmuseum/800/500', alt: 'Kish Anthropology Museum' }],
   },
 
-  {
-    id: 'safa-house',
-    category: 'amenity',
-    coordinates: [53.9095, 26.5615],
-    name: { fa: 'خانه تاریخی صفا', en: 'Safa Historical House' },
-    address: { fa: 'روستای قدیمی صفا، کیش', en: 'Old Safa Village, Kish' },
-    description: {
-      fa: 'خانه اصیل بومی کیش متعلق به دوران قاجار با معماری بادگیر، دیوارهای آهک‌پوش و حیاط مرکزی.',
-      en: 'Authentic Qajar-era home with traditional wind-tower architecture, lime-plastered walls, and a central courtyard.',
-    },
-    guide: { fa: 'بازدید رایگان. راهنمای محلی موجود است.', en: 'Free entry. Local guides available.' },
-    contact: {
-      hours: { fa: 'هر روز ۹ صبح تا ۶ عصر', en: 'Daily 9 AM – 6 PM' },
-    },
-    images: [{ src: 'https://picsum.photos/seed/safahouse/800/500', alt: 'Safa Historical House Kish' }],
-  },
 
   // ════ NATURE & AQUARIUM ════════════════════════════════════
 
@@ -437,43 +495,6 @@ export const places: Place[] = [
     ticketUrl: '/tickets/kish-aquarium',
   },
 
-  {
-    id: 'bird-garden',
-    category: 'amenity',
-    coordinates: [54.0355, 26.5070],
-    name: { fa: 'باغ پرندگان کیش', en: 'Kish Bird Garden' },
-    address: { fa: 'مجاور پارک دلفین، کیش', en: 'Next to Dolphin Park, Kish' },
-    description: {
-      fa: 'باغ پرندگان گرمسیری با بیش از ۳۰۰ گونه از سراسر جهان در محیط‌های طبیعی سرسبز.',
-      en: '300+ tropical bird species from around the world in lush naturalistic enclosures.',
-    },
-    guide: { fa: 'بلیط خانوادگی صرفه‌جویی دارد. بهترین وقت: صبح که پرندگان فعال‌ترند.', en: 'Family tickets save money. Best time: morning when birds are most active.' },
-    contact: {
-      phone: '076-44442500',
-      hours: { fa: 'هر روز ۸ صبح تا ۸ شب', en: 'Daily 8 AM – 8 PM' },
-    },
-    images: [{ src: 'https://picsum.photos/seed/kishbirds/800/500', alt: 'Kish Bird Garden' }],
-    ticketUrl: '/tickets/bird-garden',
-  },
-
-  {
-    id: 'safari-park',
-    category: 'amenity',
-    coordinates: [53.9460, 26.5070],
-    name: { fa: 'پارک سافاری کیش', en: 'Kish Safari Park' },
-    address: { fa: 'جنوب کیش', en: 'South Kish' },
-    description: {
-      fa: 'سافاری با ماشین در میان حیوانات وحشی آفریقایی — شیر، زرافه، گورخر و ببر. تجربه‌ای منحصربه‌فرد در خاورمیانه.',
-      en: 'Drive-through safari among African wildlife — lions, giraffes, zebras, and tigers. A unique experience in the Middle East.',
-    },
-    guide: { fa: 'در ماشین بمانید. پنجره بسته بماند در مسیر شیرها.', en: 'Stay in your vehicle. Keep windows closed in the lion section.' },
-    contact: {
-      phone: '076-44449000',
-      hours: { fa: 'هر روز ۸ صبح تا ۷ عصر', en: 'Daily 8 AM – 7 PM' },
-    },
-    images: [{ src: 'https://picsum.photos/seed/kishsafari/800/500', alt: 'Kish Safari Park' }],
-    ticketUrl: '/tickets/safari-park',
-  },
 
   // ════ ENTERTAINMENT & SPORTS ══════════════════════════════
 
@@ -608,21 +629,22 @@ export const places: Place[] = [
     ticketUrl: '/tickets/bungee-jumping',
   },
 
+
   {
     id: 'wind-tunnel',
     category: 'land-sports',
-    coordinates: [54.0185, 26.5490],
+    coordinates: [54.0190, 26.5480],
     name: { fa: 'تونل باد کیش', en: 'Kish Wind Tunnel' },
-    address: { fa: 'مجتمع ماجراجویی، کیش', en: 'Adventure Complex, Kish' },
+    address: { fa: 'مجتمع تفریحی میکا، کیش', en: 'Mika Entertainment Complex, Kish' },
     description: {
-      fa: 'تجربه سقوط آزاد بدون هواپیما در تونل باد حرفه‌ای! سرعت باد ۲۰۰ کیلومتر، احساس واقعی پرش با چتر نجات. مناسب از ۷ سال.',
-      en: 'Indoor skydiving without an aeroplane — 200 km/h wind speed, real freefall sensation. Ages 7+.',
+      fa: 'تجربه سقوط آزاد بدون هواپیما در تونل باد حرفه‌ای. سرعت باد ۱۵۰ کیلومتر در ساعت، احساس واقعی شیرجه هوایی. مناسب از ۷ سال.',
+      en: 'Experience indoor skydiving without an aircraft — 150 km/h wind speed, real freefall sensation. Suitable from age 7.',
     },
-    guide: { fa: 'آموزش ۱۵ دقیقه‌ای قبل از پرواز. مربی همراه در تونل.', en: '15-min training before flight. Instructor accompanies you inside.' },
+    guide: { fa: 'آموزش ۱۵ دقیقه‌ای قبل از پرواز. مربی همراه در داخل تونل.', en: '15-minute training before flight. Instructor accompanies you inside the tunnel.' },
     contact: {
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/windtunnel/800/500', alt: 'Kish Wind Tunnel' }],
+    images: [{ src: 'https://picsum.photos/seed/windtunnelkish/800/500', alt: 'Kish Wind Tunnel' }],
     ticketUrl: '/tickets/wind-tunnel',
   },
 
