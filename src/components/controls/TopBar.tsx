@@ -2,9 +2,7 @@
 'use client';
 import { useRef } from 'react';
 import Link from 'next/link';
-import { Menu, Map as MapIcon, Search, X, Waves, Building2, ShoppingBag, Coffee, Landmark, Gamepad2, type LucideIcon } from 'lucide-react';
-
-const CHIP_ICONS: Record<string, LucideIcon> = { Map: MapIcon, Waves, Building2, ShoppingBag, Coffee, Landmark, Gamepad2 };
+import { Menu, Map as MapIcon, Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAppStore } from '@/store/useAppStore';
@@ -70,23 +68,24 @@ export function TopBar() {
               </Link>
             </div>
 
-            {/* Desktop-only chip bar — hidden on mobile */}
+            {/* Desktop-only chip bar */}
             <div className="hidden sm:flex items-center gap-1.5">
               {FILTER_CHIPS.map((chip) => {
                 const active = selectedCategory === chip.id;
+                const Icon = chip.icon;
                 return (
                   <button
                     key={chip.id}
                     onClick={() => setCategory(chip.id)}
                     className={[
-                      'flex items-center gap-1 px-3 h-9 rounded-full text-xs font-semibold',
+                      'flex items-center gap-1.5 px-3 h-9 rounded-full text-xs font-semibold',
                       'transition-all duration-200 cursor-pointer shadow-sm shadow-black/10',
                       active
                         ? 'bg-sky-500 text-white border border-sky-400 scale-105'
                         : 'bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md text-zinc-700 dark:text-zinc-200 border border-white/40 dark:border-white/10 hover:bg-white dark:hover:bg-zinc-800',
                     ].join(' ')}
                   >
-                    {(() => { const Icon = CHIP_ICONS[chip.iconName]; return Icon ? <Icon className="w-3.5 h-3.5 flex-shrink-0" /> : null; })()}
+                    <Icon className="w-3.5 h-3.5 flex-shrink-0" />
                     <span>{language === 'fa' ? chip.fa : chip.en}</span>
                   </button>
                 );
@@ -125,7 +124,6 @@ export function TopBar() {
 
       {/* ── Action buttons ── */}
       <div className="pointer-events-auto flex items-center gap-2">
-        {/* Search toggle */}
         <IconBtn
           onClick={isSearchOpen ? closeSearch : handleOpenSearch}
           label={isSearchOpen ? t.close : 'جستجو'}
@@ -133,12 +131,10 @@ export function TopBar() {
           {isSearchOpen ? <X size={18} /> : <Search size={18} />}
         </IconBtn>
 
-        {/* Map controls */}
         <IconBtn onClick={toggleMapControls} label="تنظیمات نقشه">
           <MapIcon size={18} />
         </IconBtn>
 
-        {/* Hamburger */}
         <IconBtn onClick={openMenu} label={t.menu}>
           <Menu size={18} />
         </IconBtn>

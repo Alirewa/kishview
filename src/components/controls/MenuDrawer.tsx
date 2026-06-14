@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import {
-  X, Globe, MapPin, Ticket, Phone,
+  X, Globe, Ticket, Phone,
   Map as MapIcon, ListChecks, PlusCircle, Navigation,
   Sun, Layers, Satellite,
 } from 'lucide-react';
@@ -20,6 +20,8 @@ export function MenuDrawer() {
   const mapStyle         = useAppStore((s) => s.mapStyle);
   const setMapStyle      = useAppStore((s) => s.setMapStyle);
 
+  const islandTour    = useAppStore((s) => s.islandTour);
+  const setIslandTour = useAppStore((s) => s.setIslandTour);
   const isFA = language === 'fa';
 
   const styleOptions: { id: MapStyle; fa: string; en: string; icon: React.ReactNode }[] = [
@@ -86,6 +88,25 @@ export function MenuDrawer() {
               <LinkRow icon={<MapIcon size={18} />} label={isFA ? 'نقشه کیش' : 'Kish Map'} href="/map" onClick={closeMenu} />
 
               <MenuRow icon={<Navigation size={18} />} label={isFA ? 'موقعیت من' : 'My Location'} onClick={triggerGeolocate} />
+
+              {/* Island tour — full width CTA */}
+              <div className="px-2 py-1">
+                <button
+                  onClick={() => { setIslandTour(!islandTour); closeMenu(); }}
+                  className={[
+                    'w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl',
+                    'text-sm font-bold transition-all cursor-pointer',
+                    islandTour
+                      ? 'bg-zinc-200 text-zinc-600 hover:bg-zinc-300'
+                      : 'bg-gradient-to-l from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 text-white shadow-md shadow-sky-200',
+                  ].join(' ')}
+                >
+                  <Globe size={16} />
+                  {isFA
+                    ? (islandTour ? 'توقف جزیره‌گردی' : 'جزیره‌گردی سینمایی')
+                    : (islandTour ? 'Stop Island Tour' : 'Cinematic Island Tour')}
+                </button>
+              </div>
 
               {/* Map style 3-selector */}
               <div className="px-4 py-2">

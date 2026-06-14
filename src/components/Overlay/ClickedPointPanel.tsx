@@ -49,7 +49,10 @@ async function fetchRoute(
       [Math.min(...lngs), Math.min(...lats)],
       [Math.max(...lngs), Math.max(...lats)],
     ];
-    window.dispatchEvent(new CustomEvent('kishview:fitRoute', { detail: { bounds } }));
+    // Fly to user's start position after route is computed
+    window.dispatchEvent(new CustomEvent('kishview:flyToUser', { detail: { lng: fromLng, lat: fromLat } }));
+    // Also keep bounds for reference (not dispatched)
+    void bounds;
 
     return {
       geometry: {

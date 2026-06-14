@@ -40,6 +40,8 @@ interface AppState {
   // ── User & click ─────────────────────────────────────────
   userPosition: [number, number] | null;
   clickedPoint: [number, number] | null;
+  // ── Island tour ───────────────────────────────────────────
+  islandTour: boolean;
   // ── Actions ───────────────────────────────────────────────
   setTheme: (theme: Theme) => void;
   toggleTheme: () => void;
@@ -68,6 +70,7 @@ interface AppState {
   clearRoute: () => void;
   setUserPosition: (pos: [number, number]) => void;
   setClickedPoint: (pt: [number, number] | null) => void;
+  setIslandTour: (v: boolean) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -83,7 +86,7 @@ export const useAppStore = create<AppState>()(
       isMenuOpen: false,
       isMapControlsOpen: false,
       isSearchOpen: false,
-      selectedCategory: 'all',
+      selectedCategory: 'none',
       searchQuery: '',
       pendingMapCommand: null,
       mapIsPitched: true,
@@ -115,10 +118,12 @@ export const useAppStore = create<AppState>()(
       setMapIsPitched: (mapIsPitched) => set({ mapIsPitched }),
       userPosition: null,
       clickedPoint: null,
+      islandTour: false,
       setRoute: (routeGeometry, routeInfo) => set({ routeGeometry, routeInfo }),
       clearRoute: () => set({ routeGeometry: null, routeInfo: null }),
       setUserPosition: (userPosition) => set({ userPosition }),
       setClickedPoint: (clickedPoint) => set({ clickedPoint }),
+      setIslandTour: (v) => set({ islandTour: v, ...(v ? { mapStyle: 'satellite' } : {}) }),
     }),
     {
       name: 'kishview-prefs',

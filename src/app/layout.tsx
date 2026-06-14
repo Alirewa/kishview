@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { PwaInstallPrompt } from '@/components/PwaInstallPrompt';
 
 export const metadata: Metadata = {
   title: { default: 'کیش ویو | KishView', template: '%s | کیش ویو' },
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
         {children}
+        <PwaInstallPrompt />
       </body>
     </html>
   );

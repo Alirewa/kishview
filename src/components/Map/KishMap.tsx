@@ -1,11 +1,10 @@
 'use client';
-import { useRef, useCallback, useEffect, useState } from 'react';
+import { useRef, useCallback, useEffect } from 'react';
 import Map, { GeolocateControl, Source, Layer, Marker, type MapRef } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import type { StyleSpecification, GeolocateControl as GeolocateControlType } from 'maplibre-gl';
+import type { GeolocateControl as GeolocateControlType } from 'maplibre-gl';
 import type { LayerProps, MapMouseEvent } from 'react-map-gl/maplibre';
-import { KISH_CENTER, KISH_BOUNDS, MAP_CONFIG, LIBERTY_URL, SATELLITE_STYLE } from './mapConfig';
-import { loadDarkStyle } from './darkStyle';
+import { KISH_CENTER, KISH_BOUNDS, MAP_CONFIG, LIBERTY_URL, SATELLITE_STYLE, DARK_STYLE } from './mapConfig';
 import { MarkerLayer } from './MarkerLayer';
 import { useAppStore } from '@/store/useAppStore';
 import { places } from '@/data/places';
@@ -17,10 +16,19 @@ function inKish(lng: number, lat: number) {
   return lat >= KISH_LAT[0] && lat <= KISH_LAT[1] && lng >= KISH_LNG[0] && lng <= KISH_LNG[1];
 }
 
+// Route: white border below, bright blue line on top
+const routeBorderLayer: LayerProps = {
+  id: 'route-border',
+  type: 'line',
+  filter: ['==', ['get', 'index'], 0],
+  paint: { 'line-color': '#ffffff', 'line-width': 22, 'line-opacity': 1.0 },
+  layout: { 'line-cap': 'round', 'line-join': 'round' },
+};
 const routeGlowLayer: LayerProps = {
   id: 'route-glow',
   type: 'line',
-  paint: { 'line-color': '#1d4ed8', 'line-width': 24, 'line-opacity': 0.30, 'line-blur': 12 },
+  filter: ['==', ['get', 'index'], 0],
+  paint: { 'line-color': '#1d4ed8', 'line-width': 18, 'line-opacity': 0.35, 'line-blur': 14 },
   layout: { 'line-cap': 'round', 'line-join': 'round' },
 };
 const routeLineLayer: LayerProps = {
@@ -28,8 +36,8 @@ const routeLineLayer: LayerProps = {
   type: 'line',
   paint: {
     'line-color': ['case', ['==', ['get', 'index'], 0], '#2563eb', '#93c5fd'],
-    'line-width': ['case', ['==', ['get', 'index'], 0], 11, 4],
-    'line-opacity': ['case', ['==', ['get', 'index'], 0], 1, 0.55],
+    'line-width': ['case', ['==', ['get', 'index'], 0], 14, 4],
+    'line-opacity': ['case', ['==', ['get', 'index'], 0], 1, 0.45],
     'line-dasharray': ['case', ['==', ['get', 'index'], 0], ['literal', [1]], ['literal', [5, 4]]],
   },
   layout: { 'line-cap': 'round', 'line-join': 'round' },
@@ -52,13 +60,17 @@ export function KishMap() {
   const clickedPoint    = useAppStore((s) => s.clickedPoint);
   const setClickedPoint = useAppStore((s) => s.setClickedPoint);
   const clearRoute      = useAppStore((s) => s.clearRoute);
-
-  const [darkStyle, setDarkStyle] = useState<StyleSpecification | string>(LIBERTY_URL);
+  const islandTour      = useAppStore((s) => s.islandTour);
+  const setIslandTour   = useAppStore((s) => s.setIslandTour);
 
   // ── refs for long-press gesture ──────────────────────────────
-  const holdTimerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const holdDataRef   = useRef<{ x: number; y: number; lngLat: [number, number] } | null>(null);
+  const holdTimerRef     = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const holdDataRef      = useRef<{ x: number; y: number; lngLat: [number, number] } | null>(null);
   const longPressDidFire = useRef(false);
+  const tourAnimRef      = useRef<number | null>(null);
+  const tourActiveRef    = useRef(false);
+  const audioCtxRef      = useRef<AudioContext | null>(null);
+  const masterGainRef    = useRef<GainNode | null>(null);
 
   // keep latest store values accessible inside event closures
   const selectedPlaceRef = useRef(selectedPlace);
@@ -70,10 +82,18 @@ export function KishMap() {
   const clearRouteRef = useRef(clearRoute);
   useEffect(() => { clearRouteRef.current = clearRoute; }, [clearRoute]);
 
+  // ── Background watchPosition for continuous tracking ─────────
   useEffect(() => {
-    loadDarkStyle().then(setDarkStyle).catch(() => setDarkStyle(LIBERTY_URL));
-  }, []);
+    if (typeof navigator === 'undefined' || !navigator.geolocation) return;
+    const wid = navigator.geolocation.watchPosition(
+      (pos) => setUserPosition([pos.coords.longitude, pos.coords.latitude]),
+      undefined,
+      { enableHighAccuracy: true, maximumAge: 3000 },
+    );
+    return () => navigator.geolocation.clearWatch(wid);
+  }, [setUserPosition]);
 
+  // ── Event listeners ──────────────────────────────────────────
   useEffect(() => {
     const handler = () => geoRef.current?.trigger();
     window.addEventListener('kishview:geolocate', handler);
@@ -92,12 +112,13 @@ export function KishMap() {
   useEffect(() => {
     const handler = (e: Event) => {
       const { lng, lat } = (e as CustomEvent).detail as { lng: number; lat: number };
-      mapRef.current?.flyTo({ center: [lng, lat], zoom: 17, duration: 1800, essential: true });
+      mapRef.current?.flyTo({ center: [lng, lat], zoom: 17, pitch: 65, duration: 1800, essential: true });
     };
     window.addEventListener('kishview:flyToUser', handler);
     return () => window.removeEventListener('kishview:flyToUser', handler);
   }, []);
 
+  // ── Map commands ─────────────────────────────────────────────
   useEffect(() => {
     if (!pendingMapCommand) return;
     const map = mapRef.current?.getMap();
@@ -116,6 +137,115 @@ export function KishMap() {
     clearMapCommand();
   }, [pendingMapCommand, clearMapCommand, setMapIsPitched]);
 
+  // ── Island tour ──────────────────────────────────────────────
+  useEffect(() => {
+    if (islandTour) {
+      tourActiveRef.current = true;
+      const map = mapRef.current?.getMap();
+      if (!map) return;
+
+      // Fly to island overview
+      map.flyTo({
+        center: KISH_CENTER,
+        zoom: 12.5,
+        pitch: 65,
+        bearing: 0,
+        duration: 3000,
+        essential: true,
+      });
+
+      // Start rotation after fly completes
+      const startTimeout = setTimeout(() => {
+        let bearing = 0;
+        const startTime = performance.now();
+
+        function rotateTour(now: number) {
+          if (!tourActiveRef.current || !map) return;
+          const elapsed = now - startTime;
+          // Full 360° in 90 seconds
+          bearing = (elapsed / 90000) * 360;
+          // Gentle zoom breathe: 12 ↔ 13
+          const zoom = 12.5 + Math.sin((elapsed / 30000) * Math.PI * 2) * 0.4;
+          map.setBearing(bearing % 360);
+          map.setZoom(zoom);
+          tourAnimRef.current = requestAnimationFrame(rotateTour);
+        }
+        tourAnimRef.current = requestAnimationFrame(rotateTour);
+      }, 3200);
+
+      // Ambient sound
+      startAmbientSound();
+
+      return () => {
+        clearTimeout(startTimeout);
+      };
+    } else {
+      // Stop tour
+      tourActiveRef.current = false;
+      if (tourAnimRef.current) {
+        cancelAnimationFrame(tourAnimRef.current);
+        tourAnimRef.current = null;
+      }
+      stopAmbientSound();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [islandTour]);
+
+  function startAmbientSound() {
+    try {
+      const ctx = new AudioContext();
+      audioCtxRef.current = ctx;
+      const master = ctx.createGain();
+      master.gain.setValueAtTime(0, ctx.currentTime);
+      master.gain.linearRampToValueAtTime(0.18, ctx.currentTime + 4);
+      master.connect(ctx.destination);
+      masterGainRef.current = master;
+
+      // Soft reverb
+      const conv = ctx.createConvolver();
+      const len  = ctx.sampleRate * 3;
+      const buf  = ctx.createBuffer(2, len, ctx.sampleRate);
+      for (let ch = 0; ch < 2; ch++) {
+        const data = buf.getChannelData(ch);
+        for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.5);
+      }
+      conv.buffer = buf;
+      conv.connect(master);
+
+      // Harmonic pads — A minor pentatonic
+      const baseFreq = 110; // A2
+      [1, 1.5, 2, 2.666, 3, 4].forEach((ratio, i) => {
+        const osc  = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const lfo  = ctx.createOscillator();
+        const lfog = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = baseFreq * ratio;
+        gain.gain.value = 0.06 / (i + 1);
+        lfo.type = 'sine';
+        lfo.frequency.value = 0.03 + i * 0.007;
+        lfog.gain.value = baseFreq * ratio * 0.015;
+        lfo.connect(lfog);
+        lfog.connect(osc.frequency);
+        osc.connect(gain);
+        gain.connect(conv);
+        lfo.start();
+        osc.start(ctx.currentTime + i * 0.3);
+      });
+    } catch { /* audio not supported */ }
+  }
+
+  function stopAmbientSound() {
+    if (masterGainRef.current && audioCtxRef.current) {
+      const g = masterGainRef.current;
+      const t = audioCtxRef.current.currentTime;
+      g.gain.setValueAtTime(g.gain.value, t);
+      g.gain.linearRampToValueAtTime(0, t + 2);
+      setTimeout(() => { audioCtxRef.current?.close(); audioCtxRef.current = null; }, 2500);
+    }
+  }
+
+  // ── Marker click ─────────────────────────────────────────────
   const handleMarkerClick = useCallback(
     (place: Place) => {
       cancelHold();
@@ -133,7 +263,7 @@ export function KishMap() {
     [selectPlace, setClickedPoint],
   );
 
-  // ── desktop: single click ─────────────────────────────────────
+  // ── Desktop click ─────────────────────────────────────────────
   const handleMapClick = useCallback(
     (e: MapMouseEvent) => {
       if (longPressDidFire.current) { longPressDidFire.current = false; return; }
@@ -152,7 +282,7 @@ export function KishMap() {
     [selectedPlace, clearSelection, setClickedPoint, clearRoute],
   );
 
-  // ── long-press helpers ────────────────────────────────────────
+  // ── Long-press helpers ────────────────────────────────────────
   const cancelHold = useCallback(() => {
     if (holdTimerRef.current) { clearTimeout(holdTimerRef.current); holdTimerRef.current = null; }
     holdDataRef.current = null;
@@ -176,7 +306,6 @@ export function KishMap() {
     holdDataRef.current = null;
   }, []);
 
-  // ── touch handlers on the wrapper div ─────────────────────────
   const handleTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
     if (e.touches.length !== 1) { cancelHold(); return; }
     const touch = e.touches[0];
@@ -213,7 +342,7 @@ export function KishMap() {
 
   const activeStyle =
     mapStyle === 'satellite' ? SATELLITE_STYLE :
-    mapStyle === 'dark'      ? darkStyle :
+    mapStyle === 'dark'      ? DARK_STYLE :
     LIBERTY_URL;
 
   return (
@@ -253,9 +382,10 @@ export function KishMap() {
           }}
         />
 
-        {/* Route overlay */}
+        {/* Route overlay: border → glow → line */}
         {routeGeometry && (
           <Source id="route" type="geojson" data={routeGeometry}>
+            <Layer {...routeBorderLayer} />
             <Layer {...routeGlowLayer} />
             <Layer {...routeLineLayer} />
           </Source>
@@ -285,6 +415,21 @@ export function KishMap() {
 
         <MarkerLayer places={places} onMarkerClick={handleMarkerClick} />
       </Map>
+
+      {/* Island tour stop button — shown while tour is active */}
+      {islandTour && (
+        <button
+          onClick={() => setIslandTour(false)}
+          className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30
+                     flex items-center gap-2 px-5 py-3 rounded-2xl
+                     bg-black/70 backdrop-blur-md text-white text-sm font-bold
+                     border border-white/20 shadow-xl cursor-pointer
+                     hover:bg-black/80 transition-colors"
+        >
+          <span className="w-3 h-3 rounded-sm bg-white inline-block" />
+          توقف جزیره‌گردی
+        </button>
+      )}
     </div>
   );
 }

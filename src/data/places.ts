@@ -24,7 +24,7 @@ export const places: Place[] = [
       website: 'mikamall.com',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱ بامداد', en: 'Daily 10 AM – 1 AM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/mikamall/800/500', alt: 'Mikamall Kish' }],
+    images: [{ src: '/images/places/mikamall.jpg', alt: 'Mikamall Kish' }],
   },
 
   {
@@ -42,7 +42,7 @@ export const places: Place[] = [
       phone: '076-44430000',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۲ شب', en: 'Daily 10 AM – midnight' },
     },
-    images: [{ src: 'https://picsum.photos/seed/venusmall/800/500', alt: 'Venus Mall Kish' }],
+    images: [{ src: '/images/places/venus-mall.jpg', alt: 'Venus Mall Kish' }],
   },
 
   {
@@ -60,7 +60,7 @@ export const places: Place[] = [
       phone: '076-44420100',
       hours: { fa: 'هر روز ۹ صبح تا ۱۲ شب', en: 'Daily 9 AM – midnight' },
     },
-    images: [{ src: 'https://picsum.photos/seed/iranianbazaar/800/500', alt: 'Iranian Bazaar Kish' }],
+    images: [{ src: '/images/places/iranian-bazaar.jpg', alt: 'Iranian Bazaar Kish' }],
   },
 
   {
@@ -78,7 +78,7 @@ export const places: Place[] = [
       phone: '076-44421000',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۱ شب', en: 'Daily 10 AM – 11 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/leatherbazaar/800/500', alt: 'Kish Leather Bazaar' }],
+    images: [{ src: '/images/places/leather-bazaar.jpg', alt: 'Kish Leather Bazaar' }],
   },
 
   {
@@ -96,7 +96,7 @@ export const places: Place[] = [
       phone: '076-44428000',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۲ شب', en: 'Daily 10 AM – midnight' },
     },
-    images: [{ src: 'https://picsum.photos/seed/panoramamall/800/500', alt: 'Panorama Mall Kish' }],
+    images: [{ src: '/images/places/mikamall.jpg', alt: 'Panorama Mall Kish' }],
   },
 
   // ════ HOTELS ══════════════════════════════════════════════
@@ -117,7 +117,7 @@ export const places: Place[] = [
       website: 'dariushhotel.com',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dariush_Grand_Hotel_-_2.jpg/800px-Dariush_Grand_Hotel_-_2.jpg', alt: 'Dariush Grand Hotel Kish' }],
+    images: [{ src: '/images/places/dariush-hotel.jpg', alt: 'Dariush Grand Hotel Kish' }],
   },
 
   {
@@ -136,7 +136,7 @@ export const places: Place[] = [
       website: 'flamingokish.com',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://picsum.photos/seed/flamingokish/800/500', alt: 'Flamingo Hotel Kish' }],
+    images: [{ src: '/images/places/flamingo-hotel.jpg', alt: 'Flamingo Hotel Kish' }],
   },
 
   {
@@ -155,7 +155,7 @@ export const places: Place[] = [
       website: 'parmishotel.com',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://picsum.photos/seed/parmishotel/800/500', alt: 'Parmis Hotel Kish' }],
+    images: [{ src: '/images/places/parmis-hotel.jpg', alt: 'Parmis Hotel Kish' }],
   },
 
   {
@@ -174,7 +174,7 @@ export const places: Place[] = [
       website: 'shayanhotel.com',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://picsum.photos/seed/shayanhotel/800/500', alt: 'Shayan International Hotel Kish' }],
+    images: [{ src: '/images/places/shayan-hotel.jpg', alt: 'Shayan International Hotel Kish' }],
   },
 
   {
@@ -192,7 +192,7 @@ export const places: Place[] = [
       phone: '076-44444200',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://picsum.photos/seed/tamashahotel/800/500', alt: 'Tamasha Hotel Kish' }],
+    images: [{ src: '/images/places/tamasha-hotel.jpg', alt: 'Tamasha Hotel Kish' }],
   },
 
   {
@@ -211,7 +211,7 @@ export const places: Place[] = [
       website: 'toranjkish.com',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://picsum.photos/seed/toranjkish/800/500', alt: 'Toranj Kish Hotel' }],
+    images: [{ src: '/images/places/toranj-hotel.jpg', alt: 'Toranj Kish Hotel' }],
   },
 
   {
@@ -229,7 +229,7 @@ export const places: Place[] = [
       phone: '076-44444300',
       hours: { fa: 'پذیرش ۲۴ ساعته', en: '24-hour reception' },
     },
-    images: [{ src: 'https://picsum.photos/seed/setarehkish/800/500', alt: 'Setareh Kish Hotel' }],
+    images: [{ src: '/images/places/setareh-hotel.jpg', alt: 'Setareh Kish Hotel' }],
   },
 
   // ════ BEACHES & WATER ═════════════════════════════════════
@@ -248,7 +248,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۶ صبح تا ۱۰ شب', en: 'Daily 6 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/coralbeach/800/500', alt: 'Coral Beach Kish' }],
+    images: [{ src: '/images/places/coral-beach.jpg', alt: 'Coral Beach Kish' }],
     ticketUrl: '/tickets/coral-beach-snorkel',
   },
 
@@ -266,7 +266,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۶ صبح تا ۱۰ شب', en: 'Daily 6 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/sadafbeach/800/500', alt: 'Sadaf Beach Kish' }],
+    images: [{ src: '/images/places/coral-beach.jpg', alt: 'Sadaf Beach Kish' }],
   },
 
   {
@@ -284,7 +284,7 @@ export const places: Place[] = [
       phone: '076-44440000',
       hours: { fa: 'هر روز ۹ صبح تا ۹ شب', en: 'Daily 9 AM – 9 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/dolphinkish/800/500', alt: 'Dolphin Park Kish' }],
+    images: [{ src: '/images/places/dolphin-park.jpg', alt: 'Dolphin Park Kish' }],
     ticketUrl: '/tickets/dolphin-park',
   },
 
@@ -303,7 +303,7 @@ export const places: Place[] = [
       phone: '076-44439000',
       hours: { fa: 'هر روز ۷ صبح تا ۶ عصر', en: 'Daily 7 AM – 6 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/divingkish/800/500', alt: 'Kish Diving Pier' }],
+    images: [{ src: '/images/places/scuba.jpg', alt: 'Kish Diving Pier' }],
     ticketUrl: '/tickets/diving',
   },
 
@@ -324,7 +324,7 @@ export const places: Place[] = [
       phone: '076-44447000',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
     },
-    images: [{ src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Anaconda_2.jpg/800px-Anaconda_2.jpg', alt: 'Ocean Water Park Kish' }],
+    images: [{ src: '/images/places/ocean-water-park.jpg', alt: 'Ocean Water Park Kish' }],
     ticketUrl: '/tickets/ocean-water-park',
   },
 
@@ -342,7 +342,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۹ صبح تا ۶ عصر', en: 'Daily 9 AM – 6 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/parasailkish/800/500', alt: 'Parasailing Kish' }],
+    images: [{ src: '/images/places/water-sports.jpg', alt: 'Parasailing Kish' }],
     ticketUrl: '/tickets/parasail',
   },
 
@@ -360,7 +360,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۹ صبح تا ۶ عصر', en: 'Daily 9 AM – 6 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/flyboardkish/800/500', alt: 'Flyboard Kish' }],
+    images: [{ src: '/images/places/water-sports.jpg', alt: 'Flyboard Kish' }],
     ticketUrl: '/tickets/flyboard',
   },
 
@@ -378,7 +378,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۹ صبح تا ۶ عصر', en: 'Daily 9 AM – 6 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/bananaboatkish/800/500', alt: 'Banana Boat Kish' }],
+    images: [{ src: '/images/places/water-sports.jpg', alt: 'Banana Boat Kish' }],
     ticketUrl: '/tickets/banana-boat',
   },
 
@@ -396,7 +396,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۸ صبح تا ۸ شب', en: 'Daily 8 AM – 8 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/aquariumboat/800/500', alt: 'Glass Bottom Boat Kish' }],
+    images: [{ src: '/images/places/aquarium-boat.jpg', alt: 'Glass Bottom Boat Kish' }],
     ticketUrl: '/tickets/aquarium-boat',
   },
 
@@ -416,7 +416,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'همیشه باز (فضای باز)', en: 'Always open (outdoor site)' },
     },
-    images: [{ src: 'https://upload.wikimedia.org/wikipedia/en/8/8e/The_Greek_Ship.jpg', alt: 'Greek Ship Kish' }],
+    images: [{ src: '/images/places/greek-ship.jpg', alt: 'Greek Ship Kish' }],
   },
 
   {
@@ -433,7 +433,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۸ صبح تا ۸ شب', en: 'Daily 8 AM – 8 PM' },
     },
-    images: [{ src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/%D8%B4%D9%87%D8%B1_%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_-_%D9%86%D9%85%D8%A7%D9%87%D8%A7%DB%8C_%DA%AF%D9%88%D9%86%D8%A7%DA%AF%D9%88%D9%86_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_%D9%88_%D9%BE%D8%A7%DB%8C%D8%A7%D8%A8_07.jpg/800px-%D8%B4%D9%87%D8%B1_%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_-_%D9%86%D9%85%D8%A7%D9%87%D8%A7%DB%8C_%DA%AF%D9%88%D9%86%D8%A7%DA%AF%D9%88%D9%86_%D8%AD%D8%B1%DB%8C%D8%B1%D9%87_%D9%88_%D9%BE%D8%A7%DB%8C%D8%A7%D8%A8_07.jpg', alt: 'Harireh Ancient City Kish' }],
+    images: [{ src: '/images/places/harireh.jpg', alt: 'Harireh Ancient City Kish' }],
   },
 
   {
@@ -451,7 +451,7 @@ export const places: Place[] = [
       phone: '076-44448000',
       hours: { fa: 'هر روز ۹ صبح تا ۹ شب', en: 'Daily 9 AM – 9 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishkariz/800/500', alt: 'Kish Underground Qanat' }],
+    images: [{ src: '/images/places/kish-kariz.jpg', alt: 'Kish Underground Qanat' }],
     ticketUrl: '/tickets/kish-kariz',
   },
 
@@ -470,7 +470,7 @@ export const places: Place[] = [
       phone: '076-44441500',
       hours: { fa: 'شنبه–چهارشنبه ۹–۱۷ | پنجشنبه ۹–۱۳ | جمعه تعطیل', en: 'Sat–Wed 9–17 | Thu 9–13 | Fri Closed' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishmuseum/800/500', alt: 'Kish Anthropology Museum' }],
+    images: [{ src: '/images/places/kish-museum.jpg', alt: 'Kish Anthropology Museum' }],
   },
 
 
@@ -491,7 +491,7 @@ export const places: Place[] = [
       phone: '076-44442000',
       hours: { fa: 'هر روز ۹ صبح تا ۹ شب', en: 'Daily 9 AM – 9 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishaquarium/800/500', alt: 'Kish Aquarium' }],
+    images: [{ src: '/images/places/kish-aquarium.jpg', alt: 'Kish Aquarium' }],
     ticketUrl: '/tickets/kish-aquarium',
   },
 
@@ -513,7 +513,7 @@ export const places: Place[] = [
       phone: '076-44443000',
       hours: { fa: 'هر روز ۱۰ صبح تا ۲ بامداد', en: 'Daily 10 AM – 2 AM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishbowling/800/500', alt: 'Kish Bowling Center' }],
+    images: [{ src: '/images/places/bowling.jpg', alt: 'Kish Bowling Center' }],
   },
 
   {
@@ -531,7 +531,7 @@ export const places: Place[] = [
       phone: '076-44443500',
       hours: { fa: 'هر روز ۵ عصر تا ۱۲ شب', en: 'Daily 5 PM – midnight' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishluna/800/500', alt: 'Kish Luna Park' }],
+    images: [{ src: '/images/places/theme-park.jpg', alt: 'Kish Luna Park' }],
   },
 
   {
@@ -549,7 +549,7 @@ export const places: Place[] = [
       phone: '076-44441200',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishsnow/800/500', alt: 'Kish Snow Park' }],
+    images: [{ src: '/images/places/snow-park.jpg', alt: 'Kish Snow Park' }],
     ticketUrl: '/tickets/snow-park',
   },
 
@@ -568,7 +568,7 @@ export const places: Place[] = [
       phone: '076-44441200',
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishicerink/800/500', alt: 'Kish Ice Rink' }],
+    images: [{ src: '/images/places/ice-rink.jpg', alt: 'Kish Ice Rink' }],
     ticketUrl: '/tickets/ice-rink',
   },
 
@@ -587,7 +587,7 @@ export const places: Place[] = [
       phone: '076-44444500',
       hours: { fa: 'هر روز ۱۱ صبح تا ۱۲ شب', en: 'Daily 11 AM – midnight' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishthemepark/800/500', alt: 'Theme Park Center Kish' }],
+    images: [{ src: '/images/places/theme-park.jpg', alt: 'Theme Park Center Kish' }],
     ticketUrl: '/tickets/theme-park-center',
   },
 
@@ -605,7 +605,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۴ عصر تا ۱۱ شب', en: 'Daily 4 PM – 11 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishhorror/800/500', alt: 'Kish Horror Castle' }],
+    images: [{ src: '/images/places/theme-park.jpg', alt: 'Kish Horror Castle' }],
     ticketUrl: '/tickets/horror-castle',
   },
 
@@ -625,7 +625,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۱۰ صبح تا ۸ شب', en: 'Daily 10 AM – 8 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/bungeekish/800/500', alt: 'Bungee Jumping Kish' }],
+    images: [{ src: '/images/places/bungee.jpg', alt: 'Bungee Jumping Kish' }],
     ticketUrl: '/tickets/bungee-jumping',
   },
 
@@ -644,7 +644,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/windtunnelkish/800/500', alt: 'Kish Wind Tunnel' }],
+    images: [{ src: '/images/places/wind-tunnel.jpg', alt: 'Kish Wind Tunnel' }],
     ticketUrl: '/tickets/wind-tunnel',
   },
 
@@ -662,7 +662,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۱۰ صبح تا ۱۰ شب', en: 'Daily 10 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishcablecar/800/500', alt: 'Kish Cable Car' }],
+    images: [{ src: '/images/places/cable-car.jpg', alt: 'Kish Cable Car' }],
     ticketUrl: '/tickets/cable-car',
   },
 
@@ -682,7 +682,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۸ صبح تا ۷ عصر', en: 'Daily 8 AM – 7 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishislandtour/800/500', alt: 'Kish Island Tour' }],
+    images: [{ src: '/images/places/island-tour.jpg', alt: 'Kish Island Tour' }],
     ticketUrl: '/tickets/island-tour',
   },
 
@@ -700,7 +700,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۹ صبح تا ۸ شب', en: 'Daily 9 AM – 8 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishbus/800/500', alt: 'Double-Decker Tour Bus Kish' }],
+    images: [{ src: '/images/places/tour-bus.jpg', alt: 'Double-Decker Tour Bus Kish' }],
     ticketUrl: '/tickets/double-decker-bus',
   },
 
@@ -720,7 +720,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز از ساعت ۸ شب', en: 'Daily from 8 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/kishnight/800/500', alt: 'Night Shows Complex Kish' }],
+    images: [{ src: '/images/places/night-show.jpg', alt: 'Night Shows Complex Kish' }],
     ticketUrl: '/tickets/night-show-puzzle',
   },
 
@@ -740,7 +740,7 @@ export const places: Place[] = [
     contact: {
       hours: { fa: 'هر روز ۶ صبح تا ۱۰ شب', en: 'Daily 6 AM – 10 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/parvazpark/800/500', alt: 'Parvaz Park Kish' }],
+    images: [{ src: '/images/places/island-tour.jpg', alt: 'Parvaz Park Kish' }],
   },
 
   // ════ CAFÉS & RESTAURANTS ══════════════════════════════════
@@ -761,7 +761,7 @@ export const places: Place[] = [
       instagram: '@caferose_kish',
       hours: { fa: 'هر روز ۷ صبح تا ۱۱ شب', en: 'Daily 7 AM – 11 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/caferose/800/500', alt: 'Café Rose Kish' }],
+    images: [{ src: '/images/places/cafe-rose.jpg', alt: 'Café Rose Kish' }],
   },
 
   {
@@ -779,7 +779,7 @@ export const places: Place[] = [
       phone: '076-44445000',
       hours: { fa: 'هر روز ۱۲ ظهر تا ۱۱ شب', en: 'Daily noon – 11 PM' },
     },
-    images: [{ src: 'https://picsum.photos/seed/zeiytoon/800/500', alt: 'Zeiytoon Restaurant Kish' }],
+    images: [{ src: '/images/places/darya-cafe.jpg', alt: 'Zeiytoon Restaurant Kish' }],
   },
 
   {
@@ -798,6 +798,6 @@ export const places: Place[] = [
       instagram: '@daryacafe_kish',
       hours: { fa: 'هر روز ۷ صبح تا ۱۲ شب', en: 'Daily 7 AM – midnight' },
     },
-    images: [{ src: 'https://picsum.photos/seed/daryacafe/800/500', alt: 'Darya Café Kish' }],
+    images: [{ src: '/images/places/darya-cafe.jpg', alt: 'Darya Café Kish' }],
   },
 ];

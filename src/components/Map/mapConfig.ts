@@ -38,6 +38,27 @@ export const SATELLITE_STYLE: StyleSpecification = {
   layers: [{ id: 'esri-satellite', type: 'raster', source: 'esri' }],
 };
 
+/** CartoDB dark tiles — no fetch required, works offline/behind firewall */
+export const DARK_STYLE: StyleSpecification = {
+  version: 8,
+  sources: {
+    carto: {
+      type: 'raster',
+      tiles: [
+        'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+        'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+        'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+      ],
+      tileSize: 256,
+      attribution: '© CartoDB',
+      maxzoom: 19,
+    },
+  },
+  layers: [
+    { id: 'carto-dark', type: 'raster', source: 'carto' } as import('maplibre-gl').LayerSpecification,
+  ],
+};
+
 export const CATEGORY_ICONS: Record<string, string> = {
   'water-sports': '/markers/water-sports.svg',
   'land-sports':  '/markers/land-sports.svg',
