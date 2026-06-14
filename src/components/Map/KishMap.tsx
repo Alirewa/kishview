@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useCallback, useEffect } from 'react';
+import { useRef, useCallback, useEffect, useMemo } from 'react';
 import Map, { GeolocateControl, Source, Layer, Marker, type MapRef } from 'react-map-gl/maplibre';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { GeolocateControl as GeolocateControlType } from 'maplibre-gl';
@@ -15,33 +15,6 @@ const KISH_LNG = [53.82, 54.10] as const;
 function inKish(lng: number, lat: number) {
   return lat >= KISH_LAT[0] && lat <= KISH_LAT[1] && lng >= KISH_LNG[0] && lng <= KISH_LNG[1];
 }
-
-// Route: white border below, bright blue line on top
-const routeBorderLayer: LayerProps = {
-  id: 'route-border',
-  type: 'line',
-  filter: ['==', ['get', 'index'], 0],
-  paint: { 'line-color': '#ffffff', 'line-width': 22, 'line-opacity': 1.0 },
-  layout: { 'line-cap': 'round', 'line-join': 'round' },
-};
-const routeGlowLayer: LayerProps = {
-  id: 'route-glow',
-  type: 'line',
-  filter: ['==', ['get', 'index'], 0],
-  paint: { 'line-color': '#1d4ed8', 'line-width': 18, 'line-opacity': 0.35, 'line-blur': 14 },
-  layout: { 'line-cap': 'round', 'line-join': 'round' },
-};
-const routeLineLayer: LayerProps = {
-  id: 'route-line',
-  type: 'line',
-  paint: {
-    'line-color': ['case', ['==', ['get', 'index'], 0], '#2563eb', '#93c5fd'],
-    'line-width': ['case', ['==', ['get', 'index'], 0], 14, 4],
-    'line-opacity': ['case', ['==', ['get', 'index'], 0], 1, 0.45],
-    'line-dasharray': ['case', ['==', ['get', 'index'], 0], ['literal', [1]], ['literal', [5, 4]]],
-  },
-  layout: { 'line-cap': 'round', 'line-join': 'round' },
-};
 
 export function KishMap() {
   const mapRef = useRef<MapRef>(null);
@@ -116,6 +89,15 @@ export function KishMap() {
     };
     window.addEventListener('kishview:flyToUser', handler);
     return () => window.removeEventListener('kishview:flyToUser', handler);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { lng, lat } = (e as CustomEvent).detail as { lng: number; lat: number };
+      mapRef.current?.flyTo({ center: [lng, lat], zoom: 16, pitch: 55, duration: 1400, essential: true });
+    };
+    window.addEventListener('kishview:flyToResult', handler);
+    return () => window.removeEventListener('kishview:flyToResult', handler);
   }, []);
 
   // ── Map commands ─────────────────────────────────────────────
@@ -266,6 +248,7 @@ export function KishMap() {
   // ── Desktop click ─────────────────────────────────────────────
   const handleMapClick = useCallback(
     (e: MapMouseEvent) => {
+      if (islandTour) return;
       if (longPressDidFire.current) { longPressDidFire.current = false; return; }
       const { lng, lat } = e.lngLat;
       if (!inKish(lng, lat)) return;
@@ -279,7 +262,7 @@ export function KishMap() {
         essential: true,
       });
     },
-    [selectedPlace, clearSelection, setClickedPoint, clearRoute],
+    [islandTour, selectedPlace, clearSelection, setClickedPoint, clearRoute],
   );
 
   // ── Long-press helpers ────────────────────────────────────────
@@ -307,6 +290,7 @@ export function KishMap() {
   }, []);
 
   const handleTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    if (islandTour) return;
     if (e.touches.length !== 1) { cancelHold(); return; }
     const touch = e.touches[0];
     const map = mapRef.current?.getMap();
@@ -315,7 +299,7 @@ export function KishMap() {
     const point = map.unproject([touch.clientX - rect.left, touch.clientY - rect.top]);
     holdDataRef.current = { x: touch.clientX, y: touch.clientY, lngLat: [point.lng, point.lat] };
     holdTimerRef.current = setTimeout(fireHold, 2000);
-  }, [cancelHold, fireHold]);
+  }, [islandTour, cancelHold, fireHold]);
 
   const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
     if (!holdDataRef.current || e.touches.length !== 1) { cancelHold(); return; }
@@ -345,6 +329,38 @@ export function KishMap() {
     mapStyle === 'dark'      ? DARK_STYLE :
     LIBERTY_URL;
 
+  // Route colours adapt to map theme for visibility
+  const rc = useMemo(() => {
+    if (mapStyle === 'satellite') return { border: '#000000', borderW: 18, main: '#ffffff', alt: '#e0e0e0', glowC: '#ffffff', glowO: 0.25 };
+    if (mapStyle === 'dark')      return { border: '#0a1628', borderW: 22, main: '#3b82f6', alt: '#93c5fd', glowC: '#2563eb', glowO: 0.4 };
+    /* light */                   return { border: '#ffffff', borderW: 22, main: '#f97316', alt: '#fdba74', glowC: '#fb923c', glowO: 0.35 };
+  }, [mapStyle]);
+
+  const routeBorderLayer: LayerProps = useMemo(() => ({
+    id: 'route-border', type: 'line',
+    filter: ['==', ['get', 'index'], 0],
+    paint: { 'line-color': rc.border, 'line-width': rc.borderW, 'line-opacity': 1.0 },
+    layout: { 'line-cap': 'round', 'line-join': 'round' },
+  }), [rc]);
+
+  const routeGlowLayer: LayerProps = useMemo(() => ({
+    id: 'route-glow', type: 'line',
+    filter: ['==', ['get', 'index'], 0],
+    paint: { 'line-color': rc.glowC, 'line-width': 18, 'line-opacity': rc.glowO, 'line-blur': 14 },
+    layout: { 'line-cap': 'round', 'line-join': 'round' },
+  }), [rc]);
+
+  const routeLineLayer: LayerProps = useMemo(() => ({
+    id: 'route-line', type: 'line',
+    paint: {
+      'line-color': ['case', ['==', ['get', 'index'], 0], rc.main, rc.alt],
+      'line-width': ['case', ['==', ['get', 'index'], 0], 14, 4],
+      'line-opacity': ['case', ['==', ['get', 'index'], 0], 1, 0.45],
+      'line-dasharray': ['case', ['==', ['get', 'index'], 0], ['literal', [1]], ['literal', [5, 4]]],
+    },
+    layout: { 'line-cap': 'round', 'line-join': 'round' },
+  }), [rc]);
+
   return (
     <div
       className="w-full h-full"
@@ -356,6 +372,7 @@ export function KishMap() {
       <Map
         ref={mapRef}
         mapStyle={activeStyle}
+        fadeDuration={0}
         onLoad={() => { setTimeout(() => geoRef.current?.trigger(), 800); }}
         onClick={handleMapClick}
         initialViewState={{
@@ -413,21 +430,21 @@ export function KishMap() {
           </Marker>
         )}
 
-        <MarkerLayer places={places} onMarkerClick={handleMarkerClick} />
+        {!islandTour && <MarkerLayer places={places} onMarkerClick={handleMarkerClick} />}
       </Map>
 
-      {/* Island tour stop button — shown while tour is active */}
+      {/* Island tour stop button — corner button while tour is active */}
       {islandTour && (
         <button
           onClick={() => setIslandTour(false)}
-          className="absolute bottom-24 left-1/2 -translate-x-1/2 z-30
-                     flex items-center gap-2 px-5 py-3 rounded-2xl
-                     bg-black/70 backdrop-blur-md text-white text-sm font-bold
+          className="absolute top-4 left-4 z-30
+                     flex items-center gap-2 px-4 py-2.5 rounded-xl
+                     bg-black/65 backdrop-blur-md text-white text-xs font-bold
                      border border-white/20 shadow-xl cursor-pointer
                      hover:bg-black/80 transition-colors"
         >
-          <span className="w-3 h-3 rounded-sm bg-white inline-block" />
-          توقف جزیره‌گردی
+          <span className="w-2.5 h-2.5 rounded-sm bg-white inline-block flex-shrink-0" />
+          توقف
         </button>
       )}
     </div>

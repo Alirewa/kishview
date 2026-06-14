@@ -23,3 +23,6 @@ yarn-error.log*
 .DS_Store
 *.pem
 .vercel
+
+# TypeScript build cache (file not dir — causes Coolify/nixpacks Docker mount error)
+tsconfig.tsbuildinfo

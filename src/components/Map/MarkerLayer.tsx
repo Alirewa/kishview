@@ -13,17 +13,12 @@ interface Props {
 
 export function MarkerLayer({ places, onMarkerClick }: Props) {
   const selectedCategory = useAppStore((s) => s.selectedCategory);
-  const searchQuery = useAppStore((s) => s.searchQuery);
 
   const chip = FILTER_CHIPS.find((c) => c.id === selectedCategory);
   const allowedTypes = chip?.types ?? null;
 
   const visible = places.filter((p) => {
     if (allowedTypes && !allowedTypes.includes(p.category)) return false;
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      return p.name.fa.includes(q) || p.name.en.toLowerCase().includes(q);
-    }
     return true;
   });
 

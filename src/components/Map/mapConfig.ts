@@ -38,9 +38,10 @@ export const SATELLITE_STYLE: StyleSpecification = {
   layers: [{ id: 'esri-satellite', type: 'raster', source: 'esri' }],
 };
 
-/** CartoDB dark tiles — no fetch required, works offline/behind firewall */
+/** CartoDB dark tiles + OpenFreeMap vector buildings for 3-D extrusion */
 export const DARK_STYLE: StyleSpecification = {
   version: 8,
+  glyphs: 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf',
   sources: {
     carto: {
       type: 'raster',
@@ -53,9 +54,41 @@ export const DARK_STYLE: StyleSpecification = {
       attribution: '© CartoDB',
       maxzoom: 19,
     },
+    ofm: {
+      type: 'vector',
+      url: 'https://tiles.openfreemap.org/planet',
+    },
   },
   layers: [
     { id: 'carto-dark', type: 'raster', source: 'carto' } as import('maplibre-gl').LayerSpecification,
+    {
+      id: 'building-3d',
+      type: 'fill-extrusion',
+      source: 'ofm',
+      'source-layer': 'building',
+      minzoom: 13,
+      paint: {
+        'fill-extrusion-color': [
+          'interpolate', ['linear'], ['zoom'],
+          13, '#1a1f33',
+          15, '#232840',
+          17, '#2e3555',
+        ],
+        'fill-extrusion-height': [
+          'interpolate', ['linear'], ['zoom'],
+          13, 0,
+          14, ['coalesce', ['get', 'render_height'], ['get', 'height'], 8],
+        ],
+        'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], ['get', 'min_height'], 0],
+        'fill-extrusion-opacity': [
+          'interpolate', ['linear'], ['zoom'],
+          13, 0.0,
+          13.5, 0.7,
+          15, 0.9,
+          18, 0.95,
+        ],
+      },
+    } as import('maplibre-gl').LayerSpecification,
   ],
 };
 

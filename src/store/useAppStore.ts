@@ -123,7 +123,19 @@ export const useAppStore = create<AppState>()(
       clearRoute: () => set({ routeGeometry: null, routeInfo: null }),
       setUserPosition: (userPosition) => set({ userPosition }),
       setClickedPoint: (clickedPoint) => set({ clickedPoint }),
-      setIslandTour: (v) => set({ islandTour: v, ...(v ? { mapStyle: 'satellite' } : {}) }),
+      setIslandTour: (v) => set({
+        islandTour: v,
+        ...(v ? {
+          mapStyle: 'satellite',
+          selectedCategory: 'none',
+          clickedPoint: null,
+          routeGeometry: null,
+          routeInfo: null,
+          selectedPlace: null,
+          isOverlayOpen: false,
+          isInfoOpen: false,
+        } : {}),
+      }),
     }),
     {
       name: 'kishview-prefs',

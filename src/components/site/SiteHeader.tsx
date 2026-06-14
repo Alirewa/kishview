@@ -75,10 +75,10 @@ export default function SiteHeader() {
           </Link>
         </div>
 
-        {/* Mobile hamburger — pushed to opposite end */}
+        {/* Mobile hamburger — pushed to opposite end of logo */}
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="md:hidden p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 mr-auto rtl:mr-0 rtl:ml-auto"
+          className="md:hidden p-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 ms-auto"
           aria-label="منو"
         >
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
