@@ -16,6 +16,25 @@ function inKish(lng: number, lat: number) {
   return lat >= KISH_LAT[0] && lat <= KISH_LAT[1] && lng >= KISH_LNG[0] && lng <= KISH_LNG[1];
 }
 
+// Approximate Kish Island land polygon — used to block sea clicks
+const KISH_LAND_POLY: [number, number][] = [
+  [53.878, 26.603], [53.920, 26.612], [53.962, 26.608],
+  [54.005, 26.598], [54.038, 26.575], [54.055, 26.548],
+  [54.040, 26.508], [54.000, 26.480], [53.960, 26.473],
+  [53.918, 26.477], [53.882, 26.496], [53.858, 26.528],
+  [53.854, 26.560], [53.867, 26.589], [53.878, 26.603],
+];
+function onIsland(lng: number, lat: number): boolean {
+  let inside = false;
+  for (let i = 0, j = KISH_LAND_POLY.length - 1; i < KISH_LAND_POLY.length; j = i++) {
+    const [xi, yi] = KISH_LAND_POLY[i];
+    const [xj, yj] = KISH_LAND_POLY[j];
+    if (((yi > lat) !== (yj > lat)) && (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi))
+      inside = !inside;
+  }
+  return inside;
+}
+
 export function KishMap() {
   const mapRef = useRef<MapRef>(null);
   const geoRef = useRef<GeolocateControlType | null>(null);
@@ -126,43 +145,51 @@ export function KishMap() {
       const map = mapRef.current?.getMap();
       if (!map) return;
 
-      // Fly to island overview
-      map.flyTo({
-        center: KISH_CENTER,
-        zoom: 12.5,
-        pitch: 65,
-        bearing: 0,
-        duration: 3000,
-        essential: true,
-      });
+      let startTimeout: ReturnType<typeof setTimeout> | null = null;
 
-      // Start rotation after fly completes
-      const startTimeout = setTimeout(() => {
-        let bearing = 0;
-        const startTime = performance.now();
+      const beginFlyAndRotate = () => {
+        if (!tourActiveRef.current || !map) return;
 
-        function rotateTour(now: number) {
+        map.flyTo({
+          center: KISH_CENTER,
+          zoom: 12.5,
+          pitch: 65,
+          bearing: 0,
+          duration: 3000,
+          essential: true,
+        });
+
+        startTimeout = setTimeout(() => {
           if (!tourActiveRef.current || !map) return;
-          const elapsed = now - startTime;
-          // Full 360° in 90 seconds
-          bearing = (elapsed / 90000) * 360;
-          // Gentle zoom breathe: 12 ↔ 13
-          const zoom = 12.5 + Math.sin((elapsed / 30000) * Math.PI * 2) * 0.4;
-          map.setBearing(bearing % 360);
-          map.setZoom(zoom);
-          tourAnimRef.current = requestAnimationFrame(rotateTour);
-        }
-        tourAnimRef.current = requestAnimationFrame(rotateTour);
-      }, 3200);
+          const startTime = performance.now();
 
-      // Ambient sound
+          const rotateTour = (now: number) => {
+            if (!tourActiveRef.current || !map) return;
+            const elapsed = now - startTime;
+            const bearing = (elapsed / 90000) * 360;
+            const zoom = 12.5 + Math.sin((elapsed / 30000) * Math.PI * 2) * 0.4;
+            map.setBearing(bearing % 360);
+            map.setZoom(zoom);
+            tourAnimRef.current = requestAnimationFrame(rotateTour);
+          };
+          tourAnimRef.current = requestAnimationFrame(rotateTour);
+        }, 3200);
+      };
+
+      // Wait for satellite style to finish loading before starting animation
+      if (map.isStyleLoaded()) {
+        beginFlyAndRotate();
+      } else {
+        map.once('styledata', beginFlyAndRotate);
+      }
+
       startAmbientSound();
 
       return () => {
-        clearTimeout(startTimeout);
+        if (startTimeout) clearTimeout(startTimeout);
+        map.off('styledata', beginFlyAndRotate);
       };
     } else {
-      // Stop tour
       tourActiveRef.current = false;
       if (tourAnimRef.current) {
         cancelAnimationFrame(tourAnimRef.current);
@@ -251,7 +278,7 @@ export function KishMap() {
       if (islandTour) return;
       if (longPressDidFire.current) { longPressDidFire.current = false; return; }
       const { lng, lat } = e.lngLat;
-      if (!inKish(lng, lat)) return;
+      if (!inKish(lng, lat) || !onIsland(lng, lat)) return;
       if (selectedPlace) clearSelection();
       clearRoute();
       setClickedPoint([lng, lat]);
@@ -275,7 +302,7 @@ export function KishMap() {
     const data = holdDataRef.current;
     if (!data) return;
     const [lng, lat] = data.lngLat;
-    if (!inKish(lng, lat)) return;
+    if (!inKish(lng, lat) || !onIsland(lng, lat)) return;
     longPressDidFire.current = true;
     if (selectedPlaceRef.current) clearSelectionRef.current();
     clearRouteRef.current();
