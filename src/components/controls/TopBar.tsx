@@ -6,7 +6,6 @@ import { Menu, Map as MapIcon, Search, X, MapPin, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import { useAppStore } from '@/store/useAppStore';
-import { FILTER_CHIPS } from '@/data/filterChips';
 
 interface GeoResult {
   place_id: number;
@@ -31,7 +30,7 @@ export function TopBar() {
     openMenu, toggleMapControls,
     isSearchOpen, openSearch, closeSearch,
     searchQuery, setSearchQuery,
-    selectedCategory, setCategory, language,
+    language,
   } = useAppStore((s) => ({
     openMenu:          s.openMenu,
     toggleMapControls: s.toggleMapControls,
@@ -40,8 +39,6 @@ export function TopBar() {
     closeSearch:       s.closeSearch,
     searchQuery:       s.searchQuery,
     setSearchQuery:    s.setSearchQuery,
-    selectedCategory:  s.selectedCategory,
-    setCategory:       s.setCategory,
     language:          s.language,
   }));
 
@@ -127,30 +124,6 @@ export function TopBar() {
                   {t.appName}
                 </span>
               </Link>
-            </div>
-
-            {/* Desktop-only chip bar */}
-            <div className="hidden sm:flex items-center gap-1.5">
-              {FILTER_CHIPS.map((chip) => {
-                const active = selectedCategory === chip.id;
-                const Icon = chip.icon;
-                return (
-                  <button
-                    key={chip.id}
-                    onClick={() => setCategory(chip.id)}
-                    className={[
-                      'flex items-center gap-1.5 px-3 h-9 rounded-full text-xs font-semibold',
-                      'transition-all duration-200 cursor-pointer shadow-sm shadow-black/10',
-                      active
-                        ? 'bg-sky-500 text-white border border-sky-400 scale-105'
-                        : 'bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md text-zinc-700 dark:text-zinc-200 border border-white/40 dark:border-white/10 hover:bg-white dark:hover:bg-zinc-800',
-                    ].join(' ')}
-                  >
-                    <Icon className="w-3.5 h-3.5 flex-shrink-0" />
-                    <span>{language === 'fa' ? chip.fa : chip.en}</span>
-                  </button>
-                );
-              })}
             </div>
           </motion.div>
         ) : (

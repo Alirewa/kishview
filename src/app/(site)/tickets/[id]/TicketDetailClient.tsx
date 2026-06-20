@@ -1,9 +1,10 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Ticket, Clock, ShoppingCart } from 'lucide-react';
+import { Clock, ShoppingCart } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import type { Ticket as TicketType, TicketSession } from '@/types/shop';
+import { TicketImage } from '@/components/TicketImage';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
 import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
@@ -52,11 +53,7 @@ export default function TicketDetailClient({ ticket }: { ticket: TicketType }) {
     <div className="max-w-3xl mx-auto px-4 py-12" dir="rtl">
       <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100">
         <div className="h-56 bg-gradient-to-br from-sky-100 to-teal-100 flex items-center justify-center">
-          {ticket.imageUrl ? (
-            <img src={ticket.imageUrl} alt={ticket.name} className="h-full w-full object-cover" />
-          ) : (
-            <Ticket className="w-16 h-16 text-sky-400" />
-          )}
+          <TicketImage src={ticket.imageUrl} alt={ticket.name} className="h-full w-full object-cover" iconClassName="w-16 h-16 text-sky-400" />
         </div>
 
         <div className="p-6">

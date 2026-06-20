@@ -61,8 +61,8 @@ export function KishMap() {
   const longPressDidFire = useRef(false);
   const tourAnimRef      = useRef<number | null>(null);
   const tourActiveRef    = useRef(false);
-  const audioCtxRef      = useRef<AudioContext | null>(null);
-  const masterGainRef    = useRef<GainNode | null>(null);
+  const audioElRef       = useRef<HTMLAudioElement | null>(null);
+  const fadeTimerRef     = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // keep latest store values accessible inside event closures
   const selectedPlaceRef = useRef(selectedPlace);
@@ -73,6 +73,12 @@ export function KishMap() {
   useEffect(() => { setClickedPointRef.current = setClickedPoint; }, [setClickedPoint]);
   const clearRouteRef = useRef(clearRoute);
   useEffect(() => { clearRouteRef.current = clearRoute; }, [clearRoute]);
+
+  // Stop any playing tour audio if the map unmounts mid-tour
+  useEffect(() => () => {
+    if (fadeTimerRef.current) clearInterval(fadeTimerRef.current);
+    audioElRef.current?.pause();
+  }, []);
 
   // ── Background watchPosition for continuous tracking ─────────
   useEffect(() => {
@@ -200,58 +206,49 @@ export function KishMap() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [islandTour]);
 
+  // Ambient ocean-waves loop for the cinematic tour (CC-BY-SA 4.0, Wikimedia Commons)
+  const TOUR_AUDIO_URL = 'https://upload.wikimedia.org/wikipedia/commons/8/84/Sea_waves.wav';
+  const TOUR_AUDIO_VOLUME = 0.4;
+
   function startAmbientSound() {
     try {
-      const ctx = new AudioContext();
-      audioCtxRef.current = ctx;
-      const master = ctx.createGain();
-      master.gain.setValueAtTime(0, ctx.currentTime);
-      master.gain.linearRampToValueAtTime(0.18, ctx.currentTime + 4);
-      master.connect(ctx.destination);
-      masterGainRef.current = master;
-
-      // Soft reverb
-      const conv = ctx.createConvolver();
-      const len  = ctx.sampleRate * 3;
-      const buf  = ctx.createBuffer(2, len, ctx.sampleRate);
-      for (let ch = 0; ch < 2; ch++) {
-        const data = buf.getChannelData(ch);
-        for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.5);
+      if (!audioElRef.current) {
+        const audio = new Audio(TOUR_AUDIO_URL);
+        audio.loop = true;
+        audio.preload = 'auto';
+        audioElRef.current = audio;
       }
-      conv.buffer = buf;
-      conv.connect(master);
+      const audio = audioElRef.current;
+      audio.volume = 0;
+      audio.currentTime = 0;
+      void audio.play().catch(() => { /* autoplay blocked — silently ignore */ });
 
-      // Harmonic pads — A minor pentatonic
-      const baseFreq = 110; // A2
-      [1, 1.5, 2, 2.666, 3, 4].forEach((ratio, i) => {
-        const osc  = ctx.createOscillator();
-        const gain = ctx.createGain();
-        const lfo  = ctx.createOscillator();
-        const lfog = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.value = baseFreq * ratio;
-        gain.gain.value = 0.06 / (i + 1);
-        lfo.type = 'sine';
-        lfo.frequency.value = 0.03 + i * 0.007;
-        lfog.gain.value = baseFreq * ratio * 0.015;
-        lfo.connect(lfog);
-        lfog.connect(osc.frequency);
-        osc.connect(gain);
-        gain.connect(conv);
-        lfo.start();
-        osc.start(ctx.currentTime + i * 0.3);
-      });
+      if (fadeTimerRef.current) clearInterval(fadeTimerRef.current);
+      fadeTimerRef.current = setInterval(() => {
+        const next = Math.min(TOUR_AUDIO_VOLUME, audio.volume + 0.025);
+        audio.volume = next;
+        if (next >= TOUR_AUDIO_VOLUME && fadeTimerRef.current) {
+          clearInterval(fadeTimerRef.current);
+          fadeTimerRef.current = null;
+        }
+      }, 100);
     } catch { /* audio not supported */ }
   }
 
   function stopAmbientSound() {
-    if (masterGainRef.current && audioCtxRef.current) {
-      const g = masterGainRef.current;
-      const t = audioCtxRef.current.currentTime;
-      g.gain.setValueAtTime(g.gain.value, t);
-      g.gain.linearRampToValueAtTime(0, t + 2);
-      setTimeout(() => { audioCtxRef.current?.close(); audioCtxRef.current = null; }, 2500);
-    }
+    const audio = audioElRef.current;
+    if (!audio) return;
+    if (fadeTimerRef.current) { clearInterval(fadeTimerRef.current); fadeTimerRef.current = null; }
+    fadeTimerRef.current = setInterval(() => {
+      const next = audio.volume - 0.04;
+      if (next <= 0) {
+        audio.volume = 0;
+        audio.pause();
+        if (fadeTimerRef.current) { clearInterval(fadeTimerRef.current); fadeTimerRef.current = null; }
+      } else {
+        audio.volume = next;
+      }
+    }, 100);
   }
 
   // ── Marker click ─────────────────────────────────────────────
@@ -356,12 +353,14 @@ export function KishMap() {
     mapStyle === 'dark'      ? DARK_STYLE :
     LIBERTY_URL;
 
-  // Route colours adapt to map theme for visibility
-  const rc = useMemo(() => {
-    if (mapStyle === 'satellite') return { border: '#000000', borderW: 18, main: '#ffffff', alt: '#e0e0e0', glowC: '#ffffff', glowO: 0.25 };
-    if (mapStyle === 'dark')      return { border: '#0a1628', borderW: 22, main: '#3b82f6', alt: '#93c5fd', glowC: '#2563eb', glowO: 0.4 };
-    /* light */                   return { border: '#ffffff', borderW: 22, main: '#f97316', alt: '#fdba74', glowC: '#fb923c', glowO: 0.35 };
-  }, [mapStyle]);
+  // Route uses one vivid, high-contrast palette (hot magenta) that pops
+  // against every basemap — light, dark and satellite — instead of
+  // theme-matched colors that blended into the map and were unreadable.
+  const rc = useMemo(() => ({
+    border: '#ffffff', borderW: 24,
+    main: '#ff1f8f', alt: '#ffb3d9',
+    glowC: '#ff2d92', glowO: 0.55,
+  }), []);
 
   const routeBorderLayer: LayerProps = useMemo(() => ({
     id: 'route-border', type: 'line',

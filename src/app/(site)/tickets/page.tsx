@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Ticket, Clock, Users } from 'lucide-react';
+import { Clock, Users } from 'lucide-react';
 import type { Ticket as TicketType } from '@/types/shop';
+import { TicketImage } from '@/components/TicketImage';
 
 async function getTickets(): Promise<TicketType[]> {
   const { ticketsDb } = await import('@/lib/data');
@@ -33,11 +34,7 @@ export default async function TicketsPage() {
               className="bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-zinc-100 dark:border-zinc-800"
             >
               <div className="h-48 bg-gradient-to-br from-sky-100 to-teal-100 dark:from-sky-900/40 dark:to-teal-900/40 flex items-center justify-center">
-                {t.imageUrl ? (
-                  <img src={t.imageUrl} alt={t.name} className="h-full w-full object-cover" />
-                ) : (
-                  <Ticket className="w-14 h-14 text-sky-400" />
-                )}
+                <TicketImage src={t.imageUrl} alt={t.name} className="h-full w-full object-cover" />
               </div>
               <div className="p-5">
                 <h2 className="font-bold text-zinc-900 dark:text-white text-lg mb-1 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">

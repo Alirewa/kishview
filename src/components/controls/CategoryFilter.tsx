@@ -20,7 +20,7 @@ export function CategoryFilter() {
   const ActiveIcon = activeChip.icon;
 
   return (
-    <div dir={dir} className="absolute top-[4.5rem] left-0 right-0 z-20 px-3 py-1.5 pointer-events-none sm:hidden">
+    <div dir={dir} className="absolute top-[4.5rem] left-0 right-0 z-20 px-3 py-1.5 pointer-events-none">
       {open ? (
         <div className="pointer-events-auto flex items-center gap-2 flex-wrap">
           {FILTER_CHIPS.map((chip) => {
